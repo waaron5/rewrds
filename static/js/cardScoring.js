@@ -178,7 +178,7 @@ function scoreCards(cards, answers) {
 
         const spendValue = quizToSchemaMap.spend.rule(spendMap, card.rewards, pointValue);
         score += spendValue / 100;
-        if (spendValue > 0) reasons.push(`Estimated ~$${Math.round(spendValue)} in yearly rewards`);
+        if (spendValue > 0) reasons.push(`Estimated $${Math.round(spendValue)} in yearly rewards`);
 
         // === SIGN-UP BONUS AND CREDITS ===
         const bonusValue = card.sign_up_bonus?.value_estimate || 0;

@@ -170,7 +170,7 @@ document.addEventListener("DOMContentLoaded", () => {
     }
 
     function showResults() {
-        fetch("../static/cards.json")
+        fetch("http://localhost:4000/cards")
             .then(res => res.json())
             .then(cards => {
                 const scores = cardScoring.scoreCards(cards, userAnswers);
