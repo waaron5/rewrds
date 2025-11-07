@@ -188,7 +188,7 @@ html body.home-page .hero-section {
     /* 30px */
 
     /* Headings (responsive) */
-    --font-size-hero-h1: clamp(2.25rem, 5vw, 3.25rem);
+    --font-size-hero-h1: clamp(2.5rem, 5vw, 3.75rem);
     --font-size-section-h1: clamp(2rem, 3.2vw, 3rem);
     --font-size-h2: clamp(1.5rem, 2.5vw, 2rem);
     --font-size-h3: clamp(1.15rem, 1.3vw, 1.25rem);
@@ -400,9 +400,9 @@ main {
 }
 
 .hero-inner .text-content p {
-    font-size: 1.05rem;
+    font-size: 1.25rem;
     font-weight: 300;
-    margin-bottom: 25px;
+    margin-bottom: 20px;
     font-family: 'M PLUS Rounded 1c', Inter, ui-sans-serif, system-ui, -apple-system, 'Segoe UI', Roboto, Arial, sans-serif;
     line-height: 1.6;
     color: var(--muted);
@@ -583,7 +583,7 @@ body.home-page .feature-row::before {
     border: 1px solid var(--border);
     border-radius: 16px;
     text-align: center;
-    padding: 2rem 1rem;
+    padding: 1.5rem 2rem;
     text-decoration: none;
     color: var(--ink);
     transition: all 0.25s ease;
@@ -591,13 +591,13 @@ body.home-page .feature-row::before {
 }
 
 .feature-card:hover {
-    transform: translateY(-6px);
+    transform: translateY(-8px);
     color: var(--ink);
-    box-shadow: var(--shadow-md);
+    box-shadow: var(--shadow-lg);
 }
 
 .feature-card h3 {
-    font-size: 1.1rem;
+    font-size: 1.2rem;
     font-weight: 600;
     margin-bottom: 0.3rem;
 }
@@ -610,10 +610,10 @@ body.home-page .feature-row::before {
 
 /* Inline SVG icons (Option A) */
 .icon {
-    width: 55px;
-    height: 55px;
+    width: 65px;
+    height: 65px;
     display: inline-block;
-    margin-bottom: 1rem;
+    margin-bottom: 0.4rem;
 }
 
 .icon-credit {
