@@ -189,9 +189,13 @@ html body.home-page .hero-section {
 
     /* Headings (responsive) */
     --font-size-hero-h1: clamp(2.5rem, 5vw, 3.75rem);
-    --font-size-section-h1: clamp(2rem, 3.2vw, 3rem);
+    --font-size-section-h1: 2.4rem;
     --font-size-h2: clamp(1.5rem, 2.5vw, 2rem);
     --font-size-h3: clamp(1.15rem, 1.3vw, 1.25rem);
+
+    /* Section title weight */
+    --font-weight-section-title: var(--weight-bold);
+    /* 500 */
 }
 
 /* ==========================
@@ -214,7 +218,7 @@ header .logo-link img {
     margin-right: 0.5rem;
     height: auto;
     display: block;
-    transition: box-shadow 0.2s;
+    transition: box-shadow 0.1s;
 }
 
 header .logo-link img:hover {
@@ -410,7 +414,7 @@ main {
 
 /* Hero flank images */
 .hero-image {
-    width: clamp(120px, 22vw, 260px);
+    width: clamp(120px, 22vw, 280px);
     height: auto;
     object-fit: contain;
     flex: 0 0 auto;
@@ -471,10 +475,11 @@ main {
     text-align: left;
 }
 
-.section .text-content h1 {
+.section .text-content h1,
+.section .text-content h2 {
     font-size: var(--font-size-section-h1);
     font-family: var(--font-family-heading);
-    font-weight: var(--weight-regular);
+    font-weight: var(--font-weight-section-title);
     margin: 0;
     line-height: var(--line-height-heading);
     letter-spacing: var(--letter-spacing-heading);
@@ -826,13 +831,14 @@ body.home-page .feature-row::before {
 }
 
 .how-it-works #how-title {
+    font-size: var(--font-size-section-h1);
     color: var(--surface);
 }
 
 /* How it works image + layout */
 .how-it-works .how-image {
     flex: 0 0 auto;
-    width: clamp(140px, 24vw, 160px);
+    width: clamp(140px, 24vw, 180px);
     height: auto;
     object-fit: contain;
 }
@@ -906,7 +912,7 @@ body.home-page .feature-row::before {
 
 .best-cards .best-image {
     flex: 0 0 auto;
-    width: clamp(140px, 24vw, 160px);
+    width: clamp(140px, 24vw, 180px);
     height: auto;
     object-fit: contain;
 }
@@ -1021,7 +1027,7 @@ body.home-page .feature-row::before {
 /* Why REWRDS: right image + layout */
 .why-rewrds .why-image {
     flex: 0 0 auto;
-    width: clamp(140px, 24vw, 160px);
+    width: clamp(140px, 24vw, 180px);
     height: auto;
     object-fit: contain;
 }
@@ -1078,10 +1084,10 @@ body.home-page .feature-row::before {
 }
 
 .cta-content h2 {
-    font-size: var(--font-size-h2);
+    font-size: 2.25rem;
     font-family: var(--font-family-heading);
-    font-weight: var(--weight-semibold);
-    margin-bottom: 25px;
+    font-weight: var(--weight-bold);
+    margin-bottom: 35px;
     line-height: var(--line-height-heading);
     letter-spacing: var(--letter-spacing-heading);
 }
@@ -1102,12 +1108,12 @@ body.home-page .feature-row::before {
 }
 
 .cta-image-left {
-    width: clamp(120px, 22vw, 230px);
+    width: clamp(120px, 22vw, 250px);
     margin-right: 0px;
 }
 
 .cta-image-right {
-    width: clamp(120px, 22vw, 250px);
+    width: clamp(120px, 22vw, 270px);
     margin-left: 0px;
 }
 
