@@ -1,0 +1,384 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Find Your Best Credit Card</title>
+    <link rel="stylesheet" href="../static/css/cardmatch.css" />
+    <link rel="stylesheet" href="/static/css/styles.css" />
+</head>
+
+<body class="quiz-page">
+    <main>
+        <form id="cardmatch-form">
+            <div id="quiz-progress">Step 1 of 7</div>
+
+            <h1></h1>
+            <p class="subtitle"></p>
+
+            <!-- 1 Credit Score -->
+            <fieldset class="q active">
+                <legend>What’s your current credit score range?</legend>
+                <p class="helper-text">An estimate is fine — this helps us show cards you’re most likely to qualify for.
+                </p>
+                <label><input type="radio" name="creditScore" value="poor" required /> Poor (below 580)</label>
+                <label><input type="radio" name="creditScore" value="fair" /> Fair (580–669)</label>
+                <label><input type="radio" name="creditScore" value="good" /> Good (670–739)</label>
+                <label><input type="radio" name="creditScore" value="very_good" /> Very Good (740–799)</label>
+                <label><input type="radio" name="creditScore" value="excellent" /> Excellent (800+)</label>
+                <label><input type="radio" name="creditScore" value="none" /> I don’t have a credit score yet</label>
+            </fieldset>
+
+            <!-- 2 Goal -->
+            <fieldset class="q">
+                <legend>What’s your main goal with a new card?</legend>
+                <p class="helper-text">Pick the one that best fits your priorities right now.</p>
+                <label><input type="radio" name="goal" value="cashback" required /> Earn cash back</label>
+                <label><input type="radio" name="goal" value="points_miles" /> Earn points and miles for travel</label>
+                <label><input type="radio" name="goal" value="maximize_value" /> Maximize total value (cashback &
+                    points)</label>
+                <label><input type="radio" name="goal" value="credit_building" /> Build or improve credit</label>
+                <label><input type="radio" name="goal" value="low_interest" /> Low interest / balance transfer</label>
+            </fieldset>
+
+            <!-- 3 Annual Fee -->
+            <fieldset class="q">
+                <legend>How do you feel about annual fees?</legend>
+                <p class="helper-text">Some cards with small or premium fees offer big rewards in return.</p>
+                <label><input type="radio" name="annualFee" value="no_fee" required /> I prefer cards with no annual
+                    fee</label>
+                <label><input type="radio" name="annualFee" value="small_fee" /> I’m okay with a small fee ($50–$100) if
+                    it’s worth it</label>
+                <label><input type="radio" name="annualFee" value="premium" /> I’m fine with $100+ for strong perks and
+                    value</label>
+            </fieldset>
+
+            <!-- 4 Spending Breakdown -->
+            <fieldset class="q">
+                <legend>How much do you spend in each category per month?</legend>
+                <p class="helper-text">
+                    Use the sliders to estimate your monthly spending in each category.
+                    This helps us recommend cards that match your real-life habits.
+                </p>
+
+                <div class="slider-group">
+                    <div class="slider-row">
+                        <span class="slider-category">Groceries</span>
+                        <input type="range" id="spend-groceries" name="spendGroceries" min="0" max="3000" step="50"
+                            value="0">
+                        <div class="slider-input-wrapper">
+                            <span class="dollar-sign">$</span>
+                            <input type="number" id="input-groceries" min="0" max="3000" step="50" value="0"
+                                class="slider-input">
+                        </div>
+                        <div class="slider-toggle">
+                            <span class="toggle-label active" data-unit="month">Month</span>
+                            <span class="toggle-label" data-unit="year">Year</span>
+                        </div>
+                    </div>
+                    <div class="slider-row">
+                        <span class="slider-category">Dining / Restaurants</span>
+                        <input type="range" id="spend-dining" name="spendDining" min="0" max="3000" step="50" value="0">
+                        <div class="slider-input-wrapper">
+                            <span class="dollar-sign">$</span>
+                            <input type="number" id="input-dining" min="0" max="3000" step="50" value="0"
+                                class="slider-input">
+                        </div>
+                        <div class="slider-toggle">
+                            <span class="toggle-label active" data-unit="month">Month</span>
+                            <span class="toggle-label" data-unit="year">Year</span>
+                        </div>
+                    </div>
+                    <div class="slider-row">
+                        <span class="slider-category">Travel (flights, hotels, etc.)</span>
+                        <input type="range" id="spend-travel" name="spendTravel" min="0" max="3000" step="50" value="0">
+                        <div class="slider-input-wrapper">
+                            <span class="dollar-sign">$</span>
+                            <input type="number" id="input-travel" min="0" max="3000" step="50" value="0"
+                                class="slider-input">
+                        </div>
+                        <div class="slider-toggle">
+                            <span class="toggle-label active" data-unit="month">Month</span>
+                            <span class="toggle-label" data-unit="year">Year</span>
+                        </div>
+                    </div>
+                    <div class="slider-row">
+                        <span class="slider-category">Gas</span>
+                        <input type="range" id="spend-gas" name="spendGas" min="0" max="3000" step="50" value="0">
+                        <div class="slider-input-wrapper">
+                            <span class="dollar-sign">$</span>
+                            <input type="number" id="input-gas" min="0" max="3000" step="50" value="0"
+                                class="slider-input">
+                        </div>
+                        <div class="slider-toggle">
+                            <span class="toggle-label active" data-unit="month">Month</span>
+                            <span class="toggle-label" data-unit="year">Year</span>
+                        </div>
+                    </div>
+                    <div class="slider-row">
+                        <span class="slider-category">Transit (Public Transportation, Rideshare, etc.)</span>
+                        <input type="range" id="spend-transit" name="spendTransit" min="0" max="3000" step="50"
+                            value="0">
+                        <div class="slider-input-wrapper">
+                            <span class="dollar-sign">$</span>
+                            <input type="number" id="input-transit" min="0" max="3000" step="50" value="0"
+                                class="slider-input">
+                        </div>
+                        <div class="slider-toggle">
+                            <span class="toggle-label active" data-unit="month">Month</span>
+                            <span class="toggle-label" data-unit="year">Year</span>
+                        </div>
+                    </div>
+                    <div class="slider-row">
+                        <span class="slider-category">Online Shopping</span>
+                        <input type="range" id="spend-online" name="spendOnline" min="0" max="3000" step="50" value="0">
+                        <div class="slider-input-wrapper">
+                            <span class="dollar-sign">$</span>
+                            <input type="number" id="input-online" min="0" max="3000" step="50" value="0"
+                                class="slider-input">
+                        </div>
+                        <div class="slider-toggle">
+                            <span class="toggle-label active" data-unit="month">Month</span>
+                            <span class="toggle-label" data-unit="year">Year</span>
+                        </div>
+                    </div>
+                    <div class="slider-row">
+                        <span class="slider-category">Rent</span>
+                        <input type="range" id="spend-rent" name="spendRent" min="0" max="4000" step="50" value="0">
+                        <div class="slider-input-wrapper">
+                            <span class="dollar-sign">$</span>
+                            <input type="number" id="input-rent" min="0" max="4000" step="50" value="0"
+                                class="slider-input">
+                        </div>
+                        <div class="slider-toggle">
+                            <span class="toggle-label active" data-unit="month">Month</span>
+                            <span class="toggle-label" data-unit="year">Year</span>
+                        </div>
+                    </div>
+                    <div class="slider-row">
+                        <span class="slider-category">Other</span>
+                        <input type="range" id="spend-other" name="spendOther" min="0" max="3000" step="50" value="0">
+                        <div class="slider-input-wrapper">
+                            <span class="dollar-sign">$</span>
+                            <input type="number" id="input-other" min="0" max="3000" step="50" value="0"
+                                class="slider-input">
+                        </div>
+                        <div class="slider-toggle">
+                            <span class="toggle-label active" data-unit="month">Month</span>
+                            <span class="toggle-label" data-unit="year">Year</span>
+                        </div>
+                    </div>
+                    <div class="slider-row">
+                        <span class="slider-category">Entertainment / Streaming</span>
+                        <input type="range" id="spend-entertainment" name="spendEntertainment" min="0" max="1000"
+                            step="25" value="0">
+                        <div class="slider-input-wrapper">
+                            <span class="dollar-sign">$</span>
+                            <input type="number" id="input-entertainment" min="0" max="1000" step="25" value="0"
+                                class="slider-input">
+                        </div>
+                        <div class="slider-toggle">
+                            <span class="toggle-label active" data-unit="month">Month</span>
+                            <span class="toggle-label" data-unit="year">Year</span>
+                        </div>
+                    </div>
+
+                    <div class="slider-row">
+                        <span class="slider-category">Bills / Utilities</span>
+                        <input type="range" id="spend-utilities" name="spendUtilities" min="0" max="3000" step="50"
+                            value="0">
+                        <div class="slider-input-wrapper">
+                            <span class="dollar-sign">$</span>
+                            <input type="number" id="input-utilities" min="0" max="3000" step="50" value="0"
+                                class="slider-input">
+                        </div>
+                        <div class="slider-toggle">
+                            <span class="toggle-label active" data-unit="month">Month</span>
+                            <span class="toggle-label" data-unit="year">Year</span>
+                        </div>
+                    </div>
+                    <button type="button" class="btn-secondary" id="slider-continue">Continue</button>
+                </div>
+            </fieldset>
+
+            <!-- 5 Travel Frequency -->
+            <fieldset class="q">
+                <legend>How often do you travel?</legend>
+                <p class="helper-text">This helps match cards with the right travel benefits or protections.</p>
+                <label><input type="radio" name="travelFrequency" value="rarely" required /> Rarely</label>
+                <label><input type="radio" name="travelFrequency" value="occasionally" /> A few times a year</label>
+                <label><input type="radio" name="travelFrequency" value="frequently" /> Monthly or more</label>
+            </fieldset>
+
+            <!-- 6 Preferred Airline -->
+            <fieldset class="q">
+                <legend>Which airline(s) do you fly most often?</legend>
+                <p class="helper-text">Select all that apply — we’ll prioritize cards with points you can use with these
+                    airlines.</p>
+                <label><input type="checkbox" name="airline" value="delta"> Delta</label>
+                <label><input type="checkbox" name="airline" value="american"> American Airlines</label>
+                <label><input type="checkbox" name="airline" value="united"> United Airlines</label>
+                <label><input type="checkbox" name="airline" value="southwest"> Southwest</label>
+                <label><input type="checkbox" name="airline" value="alaska"> Alaska Airlines</label>
+                <label><input type="checkbox" name="airline" value="jetblue"> JetBlue</label>
+                <label><input type="checkbox" name="airline" value="frontier"> Frontier</label>
+                <label><input type="checkbox" name="airline" value="spirit"> Spirit</label>
+                <label><input type="checkbox" name="airline" value="hawaiian"> Hawaiian Airlines</label>
+                <label><input type="checkbox" name="airline" value="international"> International (British Airways, Air
+                    Canada, Emirates, etc.)</label>
+                <label><input type="checkbox" name="airline" value="none"> I rarely fly / No preference</label>
+            </fieldset>
+
+            <!-- 7 Hotel Preferences -->
+            <fieldset class="q">
+                <legend>Which hotel chains do you stay at most often?</legend>
+                <p class="helper-text">Select all that apply — we’ll favor cards that earn and redeem well with these
+                    brands.</p>
+                <label><input type="checkbox" name="hotel" value="marriott"> Marriott / Starwood</label>
+                <label><input type="checkbox" name="hotel" value="hilton"> Hilton</label>
+                <label><input type="checkbox" name="hotel" value="hyatt"> Hyatt</label>
+                <label><input type="checkbox" name="hotel" value="ihg"> IHG (Holiday Inn, InterContinental,
+                    Kimpton)</label>
+                <label><input type="checkbox" name="hotel" value="wyndham"> Wyndham</label>
+                <label><input type="checkbox" name="hotel" value="choice"> Choice Hotels (Comfort Inn, Clarion,
+                    etc.)</label>
+                <label><input type="checkbox" name="hotel" value="radisson"> Radisson</label>
+                <label><input type="checkbox" name="hotel" value="airbnb"> Airbnb / VRBO / Vacation rentals</label>
+                <label><input type="checkbox" name="hotel" value="boutique"> Boutique / Independent hotels</label>
+                <label><input type="checkbox" name="hotel" value="none"> I rarely stay at hotels / No preference</label>
+            </fieldset>
+
+            <!-- 8 Niche Rewards / Perks -->
+            <fieldset class="q">
+                <legend>Which perks matter most to you? (Select all that apply)</legend>
+                <p class="helper-text">Pick the benefits you value most — this helps match cards with the right
+                    protections and credits.</p>
+                <label><input type="checkbox" name="perks" value="lounge_access"> Airport lounge access</label>
+                <label><input type="checkbox" name="perks" value="travel_insurance"> Travel insurance / trip
+                    cancellation</label>
+                <label><input type="checkbox" name="perks" value="rental_car"> Rental car insurance</label>
+                <label><input type="checkbox" name="perks" value="cell_phone"> Cell phone protection</label>
+                <label><input type="checkbox" name="perks" value="purchase_protection"> Purchase protection / extended
+                    warranty</label>
+                <label><input type="checkbox" name="perks" value="credits"> Annual / monthly statement credits</label>
+                <label><input type="checkbox" name="perks" value="tsa"> TSA PreCheck / Global Entry credit</label>
+                <label><input type="checkbox" name="perks" value="no_foreign"> No foreign transaction fees</label>
+                <label><input type="checkbox" name="perks" value="exclusive"> Access to exclusive events or
+                    offers</label>
+                <label><input type="checkbox" name="perks" value="none"> None of these matter much</label>
+            </fieldset>
+
+            <!-- 9 Grocery Stores -->
+            <fieldset class="q">
+                <legend>Where do you usually buy groceries?</legend>
+                <p class="helper-text">Choose where you usually shop — some cards bonus supermarkets or specific
+                    retailers.</p>
+                <label><input type="checkbox" name="grocery" value="walmart" /> Walmart / Supercenter</label>
+                <label><input type="checkbox" name="grocery" value="costco" /> Costco</label>
+                <label><input type="checkbox" name="grocery" value="sams" /> Sam's Club</label>
+                <label><input type="checkbox" name="grocery" value="kroger" /> Kroger / Ralphs / King Soopers</label>
+                <label><input type="checkbox" name="grocery" value="whole_foods" /> Whole Foods / Trader Joe’s</label>
+                <label><input type="checkbox" name="grocery" value="local" /> Local stores / co-ops</label>
+                <label><input type="checkbox" name="grocery" value="other" /> Other / No preference</label>
+            </fieldset>
+
+            <!-- 10 Gas Stations -->
+            <fieldset class="q">
+                <legend>Where do you usually fill up or buy gas?</legend>
+                <p class="helper-text">Choose the stations you use — some cards offer extra rewards at certain brands.
+                </p>
+                <label><input type="checkbox" name="gas" value="shell"> Shell</label>
+                <label><input type="checkbox" name="gas" value="chevron"> Chevron</label>
+                <label><input type="checkbox" name="gas" value="exxon"> Exxon / Mobil</label>
+                <label><input type="checkbox" name="gas" value="bp"> BP</label>
+                <label><input type="checkbox" name="gas" value="arco"> ARCO</label>
+                <label><input type="checkbox" name="gas" value="valero"> Valero</label>
+                <label><input type="checkbox" name="gas" value="costco"> Costco</label>
+                <label><input type="checkbox" name="gas" value="sams"> Sam’s Club</label>
+                <label><input type="checkbox" name="gas" value="7eleven"> 7-Eleven</label>
+                <label><input type="checkbox" name="gas" value="circlek"> Circle K</label>
+                <label><input type="checkbox" name="gas" value="speedway"> Speedway</label>
+                <label><input type="checkbox" name="gas" value="murphyusa"> Murphy USA</label>
+                <label><input type="checkbox" name="gas" value="quiktrip"> QuikTrip (QT)</label>
+                <label><input type="checkbox" name="gas" value="racetrac"> RaceTrac</label>
+                <label><input type="checkbox" name="gas" value="local"> Local / Independent stations</label>
+                <label><input type="checkbox" name="gas" value="none"> I rarely buy gas / drive EV</label>
+            </fieldset>
+
+            <!-- 11 Online Shopping -->
+            <fieldset class="q">
+                <legend>Where do you do most of your online shopping?</legend>
+                <p class="helper-text">Select your common online stores — some cards earn more with these merchants or
+                    categories.</p>
+                <label><input type="checkbox" name="onlineShopping" value="amazon"> Amazon</label>
+                <label><input type="checkbox" name="onlineShopping" value="walmart"> Walmart</label>
+                <label><input type="checkbox" name="onlineShopping" value="target"> Target</label>
+                <label><input type="checkbox" name="onlineShopping" value="apple"> Apple Store</label>
+                <label><input type="checkbox" name="onlineShopping" value="bestbuy"> Best Buy</label>
+                <label><input type="checkbox" name="onlineShopping" value="ebay"> eBay</label>
+                <label><input type="checkbox" name="onlineShopping" value="etsy"> Etsy</label>
+                <label><input type="checkbox" name="onlineShopping" value="brand"> Brand websites (Nike, Sephora,
+                    etc.)</label>
+                <label><input type="checkbox" name="onlineShopping" value="paypal"> PayPal / Venmo purchases</label>
+                <label><input type="checkbox" name="onlineShopping" value="none"> I rarely shop online</label>
+            </fieldset>
+
+            <!-- 12 Lifestyle Preference -->
+            <fieldset class="q">
+                <legend>What’s your card management style?</legend>
+                <p class="helper-text">Some people like keeping it simple, others enjoy maximizing rewards across
+                    multiple cards.</p>
+
+                <label><input type="radio" name="cardStrategy" value="minimalist" required /> I prefer keeping it simple
+                    (1–2 cards)</label>
+                <label><input type="radio" name="cardStrategy" value="balanced" /> A few cards for different categories
+                    (3–4 cards)</label>
+                <label><input type="radio" name="cardStrategy" value="optimizer" /> I don’t mind managing several cards
+                    to maximize every point (5+ cards)</label>
+            </fieldset>
+
+            <!-- 13 Business Openness -->
+            <fieldset class="q">
+                <legend>Would you consider a business card?</legend>
+                <p class="helper-text">Business cards often offer higher rewards and can be used for side hustles or
+                    freelancing.</p>
+                <label><input type="radio" name="businessCards" value="no" required /> No, just personal cards</label>
+                <label><input type="radio" name="businessCards" value="yes" /> Yes, I’m open to business cards</label>
+            </fieldset>
+
+            <!-- 14 Redemption Effort -->
+            <fieldset class="q">
+                <legend>Are you willing to put in additional effort to redeem points at higher values?</legend>
+                <p class="helper-text">Higher-effort redemptions can unlock more value (like transfers); choose what
+                    fits your style.</p>
+                <label><input type="radio" name="redemption_value" value="no" /> Probaby not</label>
+                <label><input type="radio" name="redemption_value" value="yes" /> Yes, I'll put in effort
+                    to find the most valuable redemptions</label>
+                <label><input type="radio" name="redemption_value" value="average" /> I'll take advantage of some
+                    high redemption value offers, but usually not</label>
+                <label><input type="radio" name="redemption_value" value="none" /> None / Not important</label>
+            </fieldset>
+
+            <!-- 15 Zip Code (local cards) -->
+            <fieldset class="q">
+                <legend>Enter your ZIP code (optional)</legend>
+                <p class="helper-text">We’ll use this to check for local or regional card offers.</p>
+                <input type="text" name="zip" maxlength="5" pattern="\d{5}" placeholder="e.g. 84602" />
+            </fieldset>
+
+            <button type="button" id="see-results" class="btn-secondary" style="display:none;">See My Matches</button>
+            <div id="why-recommended-container" style="display:none;"></div>
+
+            <!-- Progress bar moved to the bottom of the form -->
+            <div class="progress-bar">
+                <div class="progress-bar-fill" style="width: 14%;"></div>
+            </div>
+        </form>
+    </main>
+
+    <script src="../static/js/cardScoring.js"></script>
+    <script src="../static/js/cardmatch.js"></script>
+</body>
+
+</html>

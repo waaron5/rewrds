@@ -1,0 +1,693 @@
+:root {
+    --color-primary: #C7A008;
+    /* apply buttons */
+    --color-text-dark: #000000;
+    --color-text-muted: #000000;
+    --color-border: #e9ecef;
+    --color-star-gold: #ffc107;
+}
+
+body {
+    font-family: 'Inter', sans-serif;
+    margin: 0;
+    padding: 20px;
+    background-color: #f8fafc;
+    /* bg-gray-50 */
+    color: #0f172a;
+    /* text-gray-900 */
+    min-width: 320px;
+    overflow-x: hidden;
+}
+
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    background: #fff;
+    /* bg-white */
+    padding: 20px;
+    border-radius: 8px;
+    border: 1px solid #d1d5db;
+    /* border-gray-300 */
+}
+
+h1 {
+    font-weight: 700;
+    color: #0f172a;
+    /* text-gray-900 */
+    margin-bottom: 50px;
+    font-size: 3rem;
+    text-align: left;
+}
+
+h2,
+h3,
+h4,
+h5,
+h6 {
+    color: #0f172a;
+    /* text-gray-900 */
+}
+
+p,
+.subtitle,
+.helper-text,
+label,
+.secondary-text {
+    color: #64748b;
+    /* text-slate-500 */
+}
+
+/* ========================
+   TABLE STRUCTURE (GRID)
+   ======================== */
+
+.card-table {
+    /* UPDATED COLUMNS: Card (2.5fr), Score (1fr), Intro Offer (2fr), Rewards (1.5fr), Fee (1fr), Apply (1.2fr) */
+    display: grid;
+    grid-template-columns: 2.5fr 1fr 2fr 1.5fr 1fr 1.2fr;
+    gap: 0;
+    font-size: 0.95rem;
+    /* Hide the grid on smaller screens to switch to a stacked mobile view */
+}
+
+/* Desktop Column Headers */
+.header-row {
+    font-weight: 600;
+    font-size: 1.1rem;
+    color: #0D2C54;
+    padding: 12px 10px;
+    border-bottom: 1px solid #0D2C54;
+    text-align: left;
+    position: sticky;
+    top: 0;
+    background-color: #fff;
+    z-index: 10;
+}
+
+/* Rows for each card */
+.card-row {
+    display: contents;
+    /* Allows grid cells to be direct children of the grid container */
+}
+
+.card-row-item {
+    padding: 10px 10px;
+    border-bottom: 1px solid var(--color-border);
+    display: flex;
+    align-items: center;
+    line-height: 1.4;
+}
+
+.card-row:nth-child(odd) .card-row-item {
+    background-color: #fbfbfb;
+}
+
+/* Specific Cell Styles */
+.card-details {
+    display: flex;
+    /* Kept for alignment, but overridden in row 1, 2, 3 below */
+    align-items: center;
+    gap: 1px;
+}
+
+.card-image img {
+    width: 140px;
+    height: auto;
+    border-radius: 4px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+/* puts card name under image */
+.card-details:first-child {
+    display: flex;
+    flex-direction: column;
+    justify-content: left;
+}
+
+.card-name-rating {
+    display: flex;
+    flex-direction: column;
+}
+
+.card-name {
+    font-weight: 400;
+    font-size: 0.8rem;
+    color: var(--color-text-dark);
+}
+
+.rating-stars {
+    color: var(--color-star-gold);
+    font-size: 1rem;
+    margin-top: 4px;
+}
+
+.info-icon {
+    color: var(--color-text-muted);
+    margin-left: 5px;
+    cursor: pointer;
+}
+
+/* Button Styling */
+.apply-btn {
+    display: block;
+    width: 100%;
+    padding: 10px 0;
+    border: none;
+    border-radius: 8px;
+    color: #fff;
+    /* text-white */
+    font-weight: 600;
+    text-align: center;
+    text-decoration: none;
+    cursor: pointer;
+    transition: background-color 0.3s;
+    background: #1e293b;
+    /* bg-slate-800 */
+}
+
+.apply-btn:hover {
+    background: #334155;
+    /* hover:bg-slate-700 */
+}
+
+/* Puts rates and fees link under apply button */
+.card-row-item:last-child {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.fees-link {
+    display: block;
+    text-align: center;
+    font-size: 0.8rem;
+    color: var(--color-primary);
+    margin-top: 5px;
+    text-decoration: none;
+}
+
+.fees-link:hover {
+    text-decoration: underline;
+    color: #b6940b;
+}
+
+/* ========================
+   MODERN CARD RESULTS
+   ======================== */
+.card-results {
+    max-width: 1100px;
+    margin: 48px auto 0 auto;
+    padding: 0 24px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.card-results-title {
+    font-size: 2.4rem;
+    font-weight: 700;
+    color: #0D2C54;
+    margin-bottom: 36px;
+    text-align: center;
+    letter-spacing: -1px;
+}
+
+.card-match {
+    display: flex;
+    flex-direction: row;
+    align-items: flex-start;
+    background: #fff;
+    /* bg-white */
+    border-radius: 18px;
+    box-shadow: 0 4px 24px rgba(0, 0, 0, 0.08);
+    margin-bottom: 32px;
+    padding: 32px 32px 24px 32px;
+    width: 100%;
+    max-width: 900px;
+    gap: 32px;
+    transition: box-shadow 0.2s;
+    border: 1px solid #d1d5db;
+    /* border-gray-300 */
+}
+
+.card-match:hover {
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.14);
+}
+
+.card-img-section {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    min-width: 140px;
+}
+
+.card-img {
+    width: 120px;
+    height: auto;
+    border-radius: 10px;
+    margin-bottom: 12px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.07);
+}
+
+.card-title {
+    font-size: 0.8rem;
+    font-weight: 600;
+    color: #0D2C54;
+    text-align: center;
+    margin-bottom: 0;
+}
+
+.card-info-section {
+    display: flex;
+    flex-direction: row;
+    flex: 1;
+    gap: 32px;
+    justify-content: flex-start;
+    border-color: #d1d5db;
+    /* border-gray-300 */
+}
+
+.card-info-block {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    min-width: 120px;
+    max-width: 180px;
+    border-color: #d1d5db;
+    /* border-gray-300 */
+}
+
+.card-info-title {
+    font-size: 1rem;
+    font-weight: 600;
+    color: #64748b;
+    /* text-slate-500 */
+    margin-bottom: 6px;
+}
+
+.card-info-value {
+    font-size: 1.05rem;
+    color: #0f172a;
+    /* text-gray-900 */
+    margin-bottom: 0;
+    font-weight: 400;
+}
+
+.card-info-value ul {
+    list-style: none;
+    margin: 0;
+    padding-left: 0;
+}
+
+.card-info-value li {
+    margin-bottom: 4px;
+    font-size: 0.98rem;
+    padding-left: 0;
+}
+
+.card-actions-section {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    min-width: 140px;
+    gap: 10px;
+}
+
+.apply-btn {
+    display: block;
+    width: 105px;
+    padding: 0.8rem 0;
+    border-radius: 8px;
+    background: #1e293b;
+    /* bg-slate-800 */
+    color: #fff;
+    /* text-white */
+    font-weight: 700;
+    text-align: center;
+    text-decoration: none;
+    font-size: 0.9rem;
+    margin-top: 0.3rem;
+    transition: background 0.2s;
+    border: none;
+}
+
+.apply-btn:hover {
+    background: #334155;
+    /* hover:bg-slate-700 */
+}
+
+.terms-link {
+    font-size: 0.85rem;
+    color: #38bdf8 !important;
+    /* text-sky-400 */
+    text-decoration: none;
+    margin-top: 2px;
+    display: block;
+    text-align: center;
+}
+
+.terms-link:hover {
+    text-decoration: underline;
+}
+
+@media (max-width: 900px) {
+    .card-match {
+        flex-direction: column;
+        align-items: stretch;
+        padding: 18px 8px 16px 8px;
+        gap: 18px;
+        max-width: 98vw;
+    }
+
+    .card-info-section {
+        flex-direction: column;
+        gap: 18px;
+    }
+
+    .card-actions-section {
+        align-items: stretch;
+        min-width: 0;
+    }
+
+    .card-img-section {
+        min-width: 0;
+    }
+}
+
+/* ========================
+   MOBILE STYLES (STACKED)
+   ======================== */
+@media (max-width: 900px) {
+    .container {
+        padding: 10px;
+    }
+
+    .card-table {
+        display: block;
+        /* Collapse grid into stacked blocks */
+    }
+
+    .header-row {
+        display: none;
+        /* Hide desktop headers */
+    }
+
+    .card-row {
+        display: block;
+        margin-bottom: 20px;
+        border: 1px solid var(--color-border);
+        border-radius: 6px;
+        padding: 15px;
+        background-color: #fff;
+    }
+
+    .card-row-item {
+        border-bottom: none !important;
+        padding: 8px 0;
+        display: block;
+    }
+
+    .card-row:nth-child(odd) .card-row-item,
+    .card-row:hover .card-row-item {
+        background-color: transparent;
+    }
+
+    .card-details {
+        margin-bottom: 10px;
+        padding-bottom: 10px;
+        border-bottom: 1px solid var(--color-border);
+        display: block;
+        /* Force block layout on mobile */
+    }
+
+    .card-details .card-name {
+        margin-top: 5px;
+        /* Spacing for card name under image on mobile */
+    }
+
+    .card-image img {
+        width: 60px;
+    }
+
+    /* mobile-label is now completely removed from HTML, so this is no longer used for display */
+    .mobile-label {
+        display: none;
+    }
+
+    /* Apply column is always at the bottom */
+    .card-row-item:last-child {
+        padding-top: 15px;
+        border-top: 1px solid var(--color-border);
+        margin-top: 10px;
+    }
+
+    .card-results {
+        flex-direction: column;
+        gap: 24px;
+        align-items: center;
+    }
+
+    .card-match {
+        max-width: 95vw;
+        padding: 1.2rem 0.5rem;
+    }
+}
+
+.info-bubble {
+    display: inline-block;
+    position: relative;
+    cursor: pointer;
+    font-size: 1.1em;
+    color: #38bdf8 !important;
+    /* text-sky-400 */
+    margin-left: 6px;
+    vertical-align: middle;
+}
+
+.info-bubble:hover .info-popup,
+.info-bubble:focus .info-popup {
+    display: block;
+}
+
+.info-popup {
+    display: none;
+    position: absolute;
+    left: 50%;
+    top: 120%;
+    transform: translateX(-50%);
+    min-width: 180px;
+    max-width: 260px;
+    background: #fff;
+    color: #222;
+    border: 1px solid #e2e8f8;
+    border-radius: 8px;
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.10);
+    padding: 12px 16px;
+    font-size: 0.98em;
+    z-index: 100;
+    white-space: normal;
+    pointer-events: auto;
+}
+
+/* ========================
+   VALUE SUMMARY SECTION
+   ======================== */
+
+/* Make sure the main content (image + info + buttons) stays in one row */
+.card-main-content {
+    display: flex;
+    flex-direction: row;
+    align-items: flex-start;
+    gap: 10px;
+    width: 100%;
+}
+
+/* Put the value summary as a separate block BELOW the card content */
+.card-value-summary {
+    width: 100%;
+    margin-top: 2px;
+    border-top: 1px solid #d1d5db;
+    /* border-gray-300 */
+    display: block;
+    /* ensures it stretches full width */
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    /* allows stacking on small screens */
+}
+
+.estimated-value {
+    font-size: 1rem;
+    color: #0D2C54;
+    font-weight: 400;
+    margin-bottom: 4px;
+    text-align: right;
+}
+
+.value-amount {
+    font-size: 1rem;
+    font-weight: 500;
+    color: #007BFF;
+    margin-left: 6px;
+}
+
+.best-for {
+    font-size: 1rem;
+    color: #333;
+    font-weight: 500;
+}
+
+.best-for strong {
+    color: #0D2C54;
+    font-weight: 700;
+}
+
+/* MOBILE: Stack everything vertically */
+@media (max-width: 900px) {
+    .card-main-content {
+        flex-direction: column;
+        gap: 18px;
+    }
+
+    .card-value-summary {
+        margin-top: 16px;
+        padding-top: 12px;
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 6px;
+    }
+
+    .estimated-value {
+        font-size: 1rem;
+        text-align: left;
+    }
+
+    .value-amount {
+        font-size: 1.2rem;
+    }
+
+    .best-for {
+        font-size: 0.95rem;
+    }
+}
+
+/* ===== put the value summary UNDER the main content ===== */
+
+/* Allow rows to wrap so a full-width block can fall below */
+.card-match {
+    flex-wrap: wrap;
+}
+
+/* Ensure the main content occupies its own row first */
+.card-main-content {
+    order: 1;
+    flex: 1 1 100%;
+}
+
+/* Force the value summary onto the next line and stretch full width */
+.card-value-summary {
+    order: 2;
+    flex: 0 0 100%;
+    width: 100%;
+    margin-top: 20px;
+    padding-top: 16px;
+    border-top: 1px solid #d1d5db;
+    /* border-gray-300 */
+    display: block;
+}
+
+/* (Optional) If you want extra separation on small screens */
+@media (max-width: 900px) {
+    .card-value-summary {
+        margin-top: 16px;
+        padding-top: 12px;
+    }
+}
+
+/* ===== Side-by-side layout for "Best For" and "Estimated Value" ===== */
+.card-value-summary {
+    order: 2;
+    flex: 0 0 100%;
+    width: 100%;
+    margin-top: 20px;
+    padding-top: 16px;
+    border-top: 1px solid #d1d5db;
+    /* border-gray-300 */
+
+    /* New: horizontal layout */
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    /* allows stacking on small screens */
+}
+
+.best-for {
+    font-size: 1rem;
+    color: #333;
+    font-weight: 500;
+}
+
+.best-for strong {
+    color: #0D2C54;
+    font-weight: 700;
+}
+
+.estimated-value {
+    font-size: 1rem;
+    color: #0D2C54;
+    font-weight: 500;
+    text-align: right;
+}
+
+.value-amount {
+    font-size: 1.4rem;
+    font-weight: 700;
+    color: #007BFF;
+    margin-left: 6px;
+}
+
+/* Mobile adjustments: stack vertically for readability */
+@media (max-width: 700px) {
+    .card-value-summary {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 6px;
+    }
+
+    .estimated-value {
+        text-align: left;
+        font-size: 1rem;
+    }
+
+    .value-amount {
+        font-size: 1.2rem;
+    }
+}
+
+/* ========================
+   CARD RANK BADGE
+   ======================== */
+.card-rank-badge {
+    position: absolute;
+    top: 16px;
+    left: 16px;
+    background: linear-gradient(135deg, #007BFF, #0D2C54);
+    color: #fff;
+    font-size: 1.2rem;
+    font-weight: 700;
+    border-radius: 50%;
+    width: 36px;
+    height: 36px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.15);
+    z-index: 2;
+}
+
+/* Ensure parent has positioning context */
+.card-match {
+    position: relative;
+}

@@ -1,0 +1,405 @@
+/* --- QUIZ CONTAINER --- */
+#cardmatch-form {
+    max-width: 1200px;
+    width: 100%;
+    margin: 0 auto;
+    border-radius: 10px;
+    padding: 2rem 1.5rem;
+    box-sizing: border-box;
+    background: #fff;
+    /* bg-white */
+    color: #0f172a;
+    font-family: 'Inter', sans-serif;
+    position: relative;
+}
+
+.quiz-section h2 {
+    display: none;
+    color: #0f172a;
+    /* text-gray-900 */
+}
+
+/* --- PROGRESS BAR --- */
+#quiz-progress {
+    display: none !important;
+}
+
+.progress-bar {
+    width: 100%;
+    height: 8px;
+    background: #d1d5db;
+    /* border-gray-300 */
+    border-radius: 4px;
+    margin-bottom: 2rem;
+    overflow: hidden;
+}
+
+.progress-bar-fill {
+    height: 100%;
+    background: linear-gradient(90deg, #38bdf8 60%, #1e293b 100%);
+    /* text-sky-400, bg-slate-800 */
+    border-radius: 4px;
+    transition: width 0.6s cubic-bezier(.4, 0, .2, 1);
+}
+
+/* --- QUESTION CARDS --- */
+fieldset.q {
+    display: none;
+    border: none;
+    opacity: 0;
+    transition: opacity 0.45s cubic-bezier(.4, 0, .2, 1);
+    background: #fff;
+    /* bg-white */
+    border-radius: 1rem;
+    padding: 2rem 1.5rem;
+    margin-bottom: 2rem;
+}
+
+fieldset.q.active {
+    display: block;
+    opacity: 1;
+    animation: fadeIn 0.45s cubic-bezier(.4, 0, .2, 1) forwards;
+}
+
+legend {
+    font-size: 1.8rem;
+    font-weight: 700;
+    color: #0f172a;
+    /* text-gray-900 */
+    margin-bottom: 0rem;
+    letter-spacing: -1px;
+}
+
+.helper-text {
+    font-size: 1rem;
+    color: #64748b;
+    /* text-slate-500 */
+    background: #fff;
+    /* bg-white */
+    border-radius: 0.5rem;
+    border-color: #d1d5db;
+    /* border-gray-300 */
+    margin-bottom: 3rem;
+    margin-left: 0.3rem;
+    margin-top: 0rem;
+}
+
+/* --- INPUT LABELS --- */
+label {
+    display: flex;
+    align-items: center;
+    background: #fff;
+    /* bg-white */
+    padding: 1rem 1rem;
+    border-radius: 2rem;
+    margin-bottom: 1rem;
+    cursor: pointer;
+    border: 1px solid #d1d5db;
+    /* border-gray-300 */
+    font-size: 1rem;
+    font-weight: 500;
+    box-shadow: 0 1px 4px rgba(0, 0, 0, 0.03);
+    transition: all 0.2s ease;
+    position: relative;
+}
+
+label:hover {
+    background: #f8fafc;
+    /* bg-gray-50 */
+    border-color: #38bdf8;
+    /* text-sky-400 */
+}
+
+input[type="radio"],
+input[type="checkbox"] {
+    margin-right: 0.75rem;
+    accent-color: #1e293b;
+    /* bg-slate-800 */
+    width: 1.2em;
+    height: 1.2em;
+}
+
+input[type="radio"]:checked+label,
+input[type="checkbox"]:checked+label {
+    background: #f8fafc;
+    /* bg-gray-50 */
+    border-color: #38bdf8;
+    /* text-sky-400 */
+}
+
+/* --- SLIDER INPUTS --- */
+.slider-group {
+    display: flex;
+    flex-direction: column;
+    gap: 1.25rem;
+    margin-top: 1rem;
+    width: 100%;
+}
+
+/* Use a 4-column grid per row: Category | Slider | $ + Input | Toggle */
+.slider-row {
+    display: grid;
+    grid-template-columns: 240px 1fr 130px max-content;
+    /* was: 240px 1fr 130px auto */
+    align-items: center;
+    column-gap: 1rem;
+    row-gap: 0;
+    margin-bottom: 0.5rem;
+    width: 100%;
+    position: relative;
+}
+
+.slider-category {
+    /* left column */
+    font-weight: 600;
+    color: #0f172a;
+    justify-self: start;
+}
+
+/* slider spans the flexible middle column and fills width */
+.slider-row input[type="range"] {
+    width: 100%;
+    margin: 0;
+    accent-color: #1e293b;
+    position: relative;
+    z-index: 0;
+}
+
+/* fixed-width wrapper so inputs align vertically across rows */
+.slider-input-wrapper {
+    width: 130px;
+    display: flex;
+    align-items: center;
+    gap: 4px;
+}
+
+.slider-input {
+    width: 80px;
+}
+
+/* toggle aligned to far right */
+.slider-toggle {
+    justify-self: end;
+    margin-left: 0;
+    /* override previous flex rule */
+    white-space: nowrap;
+    position: relative;
+    z-index: 2;
+    /* sit above slider track/thumb */
+    pointer-events: auto;
+    /* accept clicks */
+    display: inline-flex;
+    align-items: center;
+    gap: 2px;
+    padding: 2px;
+    border: 1px solid #d1d5db;
+    /* gray-300 */
+    background: #f1f5f9;
+    /* slate-100 */
+    border-radius: 4px;
+    /* pill */
+}
+
+.toggle-label {
+    pointer-events: auto;
+    cursor: pointer;
+    user-select: none;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-width: 56px;
+    height: 28px;
+    padding: 0 10px;
+    border: none;
+    /* container provides border */
+    border-radius: 4px;
+    /* pill */
+    background: transparent;
+    color: #334155;
+    /* slate-700 */
+    font-size: 0.9rem;
+    font-weight: 600;
+    transition: background 0.1s ease, color 0.1s ease, box-shadow 0.1s ease;
+}
+
+.toggle-label:hover {
+    background: #e2e8f0;
+    /* slate-200 */
+}
+
+/* Focus ring for keyboard users */
+.toggle-label:focus-visible {
+    outline: none;
+    box-shadow: 0 0 0 3px rgba(56, 189, 248, 0.45);
+    /* sky-400 ring */
+    border-radius: 9999px;
+}
+
+/* Selected state (works with either .active class or aria-pressed=true) */
+.toggle-label.active,
+.toggle-label[aria-pressed="true"] {
+    background: #38bdf8;
+    /* sky-400 */
+    color: #ffffff;
+    /* white */
+    box-shadow: 0 1px 2px rgba(2, 6, 23, 0.12);
+}
+
+/* Ensure active Month/Year toggle text is white */
+.slider-toggle .toggle-label.active,
+.slider-toggle .toggle-label[aria-pressed="true"] {
+    color: #ffffff !important;
+}
+
+.helper-text.small {
+    font-size: 0.9rem;
+    color: #64748b;
+    /* text-slate-500 */
+    margin-top: 1.25rem;
+}
+
+/* --- SUBMIT BUTTON --- */
+.btn-primary {
+    display: block;
+    width: 100%;
+    background: #1e293b;
+    /* bg-slate-800 */
+    color: #fff;
+    /* text-white */
+    padding: 1rem;
+    font-size: 1.15rem;
+    font-weight: 700;
+    border: none;
+    border-radius: 0.75rem;
+    cursor: pointer;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.07);
+    transition: background 0.25s, transform 0.2s;
+    margin-top: 1.5rem;
+    letter-spacing: 0.5px;
+}
+
+.btn-primary:hover {
+    background: #334155;
+    /* hover:bg-slate-700 */
+    transform: scale(1.03);
+}
+
+.btn-secondary {
+    display: inline-block;
+    background: #f8fafc;
+    /* bg-gray-50 */
+    color: #1e293b;
+    /* bg-slate-800 */
+    border: 2px solid #1e293b;
+    /* bg-slate-800 */
+    padding: 0.8rem 1.5rem;
+    font-size: 1.05rem;
+    font-weight: 600;
+    border-radius: 0.75rem;
+    cursor: pointer;
+    box-shadow: 0 1px 4px rgba(0, 0, 0, 0.04);
+    margin-right: 1rem;
+    margin-bottom: 1rem;
+    transition: background 0.2s, color 0.2s, border-color 0.2s;
+}
+
+.btn-secondary:hover {
+    background: #1e293b;
+    /* bg-slate-800 */
+    color: #fff;
+    /* text-white */
+    border-color: #334155;
+    /* hover:bg-slate-700 */
+}
+
+/* Standardize all quiz buttons to full-width like Q2 Continue */
+#cardmatch-form .btn-secondary {
+    display: block;
+    width: 100%;
+    padding: 1rem;
+    /* match Q2 sizing */
+    font-size: 1.15rem;
+    /* match Q2 text */
+    font-weight: 700;
+    /* bold like Q2 */
+    border-radius: 0.75rem;
+    margin-top: 1.5rem;
+    margin-right: 0;
+    /* override default */
+    margin-bottom: 0;
+    /* keep consistent spacing */
+}
+
+/* --- ANIMATION --- */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(12px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* --- ERROR MESSAGE --- */
+/* Inline error with icon */
+.quiz-error {
+    display: flex;
+    align-items: center;
+    gap: 1px;
+}
+
+.quiz-error .error-icon {
+    width: 18px;
+    height: 18px;
+    flex: 0 0 auto;
+    display: inline-block;
+    background-color: #dc2626;
+    /* make icon red */
+    -webkit-mask-image: url('../icons/error.svg');
+    mask-image: url('../icons/error.svg');
+    -webkit-mask-size: contain;
+    mask-size: contain;
+    -webkit-mask-repeat: no-repeat;
+    mask-repeat: no-repeat;
+    -webkit-mask-position: center;
+    mask-position: center;
+}
+
+.error-icon {
+    color: #dc2626;
+    margin-right: 0.3rem;
+}
+
+.quiz-error {
+    color: #dc2626;
+    /* text-sky-400 */
+    background: #ffffff;
+    /* bg-gray-50 */
+    padding: 0rem 0rem;
+    margin-bottom: 0rem;
+    font-size: 1rem;
+    font-weight: 400;
+}
+
+/* --- RESPONSIVE DESIGN --- */
+@media (max-width: 700px) {
+    #cardmatch-form {
+        padding: 1.5rem 0.5rem;
+    }
+
+    fieldset.q {
+        padding: 1.25rem 0.5rem;
+    }
+
+    legend {
+        font-size: 1.4rem;
+    }
+
+    .btn-primary {
+        font-size: 1rem;
+        padding: 0.8rem;
+    }
+}
