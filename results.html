@@ -13,6 +13,18 @@
     <main class="results-container">
         <h1 class="card-results-title">Your Best Credit Card Matches</h1>
         <p class="subtitle"></p>
+
+        <!-- Email results placeholder CTA -->
+        <div class="results-email-cta" aria-label="Email these results">
+            <p class="email-cta-text">Get a copy of these results emailed to you.</p>
+            <form class="email-cta-form" action="#" method="post" onsubmit="return false;">
+                <input type="email" id="results-email" name="email" placeholder="Your email" aria-label="Email address"
+                    required disabled>
+                <button type="submit" class="apply-btn" disabled>Send me a copy</button>
+            </form>
+            <small class="email-cta-note">Placeholder — email feature coming soon.</small>
+        </div>
+
         <section id="results" class="card-results">
             <!-- Top 3 cards will be rendered here by results.js -->
         </section>

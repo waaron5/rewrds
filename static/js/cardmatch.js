@@ -176,7 +176,7 @@ document.addEventListener("DOMContentLoaded", () => {
                 const scores = cardScoring.scoreCards(cards, userAnswers);
                 localStorage.setItem("quizAnswers", JSON.stringify(userAnswers));
                 localStorage.setItem("cardScores", JSON.stringify(scores));
-                window.location.href = "../templates/results.html";
+                window.location.href = "../results.html";
             });
     }
 
