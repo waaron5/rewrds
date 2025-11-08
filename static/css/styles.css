@@ -154,8 +154,9 @@ html body.home-page .hero-section {
        Typography System
     =================================== */
     /* Families */
-    --font-family-base: Inter, ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, Arial, sans-serif;
+    --font-family-base: 'Varela Round', ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, Arial, sans-serif;
     --font-family-heading: 'M PLUS Rounded 1c', var(--font-family-base);
+    --font-family-card-points: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
 
     /* Weights */
     --weight-regular: 400;
@@ -518,26 +519,13 @@ main {
     background-color: var(--brand-700);
 }
 
-.btn.secondary {
-    background-color: var(--surface);
-    color: var(--brand-900);
-    border: 2px solid var(--brand-900);
-}
-
-.btn.secondary:hover {
-    background-color: #f5f5f5;
-}
-
 /* Best Cards: add white lock icon to Apply now button (inline with text) */
 .best-cards .best-card .btn.secondary {
-    /* existing sizing/styling preserved */
     display: inline-flex;
     align-items: center;
     justify-content: center;
     gap: 8px;
-    /* space between text and icon */
     padding: 10px 16px;
-    /* no extra right padding needed */
 }
 
 .best-cards .best-card .btn.secondary::after {
@@ -897,7 +885,7 @@ body.home-page .feature-row::before {
     width: 36px;
     height: 36px;
     border-radius: 50%;
-    background: var(--brand-900);
+    background: var(--accent-400);
     color: var(--surface);
     display: flex;
     align-items: center;
@@ -1034,6 +1022,7 @@ body.home-page .feature-row::before {
 }
 
 .best-card ul.card-points {
+    font-family: var(--font-family-card-points);
     flex: 1 1 auto;
     padding: 0 4px 0 0;
     margin: 1rem 1rem 1rem 1.5rem;
@@ -1072,13 +1061,13 @@ body.home-page .feature-row::before {
 .best-cards .best-card .btn.secondary {
     font-size: 0.9rem;
     color: var(--background);
-    background-color: var(--brand-900);
+    background-color: var(--accent-600);
     border: none;
     padding: 10px 16px;
 }
 
 .best-cards .best-card .btn.secondary:hover {
-    background-color: var(--brand-700);
+    background-color: var(--accent-500);
 }
 
 /* Best Cards: rates & fees link under button */
