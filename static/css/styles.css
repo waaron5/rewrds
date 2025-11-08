@@ -528,6 +528,29 @@ main {
     background-color: #f5f5f5;
 }
 
+/* Best Cards: add white lock icon to Apply now button (inline with text) */
+.best-cards .best-card .btn.secondary {
+    /* existing sizing/styling preserved */
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    /* space between text and icon */
+    padding: 10px 16px;
+    /* no extra right padding needed */
+}
+
+.best-cards .best-card .btn.secondary::after {
+    content: "";
+    display: inline-block;
+    width: 16px;
+    height: 16px;
+    background-color: #fff;
+    /* white icon */
+    -webkit-mask: url('../icons/lock.svg') no-repeat center / contain;
+    mask: url('../icons/lock.svg') no-repeat center / contain;
+}
+
 /* SECONDARY/SUBTLE TEXT helper */
 .secondary-text,
 .muted,
@@ -960,16 +983,16 @@ body.home-page .feature-row::before {
     top: 0;
     left: 0;
     right: 0;
-    height: 44px;
+    height: 30px;
     display: flex;
     align-items: center;
     justify-content: center;
     margin: 0;
     z-index: 2;
-    background: #ffab7a;
+    background: #ff7c30;
     color: var(--surface);
     font-weight: 600;
-    font-size: 0.95rem;
+    font-size: 0.9rem;
     letter-spacing: 0.2px;
     border-top-left-radius: 14px;
     border-top-right-radius: 14px;
@@ -1013,7 +1036,7 @@ body.home-page .feature-row::before {
 .best-card ul.card-points {
     flex: 1 1 auto;
     padding: 0 4px 0 0;
-    margin: 0 0 16px 0;
+    margin: 1rem 1rem 1rem 1.5rem;
     list-style: none;
 }
 
@@ -1037,6 +1060,38 @@ body.home-page .feature-row::before {
     margin-top: auto;
     /* push to bottom */
     padding: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 6px;
+    padding-bottom: 8px;
+}
+
+/* Best Cards: smaller action button */
+.best-cards .best-card .btn.secondary {
+    font-size: 0.9rem;
+    color: var(--background);
+    background-color: var(--brand-900);
+    border: none;
+    padding: 10px 16px;
+}
+
+.best-cards .best-card .btn.secondary:hover {
+    background-color: var(--brand-700);
+}
+
+/* Best Cards: rates & fees link under button */
+.best-card .fees-link {
+    display: block;
+    font-size: 0.85rem;
+    color: var(--accent-400);
+    margin-top: 6px;
+    text-decoration: none;
+}
+
+.best-card .fees-link:hover {
+    text-decoration: underline;
 }
 
 @media (max-width: 700px) {

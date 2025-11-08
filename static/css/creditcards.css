@@ -149,9 +149,12 @@ label,
 
 /* Button Styling */
 .apply-btn {
-    display: block;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    padding: 10px 14px;
     width: 100%;
-    padding: 10px 0;
     border: none;
     border-radius: 8px;
     color: #fff;
@@ -163,6 +166,19 @@ label,
     transition: background-color 0.3s;
     background: #1e293b;
     /* bg-slate-800 */
+    position: relative;
+}
+
+.apply-btn::after {
+    content: "";
+    display: inline-block;
+    width: 16px;
+    height: 16px;
+    background-color: #fff;
+    /* white icon */
+    -webkit-mask: url('../icons/lock.svg') no-repeat center / contain;
+    mask: url('../icons/lock.svg') no-repeat center / contain;
+    pointer-events: none;
 }
 
 .apply-btn:hover {
@@ -313,10 +329,14 @@ label,
     gap: 10px;
 }
 
-.apply-btn {
-    display: block;
-    width: 105px;
-    padding: 0.8rem 0;
+.card-actions-section .apply-btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    width: 120px;
+    /* give room for icon + text */
+    padding: 10px 12px;
     border-radius: 8px;
     background: #1e293b;
     /* bg-slate-800 */
@@ -329,9 +349,21 @@ label,
     margin-top: 0.3rem;
     transition: background 0.2s;
     border: none;
+    position: relative;
 }
 
-.apply-btn:hover {
+.card-actions-section .apply-btn::after {
+    content: "";
+    display: inline-block;
+    width: 16px;
+    height: 16px;
+    background-color: #fff;
+    -webkit-mask: url('../icons/lock.svg') no-repeat center / contain;
+    mask: url('../icons/lock.svg') no-repeat center / contain;
+    pointer-events: none;
+}
+
+.card-actions-section .apply-btn:hover {
     background: #334155;
     /* hover:bg-slate-700 */
 }
