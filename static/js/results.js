@@ -23,7 +23,7 @@ const categories = [
 
 // Load cards from JSON
 async function loadCards() {
-  const response = await fetch("http://localhost:4000/cards"); // adjust path to live api
+  const response = await fetch(`${API_BASE_URL}/cards`);
   const cards = await response.json();
   return cards;
 }
