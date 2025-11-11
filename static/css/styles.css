@@ -300,11 +300,11 @@ header .subscribe-btn {
     letter-spacing: 0.2px;
     font-weight: 600;
     font-size: small;
-    transition: background-color 0.1s;
+    transition: background-color 0.3s;
 }
 
 header .subscribe-btn:hover {
-    background-color: var(--brand-700);
+    background-color: var(--brand-600);
     color: var(--surface);
 }
 
@@ -562,12 +562,15 @@ main {
 }
 
 .btn.primary {
-    background-color: var(--brand-900);
+    background-color: var(--accent-600);
     color: var(--surface);
+    border: 2px solid var(--accent-600);
 }
 
 .btn.primary:hover {
-    background-color: var(--brand-700);
+    background-color: var(--background-alt);
+    color: var(--accent-600);
+    border: 2px solid var(--accent-600);
 }
 
 /* Best Cards: add white lock icon to Apply now button (inline with text) */
@@ -653,13 +656,13 @@ body.home-page .feature-row::before {
     padding: 1.5rem 2rem;
     text-decoration: none;
     color: var(--ink);
-    transition: all 0.25s ease;
-    box-shadow: 0 3px 8px rgba(0, 0, 0, 0.04);
+    transition: all 0.2s ease;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.04);
 }
 
 .feature-card:hover {
-    transform: translateY(-8px);
-    color: var(--ink);
+    transform: translateY(-6px);
+    color: var(--brand-600);
     box-shadow: var(--shadow-lg);
 }
 
@@ -677,10 +680,10 @@ body.home-page .feature-row::before {
 
 /* Inline SVG icons (Option A) */
 .icon {
-    width: 65px;
-    height: 65px;
+    width: 68px;
+    height: 68px;
     display: inline-block;
-    margin-bottom: 0.4rem;
+    margin-bottom: 0.1rem;
 }
 
 .icon-credit {
@@ -700,6 +703,11 @@ body.home-page .feature-row::before {
 }
 
 .icon-subscribe {
+    color: #19bb0e;
+}
+
+/* Bank icon (maskable so color is controllable via currentColor) */
+.icon-bank {
     color: #5316a3;
 }
 
@@ -930,6 +938,14 @@ body.home-page .feature-row::before {
     column-gap: 12px;
     row-gap: 6px;
     align-items: center;
+    transition: all 0.5s ease;
+    box-shadow: 0 3px 8px rgba(0, 0, 0, 0.04);
+}
+
+.step:hover {
+    transform: translateY(-2px);
+    color: var(--ink);
+    box-shadow: var(--shadow-lg);
 }
 
 .step-number {
@@ -1229,8 +1245,8 @@ body.home-page .feature-row::before {
 ========================== */
 .cta-section {
     background: var(--background);
-    padding-top: 40px;
-    padding-bottom: 60px;
+    padding-top: 20px;
+    padding-bottom: 40px;
 }
 
 .cta-inner {
@@ -1252,7 +1268,6 @@ body.home-page .feature-row::before {
     letter-spacing: var(--letter-spacing-heading);
 }
 
-/* Adjust "Start the Quiz" button to align with other content */
 .cta-content .buttons {
     display: flex;
     justify-content: center;

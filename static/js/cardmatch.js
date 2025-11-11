@@ -7,6 +7,26 @@ document.addEventListener("DOMContentLoaded", () => {
     const totalSteps = fieldsets.length;
     const userAnswers = {};
 
+    const travelSkipIndices = new Set([4, 5, 6, 7, 13]); // fieldset indexes to skip when goal=cashback
+    let skipTravel = false;
+
+    function isSkipped(idx) { return skipTravel && travelSkipIndices.has(idx); }
+
+    function computeVisibleIndex(idx) {
+        // number of non-skipped steps up to this index
+        let count = 0;
+        for (let i = 0; i <= idx; i++) if (!isSkipped(i)) count++;
+        return count - 1; // zero-based
+    }
+    function computeVisibleTotal() {
+        return skipTravel ? totalSteps - travelSkipIndices.size : totalSteps;
+    }
+    function nextAllowedIndex(from) {
+        let i = from + 1;
+        while (i < totalSteps && isSkipped(i)) i++;
+        return i;
+    }
+
     function saveAnswer(step) {
         const fs = fieldsets[step];
         const radios = fs.querySelectorAll("input[type='radio']");
@@ -36,6 +56,10 @@ document.addEventListener("DOMContentLoaded", () => {
             });
         }
 
+        // After saving goal (index 1), decide skipTravel
+        if (step === 1 && userAnswers.goal === 'cashback') {
+            skipTravel = true;
+        }
     }
 
     // === LIVE UPDATE SLIDER VALUES ===
@@ -181,10 +205,18 @@ document.addEventListener("DOMContentLoaded", () => {
     }
 
     function showStep(step) {
+        // If this step is skipped, jump forward
+        if (isSkipped(step)) {
+            currentStep = nextAllowedIndex(step - 1); // step-1 because showStep called with a skipped one
+            if (currentStep >= totalSteps) { showResults(); return; }
+            showStep(currentStep); return;
+        }
+
         fieldsets.forEach((fs, i) => {
-            fs.classList.toggle("active", i === step);
+            fs.classList.toggle("active", i === step && !isSkipped(i));
             const oldNav = fs.querySelector(".quiz-nav");
             if (oldNav) oldNav.remove();
+            if (isSkipped(i)) fs.classList.remove('active');
         });
 
         const currentFs = fieldsets[step];
@@ -195,13 +227,14 @@ document.addEventListener("DOMContentLoaded", () => {
         radios.forEach(radio => {
             radio.addEventListener("change", () => {
                 saveAnswer(step);
-                if (step < totalSteps - 1) {
-                    setTimeout(() => {
-                        currentStep++;
-                        showStep(currentStep);
-                    }, 250);
+                // Determine next step respecting skips
+                let next = nextAllowedIndex(step);
+                if (next < totalSteps) {
+                    setTimeout(() => { currentStep = next; showStep(currentStep); }, 250);
+                } else {
+                    // reached end
+                    setTimeout(() => { showResults(); }, 250);
                 }
-                // ❌ No auto showResults() here — handled by button
             });
         });
 
@@ -224,7 +257,7 @@ document.addEventListener("DOMContentLoaded", () => {
                         clearFieldsetError(fs);
                         saveAnswer(i);
                         if (i < totalSteps - 1) {
-                            currentStep++;
+                            currentStep = nextAllowedIndex(i);
                             showStep(currentStep);
                         } else {
                             showResults();
@@ -246,8 +279,11 @@ document.addEventListener("DOMContentLoaded", () => {
             }
         });
 
-        progressText.textContent = `Step ${step + 1} of ${totalSteps}`;
-        progressBarFill.style.width = `${((step + 1) / totalSteps) * 100}%`;
+        // Progress calculations with skips
+        const visibleIdx = computeVisibleIndex(step);
+        const visibleTotal = computeVisibleTotal();
+        progressText.textContent = `Step ${visibleIdx + 1} of ${visibleTotal}`;
+        progressBarFill.style.width = `${((visibleIdx + 1) / visibleTotal) * 100}%`;
     }
 
     // Add "See Results" button on the last step

@@ -44,8 +44,8 @@
                 <legend>What’s your main goal with a new card?</legend>
                 <p class="helper-text">Pick the one that best fits your priorities right now.</p>
                 <label><input type="radio" name="goal" value="cashback" required /> Earn cash back</label>
-                <label><input type="radio" name="goal" value="points_miles" /> Earn points and miles for travel</label>
-                <label><input type="radio" name="goal" value="maximize_value" /> Maximize total value (cashback &
+                <label><input type="radio" name="goal" value="points_miles" /> Earn points & miles toward travel</label>
+                <label><input type="radio" name="goal" value="maximize_value" /> Maximize total value (cashback +
                     points)</label>
                 <label><input type="radio" name="goal" value="credit_building" /> Build or improve credit</label>
                 <label><input type="radio" name="goal" value="low_interest" /> Low interest / balance transfer</label>
@@ -54,21 +54,18 @@
             <!-- 3 Annual Fee -->
             <fieldset class="q">
                 <legend>How do you feel about annual fees?</legend>
-                <p class="helper-text">Some cards with small or premium fees offer big rewards in return.</p>
-                <label><input type="radio" name="annualFee" value="no_fee" required /> I prefer cards with no annual
-                    fee</label>
-                <label><input type="radio" name="annualFee" value="small_fee" /> I’m okay with a small fee ($50–$100) if
-                    it’s worth it</label>
-                <label><input type="radio" name="annualFee" value="premium" /> I’m fine with $100+ for strong perks and
-                    value</label>
+                <p class="helper-text">Some cards with small or premium fees offer valuable rewards and perks.</p>
+                <label><input type="radio" name="annualFee" value="no_fee" required /> No annual
+                    fees</label>
+                <label><input type="radio" name="annualFee" value="small_fee" /> Small annual fees ($50–$100) if</label>
+                <label><input type="radio" name="annualFee" value="premium" /> Any annual fees ($100+)</label>
             </fieldset>
 
             <!-- 4 Spending Breakdown -->
             <fieldset class="q">
                 <legend>How much do you spend in each category per month?</legend>
                 <p class="helper-text">
-                    Use the sliders to estimate your monthly spending in each category.
-                    This helps us recommend cards that match your real-life habits.
+                    This helps us recommend cards that match your actual spending.
                 </p>
 
                 <div class="slider-group">
@@ -153,24 +150,11 @@
                         </div>
                     </div>
                     <div class="slider-row">
-                        <span class="slider-category">Rent</span>
-                        <input type="range" id="spend-rent" name="spendRent" min="0" max="4000" step="50" value="0">
+                        <span class="slider-category">Rent / Mortgage</span>
+                        <input type="range" id="spend-rent" name="spendRent" min="0" max="10000" step="50" value="0">
                         <div class="slider-input-wrapper">
                             <span class="dollar-sign">$</span>
-                            <input type="number" id="input-rent" min="0" max="4000" step="50" value="0"
-                                class="slider-input">
-                        </div>
-                        <div class="slider-toggle">
-                            <span class="toggle-label active" data-unit="month">Month</span>
-                            <span class="toggle-label" data-unit="year">Year</span>
-                        </div>
-                    </div>
-                    <div class="slider-row">
-                        <span class="slider-category">Other</span>
-                        <input type="range" id="spend-other" name="spendOther" min="0" max="3000" step="50" value="0">
-                        <div class="slider-input-wrapper">
-                            <span class="dollar-sign">$</span>
-                            <input type="number" id="input-other" min="0" max="3000" step="50" value="0"
+                            <input type="number" id="input-rent" min="0" max="10000" step="50" value="0"
                                 class="slider-input">
                         </div>
                         <div class="slider-toggle">
@@ -207,6 +191,19 @@
                             <span class="toggle-label" data-unit="year">Year</span>
                         </div>
                     </div>
+                    <div class="slider-row">
+                        <span class="slider-category">Other</span>
+                        <input type="range" id="spend-other" name="spendOther" min="0" max="3000" step="50" value="0">
+                        <div class="slider-input-wrapper">
+                            <span class="dollar-sign">$</span>
+                            <input type="number" id="input-other" min="0" max="3000" step="50" value="0"
+                                class="slider-input">
+                        </div>
+                        <div class="slider-toggle">
+                            <span class="toggle-label active" data-unit="month">Month</span>
+                            <span class="toggle-label" data-unit="year">Year</span>
+                        </div>
+                    </div>
                     <button type="button" class="btn-secondary" id="slider-continue">Continue</button>
                 </div>
             </fieldset>
@@ -214,7 +211,7 @@
             <!-- 5 Travel Frequency -->
             <fieldset class="q">
                 <legend>How often do you travel?</legend>
-                <p class="helper-text">This helps match cards with the right travel benefits or protections.</p>
+                <p class="helper-text">This helps us match cards with the right travel benefits or protections.</p>
                 <label><input type="radio" name="travelFrequency" value="rarely" required /> Rarely</label>
                 <label><input type="radio" name="travelFrequency" value="occasionally" /> A few times a year</label>
                 <label><input type="radio" name="travelFrequency" value="frequently" /> Monthly or more</label>
@@ -223,8 +220,7 @@
             <!-- 6 Preferred Airline -->
             <fieldset class="q">
                 <legend>Which airline(s) do you fly most often?</legend>
-                <p class="helper-text">Select all that apply — we’ll prioritize cards with points you can use with these
-                    airlines.</p>
+                <p class="helper-text">We’ll prioritize cards with points you can use with these airlines.</p>
                 <label><input type="checkbox" name="airline" value="delta"> Delta</label>
                 <label><input type="checkbox" name="airline" value="american"> American Airlines</label>
                 <label><input type="checkbox" name="airline" value="united"> United Airlines</label>
@@ -236,14 +232,13 @@
                 <label><input type="checkbox" name="airline" value="hawaiian"> Hawaiian Airlines</label>
                 <label><input type="checkbox" name="airline" value="international"> International (British Airways, Air
                     Canada, Emirates, etc.)</label>
-                <label><input type="checkbox" name="airline" value="none"> I rarely fly / No preference</label>
+                <label><input type="checkbox" name="airline" value="none">No preference</label>
             </fieldset>
 
             <!-- 7 Hotel Preferences -->
             <fieldset class="q">
                 <legend>Which hotel chains do you stay at most often?</legend>
-                <p class="helper-text">Select all that apply — we’ll favor cards that earn and redeem well with these
-                    brands.</p>
+                <p class="helper-text">We’ll favor cards that earn and redeem well with these brands.</p>
                 <label><input type="checkbox" name="hotel" value="marriott"> Marriott / Starwood</label>
                 <label><input type="checkbox" name="hotel" value="hilton"> Hilton</label>
                 <label><input type="checkbox" name="hotel" value="hyatt"> Hyatt</label>
@@ -255,7 +250,7 @@
                 <label><input type="checkbox" name="hotel" value="radisson"> Radisson</label>
                 <label><input type="checkbox" name="hotel" value="airbnb"> Airbnb / VRBO / Vacation rentals</label>
                 <label><input type="checkbox" name="hotel" value="boutique"> Boutique / Independent hotels</label>
-                <label><input type="checkbox" name="hotel" value="none"> I rarely stay at hotels / No preference</label>
+                <label><input type="checkbox" name="hotel" value="none">No preference</label>
             </fieldset>
 
             <!-- 8 Niche Rewards / Perks -->
@@ -275,14 +270,13 @@
                 <label><input type="checkbox" name="perks" value="no_foreign"> No foreign transaction fees</label>
                 <label><input type="checkbox" name="perks" value="exclusive"> Access to exclusive events or
                     offers</label>
-                <label><input type="checkbox" name="perks" value="none"> None of these matter much</label>
+                <label><input type="checkbox" name="perks" value="none">No preference</label>
             </fieldset>
 
             <!-- 9 Grocery Stores -->
             <fieldset class="q">
                 <legend>Where do you usually buy groceries?</legend>
-                <p class="helper-text">Choose where you usually shop — some cards bonus supermarkets or specific
-                    retailers.</p>
+                <p class="helper-text">Some cards bonus supermarkets or specific retailers.</p>
                 <label><input type="checkbox" name="grocery" value="walmart" /> Walmart / Supercenter</label>
                 <label><input type="checkbox" name="grocery" value="costco" /> Costco</label>
                 <label><input type="checkbox" name="grocery" value="sams" /> Sam's Club</label>
@@ -295,7 +289,7 @@
             <!-- 10 Gas Stations -->
             <fieldset class="q">
                 <legend>Where do you usually fill up or buy gas?</legend>
-                <p class="helper-text">Choose the stations you use — some cards offer extra rewards at certain brands.
+                <p class="helper-text">Some cards offer extra rewards at certain brands.
                 </p>
                 <label><input type="checkbox" name="gas" value="shell"> Shell</label>
                 <label><input type="checkbox" name="gas" value="chevron"> Chevron</label>
@@ -318,8 +312,7 @@
             <!-- 11 Online Shopping -->
             <fieldset class="q">
                 <legend>Where do you do most of your online shopping?</legend>
-                <p class="helper-text">Select your common online stores — some cards earn more with these merchants or
-                    categories.</p>
+                <p class="helper-text">Some cards earn more with these merchants or categories.</p>
                 <label><input type="checkbox" name="onlineShopping" value="amazon"> Amazon</label>
                 <label><input type="checkbox" name="onlineShopping" value="walmart"> Walmart</label>
                 <label><input type="checkbox" name="onlineShopping" value="target"> Target</label>
@@ -336,15 +329,11 @@
             <!-- 12 Lifestyle Preference -->
             <fieldset class="q">
                 <legend>What’s your card management style?</legend>
-                <p class="helper-text">Some people like keeping it simple, others enjoy maximizing rewards across
-                    multiple cards.</p>
+                <p class="helper-text"> Keep it simple or maximize every dollar.</p>
 
-                <label><input type="radio" name="cardStrategy" value="minimalist" required /> I prefer keeping it simple
-                    (1–2 cards)</label>
-                <label><input type="radio" name="cardStrategy" value="balanced" /> A few cards for different categories
-                    (3–4 cards)</label>
-                <label><input type="radio" name="cardStrategy" value="optimizer" /> I don’t mind managing several cards
-                    to maximize every point (5+ cards)</label>
+                <label><input type="radio" name="cardStrategy" value="minimalist" required /> Simple (1–2 cards)</label>
+                <label><input type="radio" name="cardStrategy" value="balanced" /> Moderate (3–4 cards)</label>
+                <label><input type="radio" name="cardStrategy" value="optimizer" /> All in (5+ cards)</label>
             </fieldset>
 
             <!-- 13 Business Openness -->
@@ -359,14 +348,11 @@
             <!-- 14 Redemption Effort -->
             <fieldset class="q">
                 <legend>Are you willing to put in additional effort to redeem points at higher values?</legend>
-                <p class="helper-text">Higher-effort redemptions can unlock more value (like transfers); choose what
-                    fits your style.</p>
-                <label><input type="radio" name="redemption_value" value="no" /> Probaby not</label>
-                <label><input type="radio" name="redemption_value" value="yes" /> Yes, I'll put in effort
-                    to find the most valuable redemptions</label>
-                <label><input type="radio" name="redemption_value" value="average" /> I'll take advantage of some
-                    high redemption value offers, but usually not</label>
-                <label><input type="radio" name="redemption_value" value="none" /> None / Not important</label>
+                <p class="helper-text">Higher-effort redemptions can unlock more value (like transfers).</p>
+                <label><input type="radio" name="redemption_value" value="no" /> No</label>
+                <label><input type="radio" name="redemption_value" value="sometimes" /> Sometimes</label>
+                <label><input type="radio" name="redemption_value" value="yes" /> Yes</label>
+                <label><input type="radio" name="redemption_value" value="none" /> No preference</label>
             </fieldset>
 
             <!-- 15 Zip Code (local cards) -->
