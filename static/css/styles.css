@@ -1328,3 +1328,111 @@ body.home-page .feature-row::before {
         grid-template-columns: 1fr;
     }
 }
+
+/* ===== Subscribe Modal ===== */
+.modal-overlay {
+    position: fixed;
+    inset: 0;
+    background: rgba(15, 23, 42, 0.55);
+    /* slate-900 at 55% */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 2000;
+    /* animation base (hidden) */
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none;
+    transition: opacity 200ms ease, visibility 0s linear 200ms;
+}
+
+.modal-overlay.is-open {
+    opacity: 1;
+    visibility: visible;
+    pointer-events: auto;
+    transition: opacity 220ms ease, visibility 0s;
+}
+
+.modal-overlay[hidden] {
+    display: none;
+}
+
+.modal {
+    position: relative;
+    width: min(520px, 92vw);
+    background: var(--surface);
+    color: var(--ink);
+    border-radius: 16px;
+    box-shadow: var(--shadow-lg);
+    border: 1px solid var(--border);
+    padding: 24px 24px 20px 24px;
+    /* dialog motion */
+    transform: translateY(-10px) scale(0.98);
+    opacity: 0.98;
+    transition: transform 260ms cubic-bezier(.22, .61, .36, 1), opacity 220ms ease;
+}
+
+.modal-overlay.is-open .modal {
+    transform: translateY(0) scale(1);
+    opacity: 1;
+}
+
+.modal h2 {
+    margin: 0 0 8px 0;
+    font-family: var(--font-family-heading);
+    font-weight: var(--weight-bold);
+}
+
+.modal-subtitle {
+    color: var(--muted);
+    margin: 0 0 16px 0;
+}
+
+.modal-close {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    width: 36px;
+    height: 36px;
+    border: none;
+    border-radius: 8px;
+    background: transparent;
+    color: var(--muted);
+    font-size: 22px;
+    cursor: pointer;
+}
+
+.modal-close:hover {
+    background: var(--background-alt);
+    color: var(--ink);
+}
+
+.modal-form {
+    display: grid;
+    grid-template-columns: 1fr auto;
+    gap: 10px;
+    align-items: center;
+}
+
+.modal-form input[type="email"] {
+    width: 100%;
+    padding: 12px 12px;
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    font-size: 1rem;
+}
+
+.modal-form .btn.primary {
+    padding: 12px 16px;
+    border-radius: 8px;
+}
+
+.modal-note {
+    display: block;
+    color: var(--muted);
+    margin-top: 8px;
+    font-size: 0.85rem;
+    grid-column: 1 / -1;
+}
+
+/* ===== End Subscribe Modal ===== */
