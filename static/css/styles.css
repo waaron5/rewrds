@@ -146,9 +146,10 @@ html body.home-page .hero-section {
      Utility Gradients (optional polish)
   =================================== */
     --gradient-hero: linear-gradient(180deg, #f1f5f9 0%, #ffffff 80%);
-    --gradient-footer: linear-gradient(to top left, #354459 0%, #7b8da6 100%);
+    --gradient-footer: linear-gradient(to top left, #5d6d83 0%, #afbdd0 100%);
     --gradient-accent: linear-gradient(90deg, #2563eb 0%, #3b82f6 100%);
     --gradient-room: linear-gradient(to top left, #cbd5e1 0%, #ffffff 100%);
+    --gradient-room-2: linear-gradient(to right, #768da8 0%, #d0dae2 100%);
 
     /* ===================================
        Typography System
@@ -189,8 +190,8 @@ html body.home-page .hero-section {
     /* 30px */
 
     /* Headings (responsive) */
-    --font-size-hero-h1: clamp(2.5rem, 5vw, 3.75rem);
-    --font-size-section-h1: 2.4rem;
+    --font-size-hero-h1: clamp(2.5rem, 5vw, 4rem);
+    --font-size-section-h1: 2.8rem;
     --font-size-h2: clamp(1.5rem, 2.5vw, 2rem);
     --font-size-h3: clamp(1.15rem, 1.3vw, 1.25rem);
 
@@ -215,7 +216,7 @@ header {
 }
 
 header .logo-link img {
-    width: 120px !important;
+    width: 240px !important;
     margin-right: 0.5rem;
     height: auto;
     display: block;
@@ -253,7 +254,7 @@ nav ul li a {
     text-decoration: none;
     font-weight: 500;
     color: var(--brand-500);
-    transition: color 0.2s;
+    transition: ease all 0.2s;
 }
 
 nav ul li a:hover {
@@ -292,7 +293,6 @@ nav ul li.dropdown .dropbtn.is-open::after {
 header .subscribe-btn {
     padding: 0.75rem 1rem;
     border-radius: 4px;
-    margin-left: 2.5rem;
     background-color: var(--brand-900);
     color: var(--surface);
     text-decoration: none;
@@ -306,6 +306,38 @@ header .subscribe-btn {
 header .subscribe-btn:hover {
     background-color: var(--brand-600);
     color: var(--surface);
+}
+
+/* ===== Navbar Search Button ===== */
+.nav-search-btn {
+    appearance: none;
+    border: none;
+    background: transparent;
+    width: 40px;
+    height: 40px;
+    border-radius: 8px;
+    cursor: pointer;
+    position: relative;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    margin-left: 2.5rem;
+    margin-right: 0.5rem;
+    transition: all 0.2s;
+}
+
+.nav-search-btn::before {
+    content: "";
+    width: 25px;
+    height: 25px;
+    background-color: var(--ink);
+    -webkit-mask: url('../icons/search.svg') no-repeat center / contain;
+    mask: url('../icons/search.svg') no-repeat center / contain;
+}
+
+.nav-search-btn:hover {
+    background: var(--background-alt);
+    background-color: var(--background-alt);
 }
 
 /* ===================================
@@ -322,7 +354,7 @@ nav ul li.dropdown {
     position: fixed;
     left: 0;
     right: 0;
-    top: 71.5px;
+    top: 69px;
     width: 100vw;
     background-color: var(--surface);
     box-shadow: 0 8px 20px rgba(0, 0, 0, 0.08);
@@ -331,9 +363,11 @@ nav ul li.dropdown {
     z-index: 999;
     /* layout */
     display: grid;
-    grid-template-columns: repeat(4, 1fr);
-    grid-auto-rows: auto;
-    gap: 1px 1px;
+    grid-template-columns: repeat(4, minmax(220px, 280px));
+    justify-content: center;
+    /* center the tracks within full-width panel */
+    column-gap: 16px;
+    row-gap: 0;
     /* animation base (hidden) */
     opacity: 0;
     visibility: hidden;
@@ -352,33 +386,71 @@ nav ul li.dropdown:focus-within>.dropdown-content {
     transition: opacity 120ms ease, transform 240ms cubic-bezier(.22, .61, .36, 1), visibility 0s;
 }
 
-/* Remove old hover display forcing (no-op now; JS handles intent) */
-nav ul li.dropdown:hover>.dropdown-content {
-    /* intentional no-op for smooth intent */
-}
+/* Remove old hover display forcing (JS handles intent now) */
+/* previously had: nav ul li.dropdown:hover > .dropdown-content { } */
 
 .dropdown-content li {
     list-style: none;
+    border-right: 1px solid transparent;
 }
 
 .dropdown-content li a {
     display: block;
     padding: 1rem 0 1rem 20px;
+    padding-right: 20px;
     border-left: 2px solid transparent;
     font-size: 1rem;
     color: var(--ink);
+    background-color: var(--background);
     text-decoration: none;
     font-weight: 400;
     transition: 0.1s;
 }
 
 .dropdown-content li a:hover {
-    border-bottom: none;
-    border-left: 2px solid var(--accent-400);
+    color: var(--accent-600);
+    background-color: var(--background);
+    text-decoration: underline;
+    border-left-color: transparent;
 }
 
 nav ul li.dropdown.dropdown-open>.dropdown-content {
     display: grid;
+}
+
+/* Optional: on smaller screens, reduce to 2 columns to avoid overflow */
+@media (max-width: 900px) {
+    .dropdown-content {
+        grid-template-columns: repeat(2, minmax(200px, 1fr));
+    }
+}
+
+/* Dropdown: thin separators between columns */
+@media (min-width: 901px) {
+    .dropdown-content>li:not(:nth-child(4n)) {
+        border-right-color: var(--border);
+    }
+}
+
+@media (max-width: 900px) {
+    .dropdown-content>li:not(:nth-child(2n)) {
+        border-right-color: var(--border);
+    }
+}
+
+/* Style for navbar Advertiser Disclosure link */
+.nav-disclosure-link {
+    display: inline-block;
+    font-size: 0.8rem;
+    color: var(--accent-400);
+    margin-left: 14px;
+    text-decoration: none;
+    padding: 6px 4px;
+    border-radius: 8px;
+}
+
+.nav-disclosure-link:hover {
+    text-decoration: underline;
 }
 
 /* ==========================
@@ -420,7 +492,7 @@ main {
     overflow: hidden;
     z-index: 1;
     padding-top: 6rem;
-    padding-bottom: 10rem;
+    padding-bottom: 7rem;
 }
 
 .hero-section::after {
@@ -555,7 +627,7 @@ main {
     text-transform: uppercase;
     letter-spacing: 0.2px;
     padding: 15px 29px;
-    border-radius: 4px;
+    border-radius: 8px;
     text-decoration: none;
     transition: background-color 0.1s, color 0.1s;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
@@ -632,11 +704,36 @@ body.home-page .feature-row::before {
     width: 100vw;
     height: calc(100% + 8rem);
     background: linear-gradient(to bottom,
-            var(--background-alt) 0%,
-            var(--background-alt) 50%,
+            #ffffff 0%,
+            /* pure white at very top */
+            #ffffff 10%,
+            /* extend white a bit */
+            var(--brand-200) 40%,
+            /* start blending into original top color */
+            var(--brand-200) 50%,
+            /* end of top half */
             var(--brand-900) 50%,
+            /* bottom half unchanged */
             var(--brand-900) 100%);
+    z-index: -2;
+}
+
+body.home-page .feature-row::after {
+    content: "";
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    top: -4rem;
+    width: 100vw;
+    height: calc(100% + 8rem);
+    background: url('../images/background-pattern.png') repeat;
+    background-size: auto;
+    /* use image’s natural tiling */
+    opacity: 0.18;
+    /* subtle */
+    pointer-events: none;
     z-index: -1;
+    /* above gradient, below cards */
 }
 
 @media (max-width: 1200px) {
@@ -650,7 +747,7 @@ body.home-page .feature-row::before {
 
 .feature-card {
     background-color: var(--surface);
-    border: 1px solid var(--border);
+    border: 2px solid var(--border);
     border-radius: 16px;
     text-align: center;
     padding: 1.5rem 2rem;
@@ -662,7 +759,8 @@ body.home-page .feature-row::before {
 
 .feature-card:hover {
     transform: translateY(-6px);
-    color: var(--brand-600);
+    color: var(--ink);
+    border: 2px solid var(--accent-300);
     box-shadow: var(--shadow-lg);
 }
 
@@ -670,6 +768,7 @@ body.home-page .feature-row::before {
     font-size: 1.2rem;
     font-weight: 600;
     margin-bottom: 0.3rem;
+    transition: ease all 0.2s;
 }
 
 .feature-card p {
@@ -703,7 +802,8 @@ body.home-page .feature-row::before {
 }
 
 .icon-subscribe {
-    color: #19bb0e;
+    color: #f6bd00;
+    /* match best-card banner yellow */
 }
 
 /* Bank icon (maskable so color is controllable via currentColor) */
@@ -756,7 +856,7 @@ body.home-page .feature-row::before {
 .site-footer .footer-brand {
     align-self: start;
     /* Extra breathing room to the right of the logo */
-    padding-right: 24px;
+    padding-right: 2rem;
     /* add a bit more breathing room to the right of the logo */
 }
 
@@ -836,6 +936,83 @@ body.home-page .feature-row::before {
 .site-footer .footer-text,
 .site-footer .footer-links a {
     line-height: 1.7;
+}
+
+/* === Footer layout refinements === */
+.site-footer .footer-top {
+    /* evenly distribute: brand + remaining columns */
+    display: grid;
+    grid-template-columns: minmax(220px, 280px) repeat(auto-fit, minmax(170px, 1fr));
+    gap: 40px;
+    /* consistent horizontal spacing */
+    align-items: start;
+    position: relative;
+}
+
+/* Column separators */
+.site-footer .footer-top>* {
+    position: relative;
+    padding-right: 28px;
+}
+
+.site-footer .footer-top>*:not(:last-child)::after {
+    content: "";
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    width: 1px;
+    background: rgba(255, 255, 255, 0.28);
+    pointer-events: none;
+}
+
+/* Smaller logo */
+.site-footer .footer-logo {
+    height: 32px;
+}
+
+/* Adjust brand column extra padding removed */
+.site-footer .footer-brand {
+    padding-right: 0;
+}
+
+/* Tighter column internal spacing */
+.site-footer .footer-column ul.footer-links li,
+.site-footer .footer-column a {
+    margin: 4px 0;
+}
+
+/* About page footer container support */
+.footer-container .footer-top {
+    grid-template-columns: minmax(220px, 280px) repeat(auto-fit, minmax(170px, 1fr));
+}
+
+.footer-container .footer-top>* {
+    padding-right: 28px;
+}
+
+.footer-container .footer-top>*:not(:last-child)::after {
+    background: rgba(255, 255, 255, 0.28);
+}
+
+/* Responsive: drop separators on narrow screens */
+@media (max-width: 780px) {
+
+    .site-footer .footer-top,
+    .footer-container .footer-top {
+        grid-template-columns: 1fr;
+        gap: 28px;
+    }
+
+    .site-footer .footer-top>*:not(:last-child)::after,
+    .footer-container .footer-top>*:not(:last-child)::after {
+        display: none;
+    }
+
+    .site-footer .footer-top>*,
+    .footer-container .footer-top>* {
+        padding-right: 0;
+    }
 }
 
 /* ==========================
@@ -981,7 +1158,35 @@ body.home-page .feature-row::before {
    HOME: BEST CARDS RIGHT NOW
 ========================== */
 .best-cards {
-    background: var(--accent-50);
+    background: var(--gradient-room-2);
+    color: var(--background);
+    position: relative;
+    z-index: 0;
+    /* create stacking context for ::after */
+}
+
+.best-cards::after {
+    content: "";
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    bottom: 0;
+    width: 100vw;
+    /* full bleed under section */
+    height: 50%;
+    /* bottom half only */
+    background: url('../images/background-pattern.png') repeat;
+    background-size: auto;
+    /* use image's natural tiling */
+    opacity: 0.18;
+    /* subtle */
+    pointer-events: none;
+    z-index: -1;
+    /* behind section content */
+}
+
+.best-cards .secondary-text {
+    color: var(--brand-600);
 }
 
 .best-cards .section-inner {
@@ -990,9 +1195,13 @@ body.home-page .feature-row::before {
 
 .best-cards .best-image {
     flex: 0 0 auto;
-    width: clamp(140px, 24vw, 180px);
+    width: clamp(125px, 20vw, 165px);
+    /* slightly smaller */
     height: auto;
     object-fit: contain;
+    margin: 0;
+    padding: 0;
+    /* ensure no padding around the image */
 }
 
 .best-cards .text-content {
@@ -1025,7 +1234,7 @@ body.home-page .feature-row::before {
     /* space for the banner at the very top */
     padding-bottom: 20px;
     background: var(--surface);
-    border: 1px solid var(--border);
+    /* border: 1px solid var(--border); */
     border-radius: 14px;
     box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
     position: relative;
@@ -1044,7 +1253,7 @@ body.home-page .feature-row::before {
     justify-content: center;
     margin: 0;
     z-index: 2;
-    background: #ff7c30;
+    background: #f6bd00;
     color: var(--surface);
     font-weight: 600;
     font-size: 0.9rem;
@@ -1058,7 +1267,6 @@ body.home-page .feature-row::before {
 .best-card .card-thumb {
     position: absolute;
     top: 56px;
-    /* below 44px banner with spacing */
     left: 16px;
     width: 76px;
     height: auto;
@@ -1131,6 +1339,7 @@ body.home-page .feature-row::before {
     background-color: var(--accent-600);
     border: none;
     padding: 10px 16px;
+    transition: ease all 0.3s;
 }
 
 .best-cards .best-card .btn.secondary:hover {
@@ -1436,3 +1645,101 @@ body.home-page .feature-row::before {
 }
 
 /* ===== End Subscribe Modal ===== */
+
+/* ===== Search Modal (small popup) ===== */
+.search-overlay {
+    position: fixed;
+    inset: 0;
+    z-index: 2100;
+    display: flex;
+    align-items: flex-start;
+    justify-content: center;
+    background: rgba(15, 23, 42, 0.35);
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none;
+    transition: opacity 160ms ease, visibility 0s linear 160ms;
+}
+
+.search-overlay.is-open {
+    opacity: 1;
+    visibility: visible;
+    pointer-events: auto;
+    transition: opacity 180ms ease, visibility 0s;
+}
+
+.search-overlay[hidden] {
+    display: none;
+}
+
+.search-modal {
+    margin-top: 96px;
+    width: min(560px, 92vw);
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    box-shadow: var(--shadow-lg);
+    padding: 14px 14px 10px 14px;
+    transform: translateY(-8px);
+    transition: transform 220ms cubic-bezier(.22, .61, .36, 1);
+}
+
+.search-overlay.is-open .search-modal {
+    transform: translateY(0);
+}
+
+.search-modal-header {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.search-input {
+    flex: 1;
+    padding: 10px 12px;
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    font-size: 1rem;
+}
+
+.search-close {
+    appearance: none;
+    border: none;
+    background: transparent;
+    color: var(--muted);
+    font-size: 20px;
+    width: 36px;
+    height: 36px;
+    border-radius: 8px;
+    cursor: pointer;
+}
+
+.search-close:hover {
+    background: var(--background-alt);
+    color: var(--ink);
+}
+
+#search-results {
+    margin-top: 10px;
+    max-height: 50vh;
+    overflow: auto;
+}
+
+.search-result-item {
+    display: block;
+    padding: 10px 8px;
+    border-radius: 8px;
+    color: var(--ink);
+    text-decoration: none;
+}
+
+.search-result-item:hover {
+    background: var(--background-alt);
+}
+
+.search-no-results {
+    color: var(--muted);
+    padding: 8px;
+}
+
+/* ===== End Search Modal ===== */
