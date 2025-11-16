@@ -665,6 +665,70 @@ main {
     mask: url('../icons/lock.svg') no-repeat center / contain;
 }
 
+/* Explore Cards buttons row */
+.explore-panel {
+    position: relative;
+    padding-bottom: 0;
+    display: flex;
+    align-items: flex-start;
+}
+
+.explore-panel .text-content {
+    flex: 1;
+}
+
+.explore-panel .explore-buttons {
+    position: static;
+    left: auto;
+    bottom: auto;
+    margin-left: 0;
+    margin-top: 0;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 18px;
+}
+
+.explore-panel .explore-btn {
+    display: inline-block;
+    color: var(--surface);
+    background-color: var(--brand-900);
+    padding: 10px 16px;
+    font-size: 1.25rem;
+    font-weight: 600;
+    border: 1px solid var(--background);
+    border-radius: 8px;
+    text-decoration: none;
+    letter-spacing: 0.2px;
+    transition: background-color 0.2s ease, color 0.2s ease, transform 0.15s ease;
+    line-height: 1.2;
+    white-space: nowrap;
+}
+
+.explore-panel .explore-btn:hover {
+    background-color: var(--surface);
+    color: var(--brand-900);
+}
+
+.explore-panel .explore-btn:active {
+    transform: translateY(2px);
+}
+
+.explore-panel .explore-btn:focus-visible {
+    outline: 3px solid var(--accent-400);
+    outline-offset: 2px;
+}
+
+@media (max-width: 900px) {
+    .explore-panel {
+        flex-direction: column;
+    }
+
+    .explore-panel .explore-buttons {
+        margin-left: 0;
+        margin-top: 28px;
+    }
+}
+
 /* SECONDARY/SUBTLE TEXT helper */
 .secondary-text,
 .muted,
@@ -760,7 +824,7 @@ body.home-page .feature-row::after {
 .feature-card:hover {
     transform: translateY(-6px);
     color: var(--ink);
-    border: 2px solid var(--accent-300);
+    border: 2px solid var(--accent-200);
     box-shadow: var(--shadow-lg);
 }
 
@@ -809,6 +873,10 @@ body.home-page .feature-row::after {
 /* Bank icon (maskable so color is controllable via currentColor) */
 .icon-bank {
     color: #5316a3;
+}
+
+.icon-cardstack {
+    color: #2563eb;
 }
 
 /* ==========================
@@ -1154,6 +1222,26 @@ body.home-page .feature-row::after {
     /* paragraph spans full width below */
 }
 
+.how-it-works .take-quiz-btn {
+    color: var(--background);
+    background-color: var(--brand-900);
+    padding: 10px 16px;
+    font-size: 1.2rem;
+    font-weight: 600;
+    border: 2px solid var(--background);
+    border-radius: 8px;
+    position: relative;
+    top: 5.8rem;
+    margin-right: 3rem;
+    align-self: flex-start;
+    transition: all 0.2s;
+}
+
+.how-it-works .take-quiz-btn:hover {
+    color: var(--brand-900);
+    background-color: var(--background);
+}
+
 /* ==========================
    HOME: BEST CARDS RIGHT NOW
 ========================== */
@@ -1379,21 +1467,43 @@ body.home-page .feature-row::after {
     }
 }
 
+/* Best Cards: Take the Quiz button (mirrors How it works button) */
+.best-cards .best-compare-btn {
+    color: var(--background);
+    background-color: transparent;
+    padding: 10px 16px;
+    font-size: 1.2rem;
+    font-weight: 600;
+    border: 2px solid var(--background);
+    border-radius: 8px;
+    position: relative;
+    top: 4.8rem;
+    /* align visually with paragraph bottom */
+    margin-right: 3.7rem;
+    align-self: flex-start;
+    transition: all 0.2s;
+    text-decoration: none;
+}
+
+.best-cards .best-compare-btn:hover {
+    color: var(--brand-400);
+    background-color: var(--background);
+}
+
 /* ==========================
-   HOME: WHY REWRDS
+   HOME: Explore cards
 ========================== */
-.why-rewrds {
-    background: var(--gradient-room);
-    /* was var(--surface) to give contrast behind container */
+.explore-cards {
+    background: url('../images/Background-brushstroke.png') center/cover no-repeat;
 }
 
 /* Only the section title should be white */
-.why-rewrds #why-title {
+.explore-cards #explore-title {
     color: var(--surface);
 }
 
 /* Make the entire Why section content a large card-like container */
-.why-rewrds .section-inner {
+.explore-cards .section-inner {
     color: var(--brand-50);
     background: var(--brand-900);
     border: 1px solid var(--border);
@@ -1403,50 +1513,10 @@ body.home-page .feature-row::after {
 }
 
 @media (max-width: 700px) {
-    .why-rewrds .section-inner {
+    .explore-cards .section-inner {
         padding: 20px;
         /* tighter padding on small screens */
     }
-}
-
-/* Why REWRDS: right image + layout */
-.why-rewrds .why-image {
-    flex: 0 0 auto;
-    width: clamp(140px, 24vw, 180px);
-    height: auto;
-    object-fit: contain;
-}
-
-.why-rewrds .why-grid {
-    flex: 1 1 100%;
-    width: 100%;
-    margin-top: 8px;
-}
-
-.why-grid {
-    display: grid;
-    grid-template-columns: repeat(3, minmax(220px, 1fr));
-    gap: 20px;
-    width: 100%;
-}
-
-.why-item {
-    background: var(--surface);
-    border: 1px solid var(--border);
-    border-radius: 12px;
-    padding: 20px;
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
-}
-
-.why-item h3 {
-    margin: 0 0 6px 0;
-    font-size: 1.05rem;
-    color: var(--brand-900);
-}
-
-.why-item p {
-    margin: 0;
-    color: var(--muted);
 }
 
 /* ==========================

@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="icon" type="image/png" href="static/images/favicon.png" />
+    <title>Compare Credit Cards</title>
+
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&family=Kanit:wght@400;500;600;700&display=swap"
+        rel="stylesheet" />
+    <link rel="stylesheet" href="/static/css/styles.css" />
+    <link rel="stylesheet" href="/static/css/compare.css" />
+</head>
+
+<body class="compare-page">
+    <header id="top">
+        <a href="index.html" class="logo-link" aria-label="Home">
+            <img src="static/images/REWRDS_UTAH.png" alt="REWRDS Logo" loading="lazy" />
+        </a>
+        <nav aria-label="Main Navigation">
+            <ul>
+                <li><a href="cardmatch.html">Credit Card Quiz</a></li>
+                <li class="dropdown">
+                    <a href="javascript:void(0)" class="dropbtn">Credit Cards</a>
+                    <ul class="dropdown-content">
+                        <li><a href="allcards.html">All Credit Cards</a></li>
+                        <li><a href="bestcreditcardsof2025.html">Best Credit Cards 2025</a></li>
+                        <li><a href="besttravelcards.html">Best Travel Credit Cards</a></li>
+                        <li><a href="localcards.html">Local Credit Cards</a></li>
+                    </ul>
+                </li>
+                <li class="dropdown">
+                    <a href="javascript:void(0)" class="dropbtn">Guides</a>
+                    <ul class="dropdown-content">
+                        <li><a href="howdocreditcardswork.html">How do credit cards work?</a></li>
+                        <li><a href="howmanycreditcardsshouldihave.html">How many cards should I have?</a></li>
+                        <li><a href="pickingtherightcard.html">How do I know which card to get?</a></li>
+                    </ul>
+                </li>
+                <li><a href="about.html">About</a></li>
+                <li><a href="contact.html">Contact</a></li>
+            </ul>
+
+            <button class="nav-search-btn" aria-label="Search"></button>
+            <a href="subscribe.html" class="subscribe-btn">Subscribe</a>
+            <a href="advertiserdisclosure.html" class="nav-disclosure-link">Advertiser Disclosure</a>
+        </nav>
+    </header>
+
+    <main>
+        <section class="compare-hero" aria-labelledby="compare-title">
+            <div class="compare-hero-inner">
+                <h1 id="compare-title">Compare Credit Cards</h1>
+                <p class="subtitle">Pick up to 3 cards and see key details side by side.</p>
+            </div>
+        </section>
+
+        <section class="compare-controls" aria-label="Comparison Controls">
+            <div class="controls-inner">
+                <div class="picker-group">
+                    <label for="card-picker" class="visually-hidden">Choose a card</label>
+                    <select id="card-picker" aria-label="Choose a card to compare">
+                        <option value="" selected disabled>Choose a card…</option>
+                        <option value="bilt-rewards">BILT Rewards</option>
+                        <option value="chase-sapphire-preferred">Chase Sapphire Preferred</option>
+                        <option value="freedom-unlimited">Chase Freedom Unlimited</option>
+                    </select>
+                    <button type="button" class="btn primary" disabled>Add to Compare</button>
+                </div>
+                <div class="selected-count" aria-live="polite">0 of 3 selected</div>
+            </div>
+        </section>
+
+        <section class="compare-grid" aria-label="Comparison Grid">
+            <div class="grid-inner">
+                <div class="compare-header-row">
+                    <div class="compare-label"></div>
+                    <div class="compare-col-header empty" data-slot="1">
+                        <div class="slot-hint">Empty Slot</div>
+                    </div>
+                    <div class="compare-col-header empty" data-slot="2">
+                        <div class="slot-hint">Empty Slot</div>
+                    </div>
+                    <div class="compare-col-header empty" data-slot="3">
+                        <div class="slot-hint">Empty Slot</div>
+                    </div>
+                </div>
+
+                <div class="compare-row">
+                    <div class="compare-label">Annual Fee</div>
+                    <div class="compare-cell" data-slot="1">—</div>
+                    <div class="compare-cell" data-slot="2">—</div>
+                    <div class="compare-cell" data-slot="3">—</div>
+                </div>
+                <div class="compare-row">
+                    <div class="compare-label">Welcome Offer</div>
+                    <div class="compare-cell" data-slot="1">—</div>
+                    <div class="compare-cell" data-slot="2">—</div>
+                    <div class="compare-cell" data-slot="3">—</div>
+                </div>
+                <div class="compare-row">
+                    <div class="compare-label">Rewards</div>
+                    <div class="compare-cell" data-slot="1">—</div>
+                    <div class="compare-cell" data-slot="2">—</div>
+                    <div class="compare-cell" data-slot="3">—</div>
+                </div>
+                <div class="compare-row">
+                    <div class="compare-label">Key Perks</div>
+                    <div class="compare-cell" data-slot="1">—</div>
+                    <div class="compare-cell" data-slot="2">—</div>
+                    <div class="compare-cell" data-slot="3">—</div>
+                </div>
+                <div class="compare-row">
+                    <div class="compare-label">Intro APR</div>
+                    <div class="compare-cell" data-slot="1">—</div>
+                    <div class="compare-cell" data-slot="2">—</div>
+                    <div class="compare-cell" data-slot="3">—</div>
+                </div>
+                <div class="compare-row">
+                    <div class="compare-label">Regular APR</div>
+                    <div class="compare-cell" data-slot="1">—</div>
+                    <div class="compare-cell" data-slot="2">—</div>
+                    <div class="compare-cell" data-slot="3">—</div>
+                </div>
+                <div class="compare-row">
+                    <div class="compare-label">Foreign Transaction Fee</div>
+                    <div class="compare-cell" data-slot="1">—</div>
+                    <div class="compare-cell" data-slot="2">—</div>
+                    <div class="compare-cell" data-slot="3">—</div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="site-footer">
+        <!-- ...existing site footer... -->
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/fuse.js@6.6.2"></script>
+    <script src="static/js/search.js"></script>
+    <script src="static/js/main.js"></script>
+    <script src="static/js/nav.js"></script>
+    <script src="static/js/subscribeModal.js"></script>
+</body>
+
+</html>

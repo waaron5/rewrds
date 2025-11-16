@@ -34,7 +34,6 @@
 
         <nav aria-label="Main Navigation">
             <ul>
-                <li><a href="cardmatch.html">Credit Card Quiz</a></li>
                 <li class="dropdown">
                     <a href="javascript:void(0)" class="dropbtn">Credit Cards</a>
                     <ul class="dropdown-content">
@@ -49,6 +48,15 @@
                         <li><a href="nationalcards.html">National Credit Cards</a></li>
                     </ul>
                 </li>
+
+                <li class="dropdown">
+                    <a href="javascript:void(0)" class="dropbtn">Tools</a>
+                    <ul class="dropdown-content">
+                        <li><a href="cardmatch.html">Credit Card Quiz</a></li>
+                        <li><a href="compare.html">Compare Cards</a></li>
+                    </ul>
+                </li>
+
                 <li class="dropdown">
                     <a href="javascript:void(0)" class="dropbtn">Guides</a>
                     <ul class="dropdown-content">
@@ -94,6 +102,16 @@
             <p>Discover your perfect credit card matches</p>
         </a>
 
+        <a href="compare.html" class="feature-card">
+            <svg class="icon icon-cardstack" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" fill="none"
+                stroke-width="1.5" stroke="currentColor" aria-hidden="true">
+                <path stroke-linecap="round" stroke-linejoin="round"
+                    d="M6 6.878V6a2.25 2.25 0 0 1 2.25-2.25h7.5A2.25 2.25 0 0 1 18 6v.878m-12 0c.235-.083.487-.128.75-.128h10.5c.263 0 .515.045.75.128m-12 0A2.25 2.25 0 0 0 4.5 9v.878m13.5-3A2.25 2.25 0 0 1 19.5 9v.878m0 0a2.246 2.246 0 0 0-.75-.128H5.25c-.263 0-.515.045-.75.128m15 0A2.25 2.25 0 0 1 21 12v6a2.25 2.25 0 0 1-2.25 2.25H5.25A2.25 2.25 0 0 1 3 18v-6c0-.98.626-1.813 1.5-2.122" />
+            </svg>
+            <h3>Compare Cards</h3>
+            <p>Weigh rewards, perks, and fees side by side</p>
+        </a>
+
         <a href="/database.html" class="feature-card">
             <svg class="icon icon-database" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" fill="none"
                 stroke-width="1.5" stroke="currentColor" aria-hidden="true">
@@ -112,16 +130,6 @@
             </svg>
             <h3>Guides</h3>
             <p>Learn about how credit cards work, how many you need...</p>
-        </a>
-
-        <a href="about.html" class="feature-card">
-            <svg class="icon icon-about" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" fill="none"
-                stroke-width="1.5" stroke="currentColor" aria-hidden="true">
-                <path stroke-linecap="round" stroke-linejoin="round"
-                    d="M19.5 14.25v-2.625a3.375 3.375 0 0 0-3.375-3.375h-1.5A1.125 1.125 0 0 1 13.5 7.125v-1.5a3.375 3.375 0 0 0-3.375-3.375H8.25m0 12.75h7.5m-7.5 3H12M10.5 2.25H5.625c-.621 0-1.125.504-1.125 1.125v17.25c0 .621.504 1.125 1.125 1.125h12.75c.621 0 1.125-.504 1.125-1.125V11.25a9 9 0 0 0-9-9Z" />
-            </svg>
-            <h3>About</h3>
-            <p>Why we built REWRDS</p>
         </a>
 
         <a href="/subscribe.html" class="feature-card">
@@ -143,6 +151,8 @@
                 <p class="secondary-text">A quick and easy way to find cards that actually match your life<br>
                     using both local and national options</p>
             </div>
+            <a href="cardmatch.html" class="take-quiz-btn" aria-label="Start the credit card quiz">Take the
+                Quiz</a>
             <img class="how-image" src="static/images/flight_path_2.png" alt="Flight path illustration" loading="lazy"
                 decoding="async" />
             <div class="steps-grid" aria-label="Steps">
@@ -178,6 +188,8 @@
                 <p class="secondary-text">Three strong, well‑rounded picks anyone can get value from.<br>
                     If you use only three cards, these should be the ones.</p>
             </div>
+            <a href="comparecards.html" class="best-compare-btn"
+                aria-label="Start the credit card quiz from Best Cards">Compare Cards</a>
             <img class="best-image" src="static/images/flight_path_3.png" alt="Flight path illustration" loading="lazy"
                 decoding="async" />
             <div class="best-cards-grid">
@@ -239,28 +251,21 @@
         </div>
     </section>
 
-    <!-- WHY REWRDS -->
-    <section class="section why-rewrds" aria-labelledby="why-title">
-        <div class="section-inner">
+    <!-- EXPLORE CARDS -->
+    <section class="section explore-cards" aria-labelledby="explore-title">
+        <div class="section-inner explore-panel">
             <div class="text-content">
-                <h2 id="why-title">Why REWRDS</h2>
-                <p class="secondary-text">We optimize for your value — not ad clicks.</p>
+                <h2 id="explore-title">Explore cards</h2>
+                <p class="secondary-text">Browse cards by category.</p>
             </div>
-            <img class="why-image" src="static/images/flight_path_4.png" alt="Flight path illustration" loading="lazy"
-                decoding="async" />
-            <div class="why-grid">
-                <div class="why-item">
-                    <h3>Transparent scoring</h3>
-                    <p>See the factors that drive each recommendation, including assumptions and trade‑offs.</p>
-                </div>
-                <div class="why-item">
-                    <h3>Unbiased results</h3>
-                    <p>No pay‑to‑play placements. We highlight total value, not just flashy bonuses.</p>
-                </div>
-                <div class="why-item">
-                    <h3>Actionable guidance</h3>
-                    <p>Clear next steps, card combos, and redemption tips matched to your habits.</p>
-                </div>
+            <div class="explore-buttons" aria-label="Browse card categories">
+                <a href="allcards.html" class="explore-btn">All cards</a>
+                <a href="localcards.html" class="explore-btn">Local cards</a>
+                <a href="cashbackcards.html" class="explore-btn">Cash Back</a>
+                <a href="travelcards.html" class="explore-btn">Travel</a>
+                <a href="airlinecards.html" class="explore-btn">Airline</a>
+                <a href="hotelcards.html" class="explore-btn">Hotel</a>
+                <a href="retailcards.html" class="explore-btn">Retail</a>
             </div>
         </div>
     </section>
