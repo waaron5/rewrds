@@ -70,7 +70,7 @@
             </ul>
 
             <button class="nav-search-btn" aria-label="Search"></button>
-            <a href="subscribe.html" class="subscribe-btn">Subscribe</a>
+            <a href="#" id="updatesNavBtn" class="subscribe-btn">Updates</a>
             <a href="advertiserdisclosure.html" class="nav-disclosure-link">Advertiser Disclosure</a>
         </nav>
     </header>
@@ -147,7 +147,7 @@
     <section class="section how-it-works" aria-labelledby="how-title">
         <div class="section-inner">
             <div class="text-content">
-                <h2 id="how-title">Credit card quiz</h2>
+                <h2 id="how-title">How REWRDS works</h2>
                 <p class="secondary-text">A quick and easy way to find cards that actually match your life<br>
                     using both local and national options</p>
             </div>
@@ -175,6 +175,36 @@
                     <div class="step-number">4</div>
                     <h3>Apply with confidence</h3>
                     <p>Compare rewards, perks, and fees side by side, then apply directly with the issuer.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- STAY UPDATE (Subscriptions) -->
+    <section class="section tiers-section" aria-labelledby="tiers-title">
+        <div class="section-inner">
+            <div class="text-content">
+                <h2 id="tiers-title">Subscriptions</h2>
+                <p class="secondary-text">Stay updated to keep your rewards optimized</p>
+            </div>
+            <div class="pricing-grid" aria-label="Subscription tiers">
+                <div class="step pricing-card" aria-labelledby="tier-free-title">
+                    <h3 id="tier-free-title">Free</h3>
+                    <ul class="tier-features">
+                        <li>General credit card news</li>
+                        <li>Occasional Utah‑specific updates</li>
+                        <li>New tools and feature announcements</li>
+                    </ul>
+                    <button type="button" class="btn primary choose-free-tier">Choose Free</button>
+                </div>
+                <div class="step pricing-card" aria-labelledby="tier-optimal-title">
+                    <h3 id="tier-optimal-title">Optimal <span class="price-note">— $2/mo</span></h3>
+                    <ul class="tier-features">
+                        <li>Personalized notifications</li>
+                        <li>Deal alerts matched to your profile</li>
+                        <li>Early access to new features</li>
+                    </ul>
+                    <button type="button" class="btn primary choose-optimal-tier">Choose Optimal</button>
                 </div>
             </div>
         </div>
@@ -235,11 +265,11 @@
                     <img src="static/images/REWRDS_transparent.png" alt="Card image placeholder" class="card-thumb"
                         loading="lazy" />
                     <header>
-                        <h3>Chase Freedon Unlimited</h3>
+                        <h3>Chase Freedom Unlimited</h3>
                     </header>
                     <ul class="card-points">
                         <li>1.5x points on every purchase</li>
-                        <li>Pairs with chase sapphire preffered, giving points more value</li>
+                        <li>Pairs with chase sapphire preferred, giving points more value</li>
                         <li>No annual fee</li>
                     </ul>
                     <div class="card-actions">
@@ -342,26 +372,7 @@
     <script src="static/js/main.js"></script>
     <script src="static/js/nav.js"></script>
     <script src="static/js/subscribeModal.js"></script>
-    <script>
-        // Make best cards clickable to a universal detail page
-        document.querySelectorAll('.best-card').forEach(card => {
-            card.style.cursor = 'pointer';
-            card.addEventListener('click', (e) => {
-                // Ignore clicks originating from internal actionable elements
-                if (e.target.closest('a') || e.target.closest('button')) return;
-                const slug = card.getAttribute('data-card-slug');
-                if (slug) window.location.href = `card.html?card=${encodeURIComponent(slug)}`;
-            });
-            card.setAttribute('tabindex', '0');
-            card.addEventListener('keydown', (e) => {
-                if (e.key === 'Enter' || e.key === ' ') {
-                    e.preventDefault();
-                    const slug = card.getAttribute('data-card-slug');
-                    if (slug) window.location.href = `card.html?card=${encodeURIComponent(slug)}`;
-                }
-            });
-        });
-    </script>
+    <script src="static/js/home.js"></script>
 </body>
 
 </html>
