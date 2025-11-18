@@ -34,6 +34,7 @@
 
         <nav aria-label="Main Navigation">
             <ul>
+                <li><a href="myprofile.html">My Profile</a></li>
                 <li class="dropdown">
                     <a href="javascript:void(0)" class="dropbtn">Credit Cards</a>
                     <ul class="dropdown-content">
@@ -70,7 +71,7 @@
             </ul>
 
             <button class="nav-search-btn" aria-label="Search"></button>
-            <a href="#" id="updatesNavBtn" class="subscribe-btn">Updates</a>
+            <a href="#" id="loginNavBtn" class="login-btn">Log in</a>
             <a href="advertiserdisclosure.html" class="nav-disclosure-link">Advertiser Disclosure</a>
         </nav>
     </header>
@@ -150,11 +151,8 @@
                 <h2 id="how-title">How REWRDS works</h2>
                 <p class="secondary-text">A quick and easy way to find cards that actually match your life<br>
                     using both local and national options</p>
+                <a href="cardmatch.html" class="take-quiz-btn" aria-label="Start the credit card quiz">Take the Quiz</a>
             </div>
-            <a href="cardmatch.html" class="take-quiz-btn" aria-label="Start the credit card quiz">Take the
-                Quiz</a>
-            <img class="how-image" src="static/images/flight_path_2.png" alt="Flight path illustration" loading="lazy"
-                decoding="async" />
             <div class="steps-grid" aria-label="Steps">
                 <div class="step">
                     <div class="step-number">1</div>
@@ -184,27 +182,54 @@
     <section class="section tiers-section" aria-labelledby="tiers-title">
         <div class="section-inner">
             <div class="text-content">
-                <h2 id="tiers-title">Subscriptions</h2>
-                <p class="secondary-text">Stay updated to keep your rewards optimized</p>
+                <h2 id="tiers-title">Pricing</h2>
+                <p class="secondary-text">One missed bonus is expensive — staying informed isn’t.</p>
             </div>
             <div class="pricing-grid" aria-label="Subscription tiers">
-                <div class="step pricing-card" aria-labelledby="tier-free-title">
+                <div class="pricing-card" aria-labelledby="tier-free-title">
                     <h3 id="tier-free-title">Free</h3>
+                    <div class="pricing-price">
+                        <span class="pricing-amount">$0</span>
+                        <span class="pricing-period"></span>
+                    </div>
+                    <button type="button" class="btn primary tier-choose-btn choose-free-tier">Get free</button>
                     <ul class="tier-features">
-                        <li>General credit card news</li>
-                        <li>Occasional Utah‑specific updates</li>
+                        <li>New card launches</li>
+                        <li>Major sign-up bonus changes</li>
                         <li>New tools and feature announcements</li>
+                        <li>Unlimited access to tools and guides</li>
                     </ul>
-                    <button type="button" class="btn primary choose-free-tier">Choose Free</button>
                 </div>
-                <div class="step pricing-card" aria-labelledby="tier-optimal-title">
-                    <h3 id="tier-optimal-title">Optimal <span class="price-note">— $2/mo</span></h3>
+                <div class="pricing-card" aria-labelledby="tier-optimal-title">
+                    <h3 id="tier-optimal-title">Optimized</h3>
+                    <div class="pricing-price">
+                        <span class="pricing-amount">$2</span>
+                        <span class="pricing-period">/ month</span>
+                    </div>
+                    <button type="button" class="btn primary tier-choose-btn choose-optimal-tier">Get optimized</button>
+                    <div class="tier-includes-note">Everything in Free tier plus:</div>
                     <ul class="tier-features">
-                        <li>Personalized notifications</li>
-                        <li>Deal alerts matched to your profile</li>
-                        <li>Early access to new features</li>
+                        <li>Save, modify, and reference your profile</li>
+                        <li>See a “cards you own vs cards to consider next” view</li>
+                        <li>Get notified when <em>new cards</em> match your profile</li>
+                        <li>Get notified when <em>your matched cards</em> raise their sign-up bonus</li>
+                        <li>Get notified when your top matches change as new data is added</li>
+
                     </ul>
-                    <button type="button" class="btn primary choose-optimal-tier">Choose Optimal</button>
+                </div>
+                <div class="pricing-card" aria-labelledby="tier-setup-title">
+                    <h3 id="tier-setup-title">Custom</h3>
+                    <div class="pricing-price">
+                        <span class="pricing-amount">$15</span>
+                        <span class="pricing-period">one-time</span>
+                    </div>
+                    <button type="button" class="btn primary tier-choose-btn choose-setup-tier">Get Custom</button>
+                    <div class="tier-includes-note">Everything in Free tier plus:</div>
+                    <ul class="tier-features">
+                        <li>Custom multi-card strategy</li>
+                        <li>PDF setup plan</li>
+                        <li>Personalized bonus value calculations</li>
+                    </ul>
                 </div>
             </div>
         </div>
@@ -217,11 +242,9 @@
                 <h2 id="best-cards-title">Best cards right now</h2>
                 <p class="secondary-text">Three strong, well‑rounded picks anyone can get value from.<br>
                     If you use only three cards, these should be the ones.</p>
+                <a href="comparecards.html" class="best-compare-btn" aria-label="Compare top credit cards">Compare
+                    Cards</a>
             </div>
-            <a href="comparecards.html" class="best-compare-btn"
-                aria-label="Start the credit card quiz from Best Cards">Compare Cards</a>
-            <img class="best-image" src="static/images/flight_path_3.png" alt="Flight path illustration" loading="lazy"
-                decoding="async" />
             <div class="best-cards-grid">
                 <article class="best-card" data-card-slug="bilt-rewards">
                     <p class="tag">Best Rent & Mortgage Card</p>
@@ -303,8 +326,6 @@
     <!-- CTA -->
     <section class="section cta-section" aria-labelledby="cta-title">
         <div class="section-inner cta-inner">
-            <img class="cta-image cta-image-left" src="static/images/flight_path_5.png" alt="Flight path left"
-                loading="lazy" decoding="async" />
             <div class="cta-content">
                 <h2 id="cta-title">Ready to see your card matches?</h2>
                 <p class="secondary-text"></p>
@@ -312,8 +333,6 @@
                     <a href="cardmatch.html" class="btn primary">Start the Quiz</a>
                 </div>
             </div>
-            <img class="cta-image cta-image-right" src="static/images/flight_path_end.png" alt="Flight path right"
-                loading="lazy" decoding="async" />
         </div>
     </section>
 

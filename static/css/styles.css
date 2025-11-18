@@ -216,7 +216,7 @@ header {
 }
 
 header .logo-link img {
-    width: 240px !important;
+    width: 160px !important;
     margin-right: 0.5rem;
     height: auto;
     display: block;
@@ -290,8 +290,8 @@ nav ul li.dropdown .dropbtn.is-open::after {
     /* flip up when open */
 }
 
-header .subscribe-btn {
-    padding: 0.75rem 1rem;
+header .login-btn {
+    padding: 0.65rem 1.2rem;
     border-radius: 4px;
     background-color: var(--brand-900);
     color: var(--surface);
@@ -299,11 +299,11 @@ header .subscribe-btn {
     text-transform: uppercase;
     letter-spacing: 0.2px;
     font-weight: 600;
-    font-size: small;
+    font-size: 0.95rem;
     transition: background-color 0.3s;
 }
 
-header .subscribe-btn:hover {
+header .login-btn:hover {
     background-color: var(--brand-600);
     color: var(--surface);
 }
@@ -321,7 +321,7 @@ header .subscribe-btn:hover {
     display: inline-flex;
     align-items: center;
     justify-content: center;
-    margin-left: 2.5rem;
+    margin-left: 1.5rem;
     margin-right: 0.5rem;
     transition: all 0.2s;
 }
@@ -615,6 +615,12 @@ main {
     margin: 0;
 }
 
+/* Center titles & subheaders for all sections except explore-cards */
+.section:not(.explore-cards) .text-content {
+    text-align: center;
+    align-items: center;
+}
+
 .buttons {
     display: flex;
     gap: 20px;
@@ -643,6 +649,53 @@ main {
     background-color: var(--background-alt);
     color: var(--accent-600);
     border: 2px solid var(--accent-600);
+}
+
+/* How it Works button: center beneath subheader */
+.how-it-works .take-quiz-btn {
+    position: static;
+    top: auto;
+    margin: 14px auto 0;
+    align-self: center;
+}
+
+/* Best Cards Compare button: center beneath subheader */
+.best-cards .section-inner {
+    flex-direction: column;
+    /* stack heading/subheader/button above grid */
+    align-items: center;
+    /* horizontal centering */
+}
+
+.best-cards .text-content {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+}
+
+/* === Unified (single) Best Cards Compare button style === */
+.best-cards .best-compare-btn {
+    position: static;
+    display: block;
+    /* allow auto margins */
+    margin: 20px auto 0;
+    /* center horizontally under subheader */
+    padding: 10px 20px;
+    font-size: 1.1rem;
+    font-weight: 600;
+    border: 2px solid var(--background);
+    background: transparent;
+    color: var(--background);
+    border-radius: 8px;
+    text-decoration: none;
+    transition: background-color .2s, color .2s;
+}
+
+.best-cards .best-compare-btn:hover {
+    background: var(--background);
+    color: var(--brand-700);
 }
 
 /* Best Cards: add white lock icon to Apply now button (inline with text) */
@@ -847,36 +900,35 @@ body.home-page .feature-row::after {
     height: 68px;
     display: inline-block;
     margin-bottom: 0.1rem;
+    transition: color 0.2s;
+}
+
+.icon:hover {
+    color: var(--accent-400)
 }
 
 .icon-credit {
-    color: var(--accent-400);
+    color: var(--ink);
 }
 
 .icon-database {
-    color: #054882;
+    color: var(--ink);
 }
 
 .icon-about {
-    color: var(--muted);
+    color: var(--ink);
 }
 
 .icon-support {
-    color: var(--success);
+    color: var(--ink);
 }
 
 .icon-subscribe {
-    color: #f6bd00;
-    /* match best-card banner yellow */
-}
-
-/* Bank icon (maskable so color is controllable via currentColor) */
-.icon-bank {
-    color: #5316a3;
+    color: var(--ink);
 }
 
 .icon-cardstack {
-    color: #2563eb;
+    color: var(--ink);
 }
 
 /* ==========================
@@ -1150,14 +1202,6 @@ body.home-page .feature-row::after {
     color: var(--surface);
 }
 
-/* How it works image + layout */
-.how-it-works .how-image {
-    flex: 0 0 auto;
-    width: clamp(140px, 24vw, 180px);
-    height: auto;
-    object-fit: contain;
-}
-
 .how-it-works .steps-grid {
     flex: 1 1 100%;
     width: 100%;
@@ -1238,74 +1282,62 @@ body.home-page .feature-row::after {
 }
 
 .how-it-works .take-quiz-btn:hover {
-    color: var(--brand-900);
+    color: var (--brand-900);
     background-color: var(--background);
 }
 
 /* ==========================
-   HOME: BEST CARDS RIGHT NOW
+   HOME: BEST CARDS RIGHT NOW (CLEANED)
 ========================== */
 .best-cards {
     background: var(--gradient-room-2);
     color: var(--background);
     position: relative;
     z-index: 0;
-    /* create stacking context for ::after */
+    padding-left: 0 !important;
+    padding-right: 0 !important;
 }
 
 .best-cards::after {
     content: "";
     position: absolute;
-    left: 50%;
-    transform: translateX(-50%);
     bottom: 0;
     width: 100vw;
-    /* full bleed under section */
     height: 50%;
-    /* bottom half only */
     background: url('../images/background-pattern.png') repeat;
     background-size: auto;
-    /* use image's natural tiling */
     opacity: 0.18;
-    /* subtle */
     pointer-events: none;
     z-index: -1;
-    /* behind section content */
+    left: 50%;
+    transform: translateX(-50%);
 }
 
 .best-cards .secondary-text {
     color: var(--brand-600);
 }
 
+/* Canonical centered layout (deduplicated) */
 .best-cards .section-inner {
-    align-items: stretch;
-}
-
-.best-cards .best-image {
-    flex: 0 0 auto;
-    width: clamp(125px, 20vw, 165px);
-    /* slightly smaller */
-    height: auto;
-    object-fit: contain;
-    margin: 0;
-    padding: 0;
-    /* ensure no padding around the image */
+    flex-direction: column;
+    align-items: center;
+    padding-left: 20px;
+    padding-right: 20px;
 }
 
 .best-cards .text-content {
-    text-align: left;
+    width: 100%;
+    max-width: 780px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
 }
 
 .best-cards .best-cards-grid {
     flex: 1 1 100%;
     width: 100%;
-    margin-top: 8px;
-}
-
-@media (max-width: 900px) {
-    .best-cards .text-content {
-        text-align: left;
-    }
+    margin-top: 28px;
 }
 
 .best-cards-grid {
@@ -1315,123 +1347,60 @@ body.home-page .feature-row::after {
     width: 100%;
 }
 
-.best-card {
-    display: flex;
-    flex-direction: column;
-    padding-top: 72px;
-    /* space for the banner at the very top */
-    padding-bottom: 20px;
-    background: var(--surface);
-    /* border: 1px solid var(--border); */
-    border-radius: 14px;
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
-    position: relative;
-    overflow: hidden;
-    /* ensure banner rounded corners clip */
+@media (max-width: 1100px) {
+    .best-cards-grid {
+        grid-template-columns: repeat(2, minmax(240px, 1fr));
+    }
 }
 
-.best-card .tag {
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    height: 30px;
-    display: flex;
+@media (max-width: 700px) {
+    .best-cards-grid {
+        grid-template-columns: 1fr;
+    }
+}
+
+/* Single definitive centered button */
+.best-cards .best-compare-btn {
+    position: static;
+    display: inline-flex;
     align-items: center;
     justify-content: center;
-    margin: 0;
-    z-index: 2;
-    background: #f6bd00;
-    color: var(--surface);
+    margin-top: 20px;
+    /* directly under subheader */
+    padding: 10px 20px;
+    font-size: 1.05rem;
     font-weight: 600;
-    font-size: 0.9rem;
-    letter-spacing: 0.2px;
-    border-top-left-radius: 14px;
-    border-top-right-radius: 14px;
-    box-shadow: inset 0 -1px 0 rgba(255, 255, 255, 0.35);
-    text-transform: uppercase;
-}
-
-.best-card .card-thumb {
-    position: absolute;
-    top: 56px;
-    left: 16px;
-    width: 76px;
-    height: auto;
+    border: 2px solid var(--background);
+    background: transparent;
+    color: var(--background);
     border-radius: 8px;
-    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.12);
-    object-fit: contain;
-    background: var(--surface);
+    text-decoration: none;
+    transition: background-color .2s, color .2s;
 }
 
-.best-card header {
-    position: relative;
-    display: flex;
-    align-items: center;
-    gap: 12px;
-    padding: 0;
-    /* reset */
-    padding-left: 108px;
-    /* image width + spacing */
-    min-height: 80px;
-    margin: 0 0 4px 0;
-}
-
-.best-card header h3 {
-    margin: 0;
-    font-size: 1.1rem;
-    font-weight: 600;
-    color: var(--ink);
-}
-
-.best-card ul.card-points {
-    font-family: var(--font-family-card-points);
-    flex: 1 1 auto;
-    padding: 0 4px 0 0;
-    margin: 1rem 1rem 1rem 1.5rem;
-    list-style: none;
-}
-
-.best-card ul.card-points li {
-    padding-left: 20px;
-    position: relative;
-    margin: 8px 0;
+.best-cards .best-compare-btn:hover {
+    background: var(--background);
     color: var(--brand-700);
 }
 
-.best-card ul.card-points li::before {
-    content: "\2713";
-    position: absolute;
-    left: 0;
-    top: 0;
-    color: var(--success);
-    font-weight: 700;
-}
-
-.best-card .card-actions {
-    margin-top: auto;
-    /* push to bottom */
-    padding: 0;
-    display: flex;
-    flex-direction: column;
+/* Best Cards: add white lock icon to Apply now button (inline with text) */
+.best-cards .best-card .btn.secondary {
+    display: inline-flex;
     align-items: center;
     justify-content: center;
-    gap: 6px;
-    padding-bottom: 8px;
-}
-
-/* Best Cards: smaller action button */
-.best-cards .best-card .btn.secondary {
-    font-size: 0.9rem;
-    color: var(--background);
-    background-color: var(--accent-600);
-    border: none;
+    gap: 8px;
     padding: 10px 16px;
-    transition: ease all 0.3s;
 }
 
-.best-cards .best-card .btn.secondary:hover {
-    background-color: var(--accent-500);
+.best-cards .best-card .btn.secondary::after {
+    content: "";
+    display: inline-block;
+    width: 16px;
+    height: 16px;
+    background-color: #fff;
+    /* white icon */
+    -webkit-mask: url('../icons/lock.svg') no-repeat center / contain;
+    mask: url('../icons/lock.svg') no-repeat center / contain;
 }
 
 /* Best Cards: rates & fees link under button */
@@ -1469,25 +1438,9 @@ body.home-page .feature-row::after {
 
 /* Best Cards: Take the Quiz button (mirrors How it works button) */
 .best-cards .best-compare-btn {
-    color: var(--background);
-    background-color: transparent;
-    padding: 10px 16px;
-    font-size: 1.2rem;
-    font-weight: 600;
-    border: 2px solid var(--background);
-    border-radius: 8px;
-    position: relative;
-    top: 4.8rem;
-    /* align visually with paragraph bottom */
-    margin-right: 3.7rem;
-    align-self: flex-start;
-    transition: all 0.2s;
-    text-decoration: none;
-}
-
-.best-cards .best-compare-btn:hover {
-    color: var(--brand-400);
-    background-color: var(--background);
+    position: static !important;
+    margin-left: 0 !important;
+    margin-right: 0 !important;
 }
 
 /* ==========================
@@ -1497,12 +1450,6 @@ body.home-page .feature-row::after {
     background: url('../images/Background-brushstroke.png') center/cover no-repeat;
 }
 
-/* Only the section title should be white */
-.explore-cards #explore-title {
-    color: var(--surface);
-}
-
-/* Make the entire Why section content a large card-like container */
 .explore-cards .section-inner {
     color: var(--brand-50);
     background: var(--brand-900);
@@ -1515,7 +1462,6 @@ body.home-page .feature-row::after {
 @media (max-width: 700px) {
     .explore-cards .section-inner {
         padding: 20px;
-        /* tighter padding on small screens */
     }
 }
 
@@ -1552,29 +1498,6 @@ body.home-page .feature-row::after {
     justify-content: center;
     align-items: center;
     width: 100%;
-}
-
-/* CTA flank images */
-.cta-image {
-    height: auto;
-    object-fit: contain;
-    flex: 0 0 auto;
-}
-
-.cta-image-left {
-    width: clamp(120px, 22vw, 250px);
-    margin-right: 0px;
-}
-
-.cta-image-right {
-    width: clamp(120px, 22vw, 270px);
-    margin-left: 0px;
-}
-
-@media (max-width: 900px) {
-    .cta-image {
-        display: none;
-    }
 }
 
 /* ==========================
@@ -1786,7 +1709,7 @@ body.home-page .feature-row::after {
 
 .search-close:hover {
     background: var(--background-alt);
-    color: var(--ink);
+    color: var (--ink);
 }
 
 #search-results {
@@ -1835,46 +1758,405 @@ body.home-page .feature-row::after {
    TIERS: Pricing tables
 ========================== */
 .tiers-section .section-inner {
-    align-items: flex-start;
+    flex-direction: column;
+    align-items: center;
+}
+
+.tiers-section .text-content {
+    /* center heading + subheader */
+    flex: 0 0 auto;
+    align-items: center;
+    text-align: center;
 }
 
 .tiers-section .pricing-grid {
+    /* centered narrow cards - now three columns */
     display: grid;
-    grid-template-columns: repeat(2, minmax(200px, 1fr));
-    gap: 16px;
-    width: 100%;
-    align-items: stretch;
-}
-
-.tiers-section .pricing-card {
-    display: flex;
-    flex-direction: column;
-    align-items: stretch;
-    padding: 12px;
-    border-radius: 10px;
-    box-shadow: var(--shadow-sm);
-}
-
-.tiers-section .pricing-card h3 {
-    align-self: center;
-    margin: 0 0 8px 0;
-}
-
-.tiers-section .pricing-card .tier-features {
-    align-self: center;
-    margin: 6px 0 12px 18px;
-    color: var(--brand-700);
-}
-
-.tiers-section .pricing-card .btn.primary {
-    align-self: center;
-    padding: 10px 16px;
-    font-size: 1rem;
-    margin-top: auto;
+    width: auto;
+    margin: 12px auto 0;
+    grid-template-columns: repeat(3, auto);
+    justify-content: center;
+    align-items: start;
+    gap: 12px;
 }
 
 @media (max-width: 900px) {
     .tiers-section .pricing-grid {
         grid-template-columns: 1fr;
+    }
+}
+
+.tiers-section .pricing-card {
+    max-width: 280px;
+    min-height: 480px;
+    /* tall card */
+    padding: 26px 20px 60px;
+    /* a bit more vertical breathing */
+    align-items: flex-start;
+    background: var(--brand-800);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+}
+
+.tiers-section .pricing-card h3 {
+    color: var(--background);
+    font-size: 1rem;
+}
+
+.tiers-section .pricing-price {
+    flex-direction: column;
+    margin-bottom: 1.4rem;
+    gap: 4px;
+}
+
+.tiers-section .pricing-amount {
+    margin: 0;
+    font-size: 3rem;
+    font-weight: var(--weight-medium);
+    color: var(--background);
+    line-height: 1;
+}
+
+.tiers-section .pricing-period {
+    font-size: 1rem;
+    margin-left: 0.5rem;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    line-height: 1.15;
+    padding-top: 0;
+    /* remove previous offset */
+    color: var(--muted);
+}
+
+.tiers-section .pricing-card .btn.primary {
+    border: none;
+    border-radius: 4px;
+    padding: 8px 12px;
+    font-size: 0.8rem;
+    letter-spacing: 0.3px;
+    align-self: stretch;
+    margin: 0 0 16px 0;
+    font-weight: var(--weight-semibold);
+    width: 100%;
+    display: block;
+    transition: all 0.3s;
+}
+
+.tiers-section .pricing-card .btn.primary:hover {
+    background-color: var(--accent-400);
+    color: var(--background);
+}
+
+.tiers-section .tier-features {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    width: 100%;
+}
+
+.tiers-section .tier-features li {
+    position: relative;
+    padding: 6px 0 6px 20px;
+    font-size: 0.85rem;
+    line-height: 1.4;
+    color: var(--accent-50);
+}
+
+.tiers-section .tier-features li:last-child {
+    border-bottom: none;
+}
+
+.tiers-section .tier-features li::before {
+    content: '\2713';
+    position: absolute;
+    left: 0;
+    top: 6px;
+    color: var(--success);
+    font-weight: 700;
+    font-size: 0.8rem;
+}
+
+.tiers-section .tier-includes-note {
+    width: 100%;
+    margin: 6px 0 10px 0;
+    padding-bottom: 8px;
+    font-size: 0.85rem;
+    color: var(--accent-50);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.22);
+}
+
+@media (max-width: 600px) {
+    .tiers-section .pricing-card {
+        max-width: 100%;
+        min-height: 420px;
+        padding: 18px 18px 22px;
+    }
+
+    .tiers-section .pricing-amount {
+        font-size: 2.6rem;
+    }
+}
+
+/* === Final overrides to ensure centered action buttons === */
+.how-it-works .take-quiz-btn {
+    position: static !important;
+    top: auto !important;
+    margin: 16px auto 0 !important;
+    align-self: center !important;
+    display: inline-block !important;
+}
+
+.best-cards .best-compare-btn {
+    position: static !important;
+    top: auto !important;
+    margin: 16px auto 0 !important;
+    align-self: center !important;
+    display: inline-block !important;
+    margin-right: 0 !important;
+}
+
+/* === Final unify Best Cards compare button centering === */
+.best-cards .section-inner {
+    flex-direction: column !important;
+    align-items: center !important;
+}
+
+.best-cards .text-content {
+    width: 100%;
+    max-width: 780px;
+    display: flex !important;
+    flex-direction: column !important;
+    align-items: center !important;
+    text-align: center !important;
+}
+
+/* Single definitive style for compare button */
+.best-cards .best-compare-btn {
+    position: static !important;
+    display: block !important;
+    /* block so auto margins center */
+    margin: 20px auto 0 !important;
+    /* horizontal centering */
+    left: auto !important;
+    right: auto !important;
+    top: auto !important;
+    padding: 10px 20px !important;
+    font-size: 1.05rem !important;
+    font-weight: 600 !important;
+    border: 2px solid var(--background) !important;
+    background: transparent !important;
+    color: var(--background) !important;
+    border-radius: 8px !important;
+    text-decoration: none !important;
+    transition: background-color .2s, color .2s !important;
+}
+
+.best-cards .best-compare-btn:hover {
+    background: var(--background) !important;
+    color: var(--brand-400) !important;
+}
+
+/* Neutralize any earlier duplicate declarations */
+.best-cards .best-compare-btn:not(:hover) {
+    margin-left: auto !important;
+    margin-right: auto !important;
+}
+
+/* === Simplified & Deduplicated Best Cards Layout === */
+.best-cards .section-inner {
+    flex-direction: column;
+    align-items: center;
+}
+
+.best-cards .text-content {
+    width: 100%;
+    max-width: 780px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+}
+
+.best-cards .best-compare-btn {
+    position: static;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    margin-top: 20px;
+    /* directly beneath subheader */
+    padding: 10px 20px;
+    font-size: 1.05rem;
+    font-weight: 600;
+    border: 2px solid var(--background);
+    background: transparent;
+    color: var(--background);
+    border-radius: 8px;
+    text-decoration: none;
+    transition: background-color .2s, color .2s;
+}
+
+.best-cards .best-compare-btn:hover {
+    background: var(--background);
+    color: var(--brand-700);
+}
+
+/* Removed multiple legacy duplicate .best-cards .best-compare-btn blocks above */
+
+/* === Best Cards card element styling === */
+.best-cards-grid {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(240px, 1fr));
+    gap: 20px;
+    width: 100%;
+}
+
+@media (max-width:1100px) {
+    .best-cards-grid {
+        grid-template-columns: repeat(2, minmax(240px, 1fr));
+    }
+}
+
+@media (max-width:700px) {
+    .best-cards-grid {
+        grid-template-columns: 1fr;
+    }
+}
+
+.best-card {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    padding: 72px 20px 20px;
+    /* space for banner + thumb */
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 14px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
+    overflow: hidden;
+}
+
+.best-card .tag {
+    position: absolute;
+    top: -1rem;
+    left: 0;
+    right: 0;
+    height: 34px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: #f6bd00;
+    color: var(--surface);
+    font-size: 1rem;
+    font-weight: 600;
+    letter-spacing: .3px;
+    text-transform: uppercase;
+    border-top-left-radius: 14px;
+    border-top-right-radius: 14px;
+}
+
+.best-card .card-thumb {
+    position: absolute;
+    top: 5rem;
+    left: 2rem;
+    width: 76px;
+    height: auto;
+    border-radius: 10px;
+    background: var(--surface);
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.12);
+    object-fit: contain;
+}
+
+.best-card header {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    min-height: 80px;
+    padding-left: 108px;
+    /* thumb space */
+    margin: 0 0 8px 0;
+}
+
+.best-card header h3 {
+    margin: 0;
+    font-size: 1.15rem;
+    font-weight: 600;
+    color: var(--ink);
+}
+
+.best-card ul.card-points {
+    list-style: none;
+    margin: 0 8px 16px 16px;
+    padding: 0;
+    font-family: var(--font-family-card-points);
+    font-size: 0.9rem;
+    line-height: 1.5;
+    color: var(--brand-700);
+}
+
+.best-card ul.card-points li {
+    position: relative;
+    padding-left: 20px;
+    margin: 20px 0;
+}
+
+.best-card ul.card-points li::before {
+    content: "\2713";
+    position: absolute;
+    left: 0;
+    top: 0;
+    color: var(--success);
+    font-weight: 700;
+}
+
+.best-card .card-actions {
+    margin-top: auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 6px;
+}
+
+.best-cards .best-card .btn.secondary {
+    font-size: 0.85rem;
+    padding: 10px 18px;
+    background: var(--accent-600);
+    color: var(--surface);
+    border: none;
+    border-radius: 8px;
+    transition: background-color .2s;
+    text-decoration: none;
+}
+
+.best-cards .best-card .btn.secondary:hover {
+    background: var(--accent-500);
+}
+
+.best-card .fees-link {
+    font-size: 0.75rem;
+    color: var(--accent-400);
+    text-decoration: none;
+}
+
+.best-card .fees-link:hover {
+    text-decoration: underline;
+}
+
+@media (max-width:700px) {
+    .best-card {
+        padding-top: 64px;
+    }
+
+    .best-card .tag {
+        height: 40px;
+        font-size: 0.85rem;
+    }
+
+    .best-card .card-thumb {
+        top: 56px;
+    }
+
+    .best-card header {
+        padding-left: 96px;
+        min-height: 64px;
     }
 }
