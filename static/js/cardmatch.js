@@ -40,8 +40,9 @@ document.addEventListener("DOMContentLoaded", () => {
             const checkedBoxes = Array.from(checkboxes).filter(c => c.checked);
             userAnswers[checkboxes[0].name] = checkedBoxes.map(c => c.value);
         }
-        const text = fs.querySelector("input[type='text']");
-        if (text) userAnswers[text.name] = text.value;
+        const select = fs.querySelector("select");
+        if (select) userAnswers[select.name] = select.value;
+
 
         const spend = fs.querySelector("input[name='monthlySpend']:checked");
         if (spend) userAnswers["monthlySpend"] = parseInt(spend.value);

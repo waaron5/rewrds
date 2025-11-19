@@ -1,4 +1,6 @@
 // === results.js ===
+//use ths link to preview results page without having to take the quiz:
+//  https://yourdomain.com/results.html?dev=1
 
 // Category reference (optional — used for display or filtering)
 const categories = [
@@ -21,6 +23,48 @@ const categories = [
   "Rent",
   "Catch_All"
 ];
+
+// ==============================
+// DEV MODE: auto-load dummy results
+// ==============================
+const params = new URLSearchParams(window.location.search);
+
+if (params.get("dev") === "1") {
+  console.warn("⚠ DEV MODE ENABLED — Loading dummy quiz answers and results");
+
+  const dummyAnswers = {
+    creditScore: "good",
+    goal: "maximize_value",
+    annualFee: "small_fee",
+    state: "Utah",
+    spendGroceries: 600,
+    spendDining: 300,
+    spendTravel: 400,
+    spendGas: 150,
+    spendOnline: 200,
+    spendRent: 0,
+    spendTransit: 0,
+    perks: ["lounge_access"]
+  };
+
+  fetch(`${API_BASE_URL}/score`, {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify(dummyAnswers)
+  })
+    .then(res => res.json())
+    .then(results => {
+      localStorage.setItem("quizAnswers", JSON.stringify(dummyAnswers));
+      localStorage.setItem("cardResults", JSON.stringify(results));
+      renderResults(results); // ← this already exists in your file
+    })
+    .catch(err => {
+      console.error("DEV MODE ERROR:", err);
+    });
+
+  // Stop normal results.js execution
+  return;
+}
 
 // Load cards from JSON
 async function loadCards() {
