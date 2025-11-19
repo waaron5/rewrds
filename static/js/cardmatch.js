@@ -1,3 +1,4 @@
+
 document.addEventListener("DOMContentLoaded", () => {
     const form = document.getElementById("cardmatch-form");
     const fieldsets = Array.from(form.querySelectorAll("fieldset.q"));
@@ -194,13 +195,21 @@ document.addEventListener("DOMContentLoaded", () => {
     }
 
     function showResults() {
-        fetch(`${API_BASE_URL}/cards`)
+        fetch(`${API_BASE_URL}/score`, {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify(userAnswers)
+        })
             .then(res => res.json())
-            .then(cards => {
-                const scores = cardScoring.scoreCards(cards, userAnswers);
+            .then(results => {
+                // store answers and scored results for results.html
                 localStorage.setItem("quizAnswers", JSON.stringify(userAnswers));
-                localStorage.setItem("cardScores", JSON.stringify(scores));
+                localStorage.setItem("cardResults", JSON.stringify(results));
                 window.location.href = "../results.html";
+            })
+            .catch(err => {
+                console.error("Error getting scored results:", err);
+                alert("There was an issue generating your results. Please try again.");
             });
     }
 

@@ -8,6 +8,7 @@ const categories = [
   "Airfare",
   "Hotels",
   "Gas",
+  "EV Charging",
   "Transit",
   "Streaming",
   "Online Shopping",
@@ -165,14 +166,7 @@ function renderCards(cards, scores) {
 async function init() {
   console.log("Initializing results page...");
 
-  const allCards = await loadCards();
-  const answers = getQuizAnswers();
-
-  console.log("Loaded cards:", allCards);
-  console.log("User answers:", answers);
-
-  // Calculate scores
-  const scoredResults = cardScoring.scoreCards(allCards, answers);
+  const scoredResults = JSON.parse(localStorage.getItem("cardResults")) || [];
   console.log("Scored results:", scoredResults);
 
   // Create score map

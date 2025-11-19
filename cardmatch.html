@@ -57,8 +57,9 @@
                 <p class="helper-text">Some cards with small or premium fees offer valuable rewards and perks.</p>
                 <label><input type="radio" name="annualFee" value="no_fee" required /> No annual
                     fees</label>
-                <label><input type="radio" name="annualFee" value="small_fee" /> Small annual fees ($50–$100) if</label>
-                <label><input type="radio" name="annualFee" value="premium" /> Any annual fees ($100+)</label>
+                <label><input type="radio" name="annualFee" value="small_fee" /> include small annual fees ($50–$100)
+                    if</label>
+                <label><input type="radio" name="annualFee" value="premium" /> include any annual fees ($100+)</label>
             </fieldset>
 
             <!-- 4 Spending Breakdown -->
@@ -112,6 +113,20 @@
                     <div class="slider-row">
                         <span class="slider-category">Gas</span>
                         <input type="range" id="spend-gas" name="spendGas" min="0" max="3000" step="50" value="0">
+                        <div class="slider-input-wrapper">
+                            <span class="dollar-sign">$</span>
+                            <input type="number" id="input-gas" min="0" max="3000" step="50" value="0"
+                                class="slider-input">
+                        </div>
+                        <div class="slider-toggle">
+                            <span class="toggle-label active" data-unit="month">Month</span>
+                            <span class="toggle-label" data-unit="year">Year</span>
+                        </div>
+                    </div>
+                    <div class="slider-row">
+                        <span class="slider-category">EV Charging</span>
+                        <input type="range" id="spend-gas" name="spendEVCharging" min="0" max="3000" step="50"
+                            value="0">
                         <div class="slider-input-wrapper">
                             <span class="dollar-sign">$</span>
                             <input type="number" id="input-gas" min="0" max="3000" step="50" value="0"
@@ -277,7 +292,7 @@
             <fieldset class="q">
                 <legend>Where do you usually buy groceries?</legend>
                 <p class="helper-text">Some cards bonus supermarkets or specific retailers.</p>
-                <label><input type="checkbox" name="grocery" value="walmart" /> Walmart / Supercenter</label>
+                <label><input type="checkbox" name="grocery" value="walmart" /> Walmart</label>
                 <label><input type="checkbox" name="grocery" value="costco" /> Costco</label>
                 <label><input type="checkbox" name="grocery" value="sams" /> Sam's Club</label>
                 <label><input type="checkbox" name="grocery" value="kroger" /> Kroger / Ralphs / King Soopers</label>
@@ -288,17 +303,17 @@
 
             <!-- 10 Gas Stations -->
             <fieldset class="q">
-                <legend>Where do you usually fill up or buy gas?</legend>
+                <legend>Where do you typically refuel or recharge your vehicle?</legend>
                 <p class="helper-text">Some cards offer extra rewards at certain brands.
                 </p>
+                <label><input type="checkbox" name="gas" value="costco"> Costco</label>
+                <label><input type="checkbox" name="gas" value="sams"> Sam’s Club</label>
                 <label><input type="checkbox" name="gas" value="shell"> Shell</label>
                 <label><input type="checkbox" name="gas" value="chevron"> Chevron</label>
                 <label><input type="checkbox" name="gas" value="exxon"> Exxon / Mobil</label>
                 <label><input type="checkbox" name="gas" value="bp"> BP</label>
                 <label><input type="checkbox" name="gas" value="arco"> ARCO</label>
                 <label><input type="checkbox" name="gas" value="valero"> Valero</label>
-                <label><input type="checkbox" name="gas" value="costco"> Costco</label>
-                <label><input type="checkbox" name="gas" value="sams"> Sam’s Club</label>
                 <label><input type="checkbox" name="gas" value="7eleven"> 7-Eleven</label>
                 <label><input type="checkbox" name="gas" value="circlek"> Circle K</label>
                 <label><input type="checkbox" name="gas" value="speedway"> Speedway</label>
@@ -306,7 +321,9 @@
                 <label><input type="checkbox" name="gas" value="quiktrip"> QuikTrip (QT)</label>
                 <label><input type="checkbox" name="gas" value="racetrac"> RaceTrac</label>
                 <label><input type="checkbox" name="gas" value="local"> Local / Independent stations</label>
-                <label><input type="checkbox" name="gas" value="none"> I rarely buy gas / drive EV</label>
+                <label><input type="checkbox" name="gas" value="home"> I primarily charge at home</label>
+                <label><input type="checkbox" name="gas" value="EV"> Public EV Charging Networks</label>
+                <label><input type="checkbox" name="gas" value="none"> No preference</label>
             </fieldset>
 
             <!-- 11 Online Shopping -->
@@ -323,7 +340,7 @@
                 <label><input type="checkbox" name="onlineShopping" value="brand"> Brand websites (Nike, Sephora,
                     etc.)</label>
                 <label><input type="checkbox" name="onlineShopping" value="paypal"> PayPal / Venmo purchases</label>
-                <label><input type="checkbox" name="onlineShopping" value="none"> I rarely shop online</label>
+                <label><input type="checkbox" name="onlineShopping" value="none"> No preference</label>
             </fieldset>
 
             <!-- 12 Lifestyle Preference -->
@@ -372,7 +389,7 @@
         </form>
     </main>
 
-    <script src="static/js/config.js"></script>
+    <script src="static/js/api.js"></script>
     <script src="static/js/cardScoring.js"></script>
     <script src="static/js/cardmatch.js"></script>
 </body>

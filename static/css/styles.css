@@ -877,7 +877,6 @@ body.home-page .feature-row::after {
 .feature-card:hover {
     transform: translateY(-6px);
     color: var(--ink);
-    border: 2px solid var(--accent-200);
     box-shadow: var(--shadow-lg);
 }
 
@@ -900,11 +899,17 @@ body.home-page .feature-row::after {
     height: 68px;
     display: inline-block;
     margin-bottom: 0.1rem;
-    transition: color 0.2s;
+    transition: color 0.1s;
 }
 
-.icon:hover {
+/* .icon:hover {
     color: var(--accent-400)
+} */
+
+/* New: change icon color when the whole feature card is hovered/focused */
+.feature-card:hover .icon,
+.feature-card:focus-visible .icon {
+    color: var(--accent-300);
 }
 
 .icon-credit {
@@ -1282,7 +1287,7 @@ body.home-page .feature-row::after {
 }
 
 .how-it-works .take-quiz-btn:hover {
-    color: var (--brand-900);
+    color: var(--brand-900);
     background-color: var(--background);
 }
 
