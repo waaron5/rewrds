@@ -843,7 +843,7 @@ body.home-page .feature-row::after {
     top: -4rem;
     width: 100vw;
     height: calc(100% + 8rem);
-    background: url('../images/background-pattern.png') repeat;
+    background: url('../images/ui/background-pattern.png') repeat;
     background-size: auto;
     /* use image’s natural tiling */
     opacity: 0.18;
@@ -954,7 +954,7 @@ body.home-page .feature-row::after {
 }
 
 .site-footer a:hover {
-    color: var(--accent-400);
+    color: var(--brand-800);
     text-decoration: underline;
 }
 
@@ -1309,7 +1309,7 @@ body.home-page .feature-row::after {
     bottom: 0;
     width: 100vw;
     height: 50%;
-    background: url('../images/background-pattern.png') repeat;
+    background: url('../images/ui/background-pattern.png') repeat;
     background-size: auto;
     opacity: 0.18;
     pointer-events: none;
@@ -1452,7 +1452,7 @@ body.home-page .feature-row::after {
    HOME: Explore cards
 ========================== */
 .explore-cards {
-    background: url('../images/Background-brushstroke.png') center/cover no-repeat;
+    background: url('../images/ui/Background-brushstroke.png') center/cover no-repeat;
 }
 
 .explore-cards .section-inner {
@@ -1746,7 +1746,7 @@ body.home-page .feature-row::after {
    HOME: TIERS SECTION (Stay update)
 ========================== */
 .tiers-section {
-    background: url('../images/Background-tiers.png') center/cover no-repeat;
+    background: url('../images/ui/Background-tiers.png') center/cover no-repeat;
 }
 
 .tiers-section h2 {

@@ -101,7 +101,7 @@ body.quiz-page::before {
     /* full left half of the page */
     height: 100vh;
     /* viewport height; fixed keeps it continuous */
-    background: url('../images/background-pattern.png') repeat;
+    background: url('../images/ui/background-pattern.png') repeat;
     background-size: auto;
     /* use image’s natural tiling */
     opacity: 0.18;
@@ -449,8 +449,8 @@ input[type="checkbox"]:checked+label {
     flex: 0 0 auto;
     display: inline-block;
     background-color: var(--error);
-    -webkit-mask-image: url('../icons/error.svg');
-    mask-image: url('../icons/error.svg');
+    -webkit-mask-image: url('../icons/ui/error.svg');
+    mask-image: url('../icons/ui/error.svg');
     -webkit-mask-size: contain;
     mask-size: contain;
     -webkit-mask-repeat: no-repeat;

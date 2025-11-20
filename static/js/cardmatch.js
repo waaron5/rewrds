@@ -1,4 +1,3 @@
-
 document.addEventListener("DOMContentLoaded", () => {
     const form = document.getElementById("cardmatch-form");
     const fieldsets = Array.from(form.querySelectorAll("fieldset.q"));
@@ -8,59 +7,39 @@ document.addEventListener("DOMContentLoaded", () => {
     const totalSteps = fieldsets.length;
     const userAnswers = {};
 
-    const travelSkipIndices = new Set([4, 5, 6, 7, 13]); // fieldset indexes to skip when goal=cashback
-    let skipTravel = false;
-
-    function isSkipped(idx) { return skipTravel && travelSkipIndices.has(idx); }
-
-    function computeVisibleIndex(idx) {
-        // number of non-skipped steps up to this index
-        let count = 0;
-        for (let i = 0; i <= idx; i++) if (!isSkipped(i)) count++;
-        return count - 1; // zero-based
-    }
-    function computeVisibleTotal() {
-        return skipTravel ? totalSteps - travelSkipIndices.size : totalSteps;
-    }
-    function nextAllowedIndex(from) {
-        let i = from + 1;
-        while (i < totalSteps && isSkipped(i)) i++;
-        return i;
-    }
-
+    // Save answers for a given step
     function saveAnswer(step) {
         const fs = fieldsets[step];
+        if (!fs) return;
+
         const radios = fs.querySelectorAll("input[type='radio']");
         if (radios.length) {
             const checked = Array.from(radios).find(r => r.checked);
             if (checked) userAnswers[checked.name] = checked.value;
         }
+
         const checkboxes = fs.querySelectorAll("input[type='checkbox']");
         if (checkboxes.length) {
             const checkedBoxes = Array.from(checkboxes).filter(c => c.checked);
             userAnswers[checkboxes[0].name] = checkedBoxes.map(c => c.value);
         }
+
         const select = fs.querySelector("select");
         if (select) userAnswers[select.name] = select.value;
 
-
+        // Legacy / extra fields (safe to keep)
         const spend = fs.querySelector("input[name='monthlySpend']:checked");
         if (spend) userAnswers["monthlySpend"] = parseInt(spend.value);
 
         const strategy = fs.querySelector("input[name='cardStrategy']:checked");
         if (strategy) userAnswers["cardStrategy"] = strategy.value;
 
-        // === Save slider inputs ===
+        // Save raw slider values (final annualization happens in showResults)
         const sliders = fs.querySelectorAll("input[type='range']");
         if (sliders.length) {
             sliders.forEach(sl => {
-                userAnswers[sl.name] = parseInt(sl.value);
+                userAnswers[sl.name] = parseInt(sl.value) || 0;
             });
-        }
-
-        // After saving goal (index 1), decide skipTravel
-        if (step === 1 && userAnswers.goal === 'cashback') {
-            skipTravel = true;
         }
     }
 
@@ -78,12 +57,13 @@ document.addEventListener("DOMContentLoaded", () => {
         ['dining', 3000],
         ['travel', 3000],
         ['gas', 3000],
+        ['ev', 3000],
         ['transit', 3000],
         ['online', 3000],
         ['rent', 4000],
         ['other', 3000],
-        ['entertainment', 1000],   // newly added category
-        ['utilities', 3000]        // newly added category
+        ['entertainment', 1000],
+        ['utilities', 3000]
     ].forEach(([cat, max]) => {
         const slider = document.getElementById(`spend-${cat}`);
         const input = document.getElementById(`input-${cat}`);
@@ -122,10 +102,8 @@ document.addEventListener("DOMContentLoaded", () => {
         if (!err) {
             err = document.createElement('div');
             err.className = 'quiz-error';
-            // insert directly above the button within the same container to avoid DOMHierarchy errors
             container.insertBefore(err, targetEl);
         }
-        // Ensure icon + text structure (use span for CSS mask coloring)
         let icon = err.querySelector('.error-icon');
         if (!icon) {
             icon = document.createElement('span');
@@ -152,9 +130,8 @@ document.addEventListener("DOMContentLoaded", () => {
     const sliderContinue = document.getElementById("slider-continue");
     if (sliderContinue) {
         sliderContinue.addEventListener("click", () => {
-            // Use the button's own fieldset to avoid step index issues
             const fs = sliderContinue.closest('fieldset') || fieldsets[currentStep];
-            // Validate: at least one slider in this fieldset has a value > 0
+
             const rows = fs ? fs.querySelectorAll('.slider-row') : document.querySelectorAll('.slider-row');
             const anyPositive = Array.from(rows).some(row => {
                 const slider = row.querySelector('input[type="range"]');
@@ -164,11 +141,11 @@ document.addEventListener("DOMContentLoaded", () => {
             });
             if (!anyPositive) {
                 renderErrorBefore(sliderContinue, 'Please enter a value in at least one category before continuing.');
-                return; // block advance
+                return;
             }
             if (fs) clearFieldsetError(fs);
 
-            // Save all slider values (existing logic)
+            // Save all slider values with monthly/yearly taken into account
             rows.forEach(row => {
                 const slider = row.querySelector('input[type="range"]');
                 if (!slider) return;
@@ -179,13 +156,13 @@ document.addEventListener("DOMContentLoaded", () => {
                 }
                 userAnswers[slider.name] = value;
             });
+
             saveAnswer(currentStep);
+            localStorage.setItem("quizAnswers", JSON.stringify(userAnswers));
             currentStep++;
             showStep(currentStep);
         });
-    }
-    // Clear error when user interacts with sliders
-    if (sliderContinue) {
+
         const sliders = document.querySelectorAll("input[type='range']");
         sliders.forEach(sl => {
             sl.addEventListener("input", () => {
@@ -195,7 +172,26 @@ document.addEventListener("DOMContentLoaded", () => {
         });
     }
 
+    // === Final submission: convert all spend to annual based on UI state & send to backend ===
     function showResults() {
+        // Correct month/year conversion for ALL sliders based on current toggles
+        document.querySelectorAll("fieldset.q").forEach(fs => {
+            const slider = fs.querySelector("input[type='range']");
+            if (!slider) return;
+
+            const name = slider.name;
+            if (!name || !name.startsWith("spend")) return;
+
+            const input = fs.querySelector("input[type='number']");
+            const rawValue = parseFloat(input?.value) || parseFloat(slider.value) || 0;
+
+            const activeToggle = fs.querySelector(".toggle-label.active");
+            const isMonthly = activeToggle && activeToggle.dataset.unit === "month";
+
+            const annualValue = isMonthly ? (rawValue * 12) : rawValue;
+            userAnswers[name] = annualValue;
+        });
+
         fetch(`${API_BASE_URL}/score`, {
             method: "POST",
             headers: { "Content-Type": "application/json" },
@@ -203,7 +199,6 @@ document.addEventListener("DOMContentLoaded", () => {
         })
             .then(res => res.json())
             .then(results => {
-                // store answers and scored results for results.html
                 localStorage.setItem("quizAnswers", JSON.stringify(userAnswers));
                 localStorage.setItem("cardResults", JSON.stringify(results));
                 window.location.href = "../results.html";
@@ -215,39 +210,41 @@ document.addEventListener("DOMContentLoaded", () => {
     }
 
     function showStep(step) {
-        // If this step is skipped, jump forward
-        if (isSkipped(step)) {
-            currentStep = nextAllowedIndex(step - 1); // step-1 because showStep called with a skipped one
-            if (currentStep >= totalSteps) { showResults(); return; }
-            showStep(currentStep); return;
+        if (step >= totalSteps) {
+            showResults();
+            return;
         }
 
+        // Toggle active fieldset
         fieldsets.forEach((fs, i) => {
-            fs.classList.toggle("active", i === step && !isSkipped(i));
+            fs.classList.toggle("active", i === step);
             const oldNav = fs.querySelector(".quiz-nav");
             if (oldNav) oldNav.remove();
-            if (isSkipped(i)) fs.classList.remove('active');
         });
 
         const currentFs = fieldsets[step];
         const radios = currentFs.querySelectorAll("input[type='radio']");
-        const checkboxes = currentFs.querySelectorAll("input[type='checkbox']");
 
-        // Auto-advance for radios only (but stop before the last question)
+        // Auto-advance for radios
         radios.forEach(radio => {
             radio.addEventListener("change", () => {
                 saveAnswer(step);
-                // Determine next step respecting skips
-                let next = nextAllowedIndex(step);
+                localStorage.setItem("quizAnswers", JSON.stringify(userAnswers));
+                const next = step + 1;
                 if (next < totalSteps) {
-                    setTimeout(() => { currentStep = next; showStep(currentStep); }, 250);
+                    setTimeout(() => {
+                        currentStep = next;
+                        showStep(currentStep);
+                    }, 250);
                 } else {
-                    // reached end
-                    setTimeout(() => { showResults(); }, 250);
+                    setTimeout(() => {
+                        showResults();
+                    }, 250);
                 }
             });
         });
 
+        // Checkbox questions: add Continue buttons with auto-"none"
         fieldsets.forEach((fs, i) => {
             const checkboxes = fs.querySelectorAll("input[type='checkbox']");
             if (checkboxes.length) {
@@ -259,15 +256,29 @@ document.addEventListener("DOMContentLoaded", () => {
                     continueBtn.textContent = 'Continue';
                     continueBtn.style.marginTop = '1.5rem';
                     continueBtn.onclick = () => {
-                        const anyChecked = fs.querySelectorAll("input[type='checkbox']:checked").length > 0;
+                        let anyChecked = fs.querySelectorAll("input[type='checkbox']:checked").length > 0;
+
+                        if (!anyChecked) {
+                            const noneBox = Array.from(checkboxes).find(
+                                cb => cb.value.toLowerCase() === "none"
+                            );
+                            if (noneBox) {
+                                noneBox.checked = true;
+                                anyChecked = true;
+                            }
+                        }
+
                         if (!anyChecked) {
                             renderErrorBefore(continueBtn, 'Please select at least one option before continuing.');
                             return;
                         }
+
                         clearFieldsetError(fs);
                         saveAnswer(i);
+                        localStorage.setItem("quizAnswers", JSON.stringify(userAnswers));
+
                         if (i < totalSteps - 1) {
-                            currentStep = nextAllowedIndex(i);
+                            currentStep = i + 1;
                             showStep(currentStep);
                         } else {
                             showResults();
@@ -275,7 +286,7 @@ document.addEventListener("DOMContentLoaded", () => {
                     };
                     fs.appendChild(continueBtn);
                 }
-                // Add change listener once to clear errors when user checks something
+
                 if (!fs.dataset.checkboxValidation) {
                     checkboxes.forEach(cb => {
                         cb.addEventListener('change', () => {
@@ -289,14 +300,12 @@ document.addEventListener("DOMContentLoaded", () => {
             }
         });
 
-        // Progress calculations with skips
-        const visibleIdx = computeVisibleIndex(step);
-        const visibleTotal = computeVisibleTotal();
-        progressText.textContent = `Step ${visibleIdx + 1} of ${visibleTotal}`;
-        progressBarFill.style.width = `${((visibleIdx + 1) / visibleTotal) * 100}%`;
+        // Progress bar (no skips now)
+        progressText.textContent = `Step ${step + 1} of ${totalSteps}`;
+        progressBarFill.style.width = `${((step + 1) / totalSteps) * 100}%`;
     }
 
-    // Add "See Results" button on the last step
+    // Add "See Results" button on the last step for safety
     const lastFieldset = fieldsets[fieldsets.length - 1];
     const submitBtn = document.createElement("button");
     submitBtn.type = "button";
@@ -305,6 +314,7 @@ document.addEventListener("DOMContentLoaded", () => {
     submitBtn.style.marginTop = "2rem";
     submitBtn.onclick = () => {
         saveAnswer(totalSteps - 1);
+        localStorage.setItem("quizAnswers", JSON.stringify(userAnswers));
         showResults();
     };
     lastFieldset.appendChild(submitBtn);

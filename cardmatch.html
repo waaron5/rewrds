@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
     <!-- favicon logo and title (site tab) -->
-    <link rel="icon" type="image/png" href="static/images/favicon.png">
+    <link rel="icon" type="image/png" href="static/images/ui/favicon.png">
     <title>Card Quiz</title>
 
     <!-- Load site fonts to match styles.css -->
@@ -125,11 +125,10 @@
                     </div>
                     <div class="slider-row">
                         <span class="slider-category">EV Charging</span>
-                        <input type="range" id="spend-gas" name="spendEVCharging" min="0" max="3000" step="50"
-                            value="0">
+                        <input type="range" id="spend-ev" name="spendEVCharging" min="0" max="3000" step="50" value="0">
                         <div class="slider-input-wrapper">
                             <span class="dollar-sign">$</span>
-                            <input type="number" id="input-gas" min="0" max="3000" step="50" value="0"
+                            <input type="number" id="input-ev" min="0" max="3000" step="50" value="0"
                                 class="slider-input">
                         </div>
                         <div class="slider-toggle">
@@ -377,8 +376,7 @@
                 <legend>Which state do you live in? (Optional)</legend>
                 <p class="helper-text">We’ll use this to include local and regional offers available in your area.</p>
 
-                <select name="state" required
-                    style="padding: 0.75rem; font-size: 1rem; width: 100%; border-radius: 8px;">
+                <select name="state" style="padding: 0.75rem; font-size: 1rem; width: 100%; border-radius: 8px;">
                     <option value="">Select your state</option>
                     <option value="Alabama">Alabama</option>
                     <option value="Alaska">Alaska</option>
