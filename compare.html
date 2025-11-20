@@ -15,41 +15,9 @@
 </head>
 
 <body class="compare-page">
-    <header id="top">
-        <a href="index.html" class="logo-link" aria-label="Home">
-            <img src="static/images/REWRDS_UTAH.png" alt="REWRDS Logo" loading="lazy" />
-        </a>
-        <nav aria-label="Main Navigation">
-            <ul>
-                <li><a href="cardmatch.html">Credit Card Quiz</a></li>
-                <li class="dropdown">
-                    <a href="javascript:void(0)" class="dropbtn">Credit Cards</a>
-                    <ul class="dropdown-content">
-                        <li><a href="allcards.html">All Credit Cards</a></li>
-                        <li><a href="bestcreditcardsof2025.html">Best Credit Cards 2025</a></li>
-                        <li><a href="besttravelcards.html">Best Travel Credit Cards</a></li>
-                        <li><a href="localcards.html">Local Credit Cards</a></li>
-                    </ul>
-                </li>
-                <li class="dropdown">
-                    <a href="javascript:void(0)" class="dropbtn">Guides</a>
-                    <ul class="dropdown-content">
-                        <li><a href="howdocreditcardswork.html">How do credit cards work?</a></li>
-                        <li><a href="howmanycreditcardsshouldihave.html">How many cards should I have?</a></li>
-                        <li><a href="pickingtherightcard.html">How do I know which card to get?</a></li>
-                    </ul>
-                </li>
-                <li><a href="about.html">About</a></li>
-                <li><a href="contact.html">Contact</a></li>
-            </ul>
-
-            <button class="nav-search-btn" aria-label="Search"></button>
-            <a href="#" id="loginNavBtn" class="subscribe-btn">Log in</a>
-            <a href="advertiserdisclosure.html" class="nav-disclosure-link">Advertiser Disclosure</a>
-        </nav>
-    </header>
 
     <main>
+        <!-- HERO -->
         <section class="compare-hero" aria-labelledby="compare-title">
             <div class="compare-hero-inner">
                 <h1 id="compare-title">Compare Credit Cards</h1>
@@ -57,93 +25,171 @@
             </div>
         </section>
 
+        <!-- CONTROLS -->
         <section class="compare-controls" aria-label="Comparison Controls">
             <div class="controls-inner">
+
                 <div class="picker-group">
                     <label for="card-picker" class="visually-hidden">Choose a card</label>
-                    <select id="card-picker" aria-label="Choose a card to compare">
-                        <option value="" selected disabled>Choose a card…</option>
-                        <option value="bilt-rewards">BILT Rewards</option>
-                        <option value="chase-sapphire-preferred">Chase Sapphire Preferred</option>
-                        <option value="freedom-unlimited">Chase Freedom Unlimited</option>
-                    </select>
-                    <button type="button" class="btn primary" disabled>Add to Compare</button>
+                    <div class="picker-group">
+                        <div class="compare-search-wrapper">
+                            <input type="text" id="compare-search-input" placeholder="Search cards…"
+                                autocomplete="off" />
+                            <div id="compare-search-results" class="compare-search-results"></div>
+                        </div>
+                    </div>
+
                 </div>
-                <div class="selected-count" aria-live="polite">0 of 3 selected</div>
+
+                <div id="selected-count" class="selected-count" aria-live="polite">
+                    0 of 3 selected
+                </div>
+
             </div>
         </section>
 
+        <!-- GRID -->
         <section class="compare-grid" aria-label="Comparison Grid">
             <div class="grid-inner">
+
+                <!-- HEADER ROW -->
                 <div class="compare-header-row">
                     <div class="compare-label"></div>
+
+                    <!-- SLOT 1 -->
                     <div class="compare-col-header empty" data-slot="1">
                         <div class="slot-hint">Empty Slot</div>
                     </div>
+
+                    <!-- SLOT 2 -->
                     <div class="compare-col-header empty" data-slot="2">
                         <div class="slot-hint">Empty Slot</div>
                     </div>
+
+                    <!-- SLOT 3 -->
                     <div class="compare-col-header empty" data-slot="3">
                         <div class="slot-hint">Empty Slot</div>
                     </div>
                 </div>
 
+                <!-- DATA ROWS -->
+                <div class="compare-row">
+                    <div class="compare-label">Apply</div>
+                    <div class="compare-cell" data-field="apply_link" data-slot="1"></div>
+                    <div class="compare-cell" data-field="apply_link" data-slot="2"></div>
+                    <div class="compare-cell" data-field="apply_link" data-slot="3"></div>
+                </div>
+
                 <div class="compare-row">
                     <div class="compare-label">Annual Fee</div>
-                    <div class="compare-cell" data-slot="1">—</div>
-                    <div class="compare-cell" data-slot="2">—</div>
-                    <div class="compare-cell" data-slot="3">—</div>
+                    <div class="compare-cell" data-field="annual_fee" data-slot="1"></div>
+                    <div class="compare-cell" data-field="annual_fee" data-slot="2"></div>
+                    <div class="compare-cell" data-field="annual_fee" data-slot="3"></div>
                 </div>
+
                 <div class="compare-row">
                     <div class="compare-label">Welcome Offer</div>
-                    <div class="compare-cell" data-slot="1">—</div>
-                    <div class="compare-cell" data-slot="2">—</div>
-                    <div class="compare-cell" data-slot="3">—</div>
+                    <div class="compare-cell" data-field="welcome_offer" data-slot="1"></div>
+                    <div class="compare-cell" data-field="welcome_offer" data-slot="2"></div>
+                    <div class="compare-cell" data-field="welcome_offer" data-slot="3"></div>
                 </div>
+
                 <div class="compare-row">
                     <div class="compare-label">Rewards</div>
-                    <div class="compare-cell" data-slot="1">—</div>
-                    <div class="compare-cell" data-slot="2">—</div>
-                    <div class="compare-cell" data-slot="3">—</div>
+                    <div class="compare-cell" data-field="rewards" data-slot="1"></div>
+                    <div class="compare-cell" data-field="rewards" data-slot="2"></div>
+                    <div class="compare-cell" data-field="rewards" data-slot="3"></div>
                 </div>
+
                 <div class="compare-row">
                     <div class="compare-label">Key Perks</div>
-                    <div class="compare-cell" data-slot="1">—</div>
-                    <div class="compare-cell" data-slot="2">—</div>
-                    <div class="compare-cell" data-slot="3">—</div>
+                    <div class="compare-cell" data-field="perks" data-slot="1"></div>
+                    <div class="compare-cell" data-field="perks" data-slot="2"></div>
+                    <div class="compare-cell" data-field="perks" data-slot="3"></div>
                 </div>
+
                 <div class="compare-row">
                     <div class="compare-label">Intro APR</div>
-                    <div class="compare-cell" data-slot="1">—</div>
-                    <div class="compare-cell" data-slot="2">—</div>
-                    <div class="compare-cell" data-slot="3">—</div>
+                    <div class="compare-cell" data-field="intro_apr" data-slot="1"></div>
+                    <div class="compare-cell" data-field="intro_apr" data-slot="2"></div>
+                    <div class="compare-cell" data-field="intro_apr" data-slot="3"></div>
                 </div>
+
                 <div class="compare-row">
                     <div class="compare-label">Regular APR</div>
-                    <div class="compare-cell" data-slot="1">—</div>
-                    <div class="compare-cell" data-slot="2">—</div>
-                    <div class="compare-cell" data-slot="3">—</div>
+                    <div class="compare-cell" data-field="ongoing_apr" data-slot="1"></div>
+                    <div class="compare-cell" data-field="ongoing_apr" data-slot="2"></div>
+                    <div class="compare-cell" data-field="ongoing_apr" data-slot="3"></div>
                 </div>
+
                 <div class="compare-row">
                     <div class="compare-label">Foreign Transaction Fee</div>
-                    <div class="compare-cell" data-slot="1">—</div>
-                    <div class="compare-cell" data-slot="2">—</div>
-                    <div class="compare-cell" data-slot="3">—</div>
+                    <div class="compare-cell" data-field="foreign_fees" data-slot="1"></div>
+                    <div class="compare-cell" data-field="foreign_fees" data-slot="2"></div>
+                    <div class="compare-cell" data-field="foreign_fees" data-slot="3"></div>
                 </div>
+
+                <div class="compare-row">
+                    <div class="compare-label">Point Value</div>
+                    <div class="compare-cell" data-field="point_value" data-slot="1"></div>
+                    <div class="compare-cell" data-field="point_value" data-slot="2"></div>
+                    <div class="compare-cell" data-field="point_value" data-slot="3"></div>
+                </div>
+
+                <div class="compare-row">
+                    <div class="compare-label">Recommended Credit Score</div>
+                    <div class="compare-cell" data-field="credit_score" data-slot="1"></div>
+                    <div class="compare-cell" data-field="credit_score" data-slot="2"></div>
+                    <div class="compare-cell" data-field="credit_score" data-slot="3"></div>
+                </div>
+
+                <div class="compare-row">
+                    <div class="compare-label">Card Tier</div>
+                    <div class="compare-cell" data-field="card_tier" data-slot="1"></div>
+                    <div class="compare-cell" data-field="card_tier" data-slot="2"></div>
+                    <div class="compare-cell" data-field="card_tier" data-slot="3"></div>
+                </div>
+
+                <div class="compare-row">
+                    <div class="compare-label">Availability</div>
+                    <div class="compare-cell" data-field="regions" data-slot="1"></div>
+                    <div class="compare-cell" data-field="regions" data-slot="2"></div>
+                    <div class="compare-cell" data-field="regions" data-slot="3"></div>
+                </div>
+
+                <div class="compare-row">
+                    <div class="compare-label">Eligibility</div>
+                    <div class="compare-cell" data-field="eligibility" data-slot="1"></div>
+                    <div class="compare-cell" data-field="eligibility" data-slot="2"></div>
+                    <div class="compare-cell" data-field="eligibility" data-slot="3"></div>
+                </div>
+
+                <div class="compare-row">
+                    <div class="compare-label">Transfer Partners</div>
+                    <div class="compare-cell" data-field="transfer_partners" data-slot="1"></div>
+                    <div class="compare-cell" data-field="transfer_partners" data-slot="2"></div>
+                    <div class="compare-cell" data-field="transfer_partners" data-slot="3"></div>
+                </div>
+
+                <div class="compare-row">
+                    <div class="compare-label">Pairing Synergy</div>
+                    <div class="compare-cell" data-field="pairing_synergy" data-slot="1"></div>
+                    <div class="compare-cell" data-field="pairing_synergy" data-slot="2"></div>
+                    <div class="compare-cell" data-field="pairing_synergy" data-slot="3"></div>
+                </div>
+
             </div>
         </section>
     </main>
 
-    <footer class="site-footer">
-        <!-- ...existing site footer... -->
-    </footer>
-
     <script src="static/js/api.js"></script>
+    <script src="static/js/compare.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/fuse.js@6.6.2"></script>
     <script src="static/js/search.js"></script>
     <script src="static/js/main.js"></script>
     <script src="static/js/nav.js"></script>
     <script src="static/js/subscribeModal.js"></script>
+
 </body>
 
 </html>
