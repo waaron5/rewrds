@@ -195,6 +195,7 @@
     grid-template-columns: 280px repeat(3, 1fr);
     background: var(--brand-50);
     border-bottom: 1px solid var(--border);
+    position: sticky;
 }
 
 /* Empty header slots */
@@ -235,21 +236,37 @@
     display: flex;
     flex-direction: column;
     align-items: center;
+    justify-content: flex-start;
     gap: 8px;
     text-align: center;
+    height: 100%;
 }
 
 .compare-card-image {
-    width: 80px;
+    width: 160px;
     height: auto;
-    border-radius: 10px;
+    border-radius: 4px;
     object-fit: contain;
-    box-shadow: var(--shadow-md);
+    box-shadow: var(--shadow-lg);
+    /* ensure consistent spacing from top */
+    margin-top: 4px;
 }
 
 .compare-card-title {
     font-size: 0.95rem;
     color: var(--brand-700);
+    /* allow text to wrap but not push image vertically */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.compare-card-title strong {
+    display: block;
+}
+
+.compare-card-title span {
+    display: block;
 }
 
 /* Remove Button */
@@ -307,6 +324,13 @@
     border-left: 1px solid var(--border);
 }
 
+/* Center the Apply button within its cell */
+.compare-cell[data-field="apply_link"] {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
 /* Zebra / subtle alternating */
 .compare-row:nth-child(even) .compare-cell {
     background: var(--background-alt);
@@ -331,8 +355,11 @@
    APPLY BUTTON IN GRID
 ============================================ */
 .apply-btn {
-    display: inline-block;
-    padding: 8px 14px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    padding: 10px 16px;
     border-radius: var(--radius-sm);
     background: var(--accent-600);
     color: var(--surface);
@@ -343,8 +370,19 @@
     transition: background-color 0.2s;
 }
 
+.apply-btn::after {
+    content: "";
+    display: inline-block;
+    width: 16px;
+    height: 16px;
+    background-color: #fff;
+    -webkit-mask: url('../icons/lock.svg') no-repeat center / contain;
+    mask: url('../icons/lock.svg') no-repeat center / contain;
+}
+
 .apply-btn:hover {
     background: var(--accent-500);
+    color: var(--background);
 }
 
 /* ============================================

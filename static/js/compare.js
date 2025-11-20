@@ -11,6 +11,22 @@ let recentCardIds = [];
 let fuse; // Fuse.js instance
 let activeIndex = -1; // keyboard selection index
 
+function fixImagePath(path) {
+    if (!path) return "/static/images/cards/card-placeholder.png";
+
+    // If backend provides "/images/cards/amex_gold.png"
+    if (path.startsWith("/images/cards/")) {
+        return "/static" + path;
+    }
+
+    // If backend provides only "amex_gold.png" (fallback case)
+    if (!path.includes("/")) {
+        return "/static/images/cards/" + path;
+    }
+
+    return path;
+}
+
 // DOM references
 const searchInput = document.getElementById("compare-search-input");
 const resultsBox = document.getElementById("compare-search-results");
@@ -295,7 +311,7 @@ function renderSlotHeader(slot, card) {
     const header = document.querySelector(`.compare-col-header[data-slot="${slot}"]`);
     header.classList.remove("empty");
 
-    const imgSrc = card.image || "/static/images/card-placeholder.png";
+    const imgSrc = fixImagePath(card.image);
 
     header.innerHTML = `
         <div class="compare-header-content">
@@ -416,5 +432,5 @@ function formatList(arr) {
 function formatApplyLink(card) {
     if (!card.apply_link) return "—";
 
-    return `<a class="apply-btn" href="${card.apply_link}" target="_blank" rel="noopener noreferrer">Apply</a>`;
+    return `<a class="apply-btn" href="${card.apply_link}" target="_blank" rel="noopener noreferrer">APPLY NOW</a>`;
 }
