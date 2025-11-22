@@ -203,21 +203,103 @@ html body.home-page .hero-section {
 /* ==========================
    HEADER & NAVIGATION
 ========================== */
-header {
-    position: relative;
-    z-index: 10;
+header.site-header {
     display: flex;
     align-items: center;
-    gap: 0.5rem;
-    background-color: var(--surface);
-    padding: 12px 9%;
-    /* was 10px 9% */
+    justify-content: space-between;
+    padding: 18px 0;
+    /* remove side padding so left/right can be flush with page container */
+    background-color: var(--background);
+    border-bottom: solid 1px var(--border);
+}
+
+/* Use the page padding container to control overall left/right margins */
+body.home-page header.site-header {
+    padding-left: 0;
+    padding-right: 0;
+}
+
+.header-left,
+.header-right.nav-actions {
+    flex: 0 0 auto;
+}
+
+.header-center {
+    flex: 1 1 auto;
+    display: flex;
     justify-content: center;
+}
+
+.header-center .main-nav ul {
+    display: flex;
+    align-items: center;
+    gap: 3rem;
+    margin: 0;
+    list-style: none;
+}
+
+/* Ensure logo and actions do not add extra margins */
+.header-left .logo-link img {
+    margin: 0;
+    margin-left: 2rem;
+    /* remove right margin so logo hugs container */
+}
+
+.header-right {
+    margin: 0;
+    margin-right: 2rem;
+    /* no extra left/right margin inside actions group */
+}
+
+/* Remove previous absolute-centering from generic header nav ul */
+header nav ul {
+    position: static;
+    left: auto;
+    transform: none;
+}
+
+header .logo-link {
+    flex: 0 0 auto;
+}
+
+header nav {
+    position: relative;
+    flex: 1 1 auto;
+}
+
+/* Center the nav links absolutely within the header */
+header nav ul {
+    display: flex;
+    align-items: center;
+    gap: 3rem;
+    margin: 0;
+    list-style: none;
+}
+
+/* Right-aligned actions group */
+header .nav-actions {
+    margin-left: auto;
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+}
+
+.nav-actions .nav-search-btn {
+    margin-left: 0;
+    margin-right: 0;
+}
+
+/* Ensure login + disclosure keep existing look */
+.nav-actions .login-btn {
+    /* ...existing login-btn styles apply via .login-btn... */
+}
+
+.nav-actions .nav-disclosure-link {
+    /* ...existing nav-disclosure-link styles apply via .nav-disclosure-link... */
 }
 
 header .logo-link img {
     width: 160px !important;
-    margin-right: 0.5rem;
     height: auto;
     display: block;
     transition: box-shadow 0.1s;
@@ -243,23 +325,24 @@ nav ul {
     justify-content: center;
     font-family: Inter, ui-sans-serif, system-ui, sans-serif;
     font-style: normal;
-    letter-spacing: 0.4px;
+    letter-spacing: 0.1px;
     font-size: 15px;
 }
 
 nav ul li a {
     display: inline-block;
-    padding: 6px 6px;
+    padding: 16px 16px;
     border-radius: 4px;
     text-decoration: none;
-    font-weight: 500;
-    color: var(--brand-500);
+    font-weight: 600;
+    letter-spacing: 1px;
+    color: var(--ink);
     transition: ease all 0.2s;
 }
 
 nav ul li a:hover {
     background-color: var(--background-alt);
-    color: var(--brand-700);
+    color: var(--ink);
     border-bottom: none;
 }
 
@@ -291,21 +374,39 @@ nav ul li.dropdown .dropbtn.is-open::after {
 }
 
 header .login-btn {
-    padding: 0.65rem 1.2rem;
+    padding: 0.6rem 1.2rem;
+    border: solid 1px var(--brand-900);
     border-radius: 4px;
-    background-color: var(--brand-900);
-    color: var(--surface);
+    background-color: var(--background);
+    color: var(--brand-900);
     text-decoration: none;
-    text-transform: uppercase;
     letter-spacing: 0.2px;
     font-weight: 600;
-    font-size: 0.95rem;
-    transition: background-color 0.3s;
+    font-size: 1rem;
+    transition: all 0.2s;
 }
 
 header .login-btn:hover {
-    background-color: var(--brand-600);
+    background-color: var(--background-alt);
+    color: var(--brand-900);
+}
+
+header .signup-btn {
+    padding: 0.6rem 1.2rem;
+    border: solid 1px var(--brand-900);
+    border-radius: 4px;
+    background-color: var(--brand-800);
     color: var(--surface);
+    text-decoration: none;
+    letter-spacing: 0.2px;
+    font-weight: 600;
+    font-size: 1rem;
+    transition: all 0.2s;
+}
+
+header .signup-btn:hover {
+    background-color: var(--ink);
+    color: var(--border);
 }
 
 /* ===== Navbar Search Button ===== */
@@ -313,15 +414,15 @@ header .login-btn:hover {
     appearance: none;
     border: none;
     background: transparent;
-    width: 40px;
-    height: 40px;
+    width: 45px;
+    height: 45px;
     border-radius: 8px;
     cursor: pointer;
     position: relative;
     display: inline-flex;
     align-items: center;
     justify-content: center;
-    margin-left: 1.5rem;
+    margin-left: 0.5rem;
     margin-right: 0.5rem;
     transition: all 0.2s;
 }
@@ -488,11 +589,13 @@ main {
     /* was 40vh */
     padding: 0 16px;
     /* was 4px 16px */
-    background-color: var(--surface);
+    background-color: var(--accent-100);
     overflow: hidden;
     z-index: 1;
-    padding-top: 6rem;
-    padding-bottom: 7rem;
+    padding-top: 4rem;
+    /* was 6rem: pull hero content closer to navbar */
+    padding-bottom: 6rem;
+    /* slightly tighter bottom spacing */
 }
 
 .hero-section::after {
@@ -520,8 +623,9 @@ main {
 .hero-inner .text-content h1 {
     font-size: var(--font-size-hero-h1);
     font-weight: var(--weight-bold);
-    margin-bottom: 25px;
-    margin-top: 0rem;
+    margin-bottom: 1rem;
+    margin-top: 1rem;
+    /* was 3rem: reduce extra top offset above the heading */
     font-family: var(--font-family-heading);
     letter-spacing: var(--letter-spacing-heading);
     line-height: var(--line-height-heading);
@@ -530,26 +634,10 @@ main {
 .hero-inner .text-content p {
     font-size: 1.25rem;
     font-weight: 300;
-    margin-bottom: 20px;
+    margin-bottom: 7rem;
     font-family: 'M PLUS Rounded 1c', Inter, ui-sans-serif, system-ui, -apple-system, 'Segoe UI', Roboto, Arial, sans-serif;
     line-height: 1.6;
     color: var(--muted);
-}
-
-/* Hero flank images */
-.hero-image {
-    width: clamp(120px, 22vw, 280px);
-    height: auto;
-    object-fit: contain;
-    flex: 0 0 auto;
-}
-
-.hero-image-left {
-    margin-right: 8px;
-}
-
-.hero-image-right {
-    margin-left: 8px;
 }
 
 /* Responsive: stack text and hide flank images on small screens */
@@ -558,10 +646,6 @@ main {
         flex-direction: column;
         gap: 12px;
         max-width: 800px;
-    }
-
-    .hero-image {
-        display: none;
     }
 }
 
@@ -651,71 +735,46 @@ main {
     border: 2px solid var(--accent-600);
 }
 
-/* How it Works button: center beneath subheader */
-.how-it-works .take-quiz-btn {
-    position: static;
-    top: auto;
-    margin: 14px auto 0;
-    align-self: center;
-}
-
-/* Best Cards Compare button: center beneath subheader */
-.best-cards .section-inner {
-    flex-direction: column;
-    /* stack heading/subheader/button above grid */
-    align-items: center;
-    /* horizontal centering */
-}
-
-.best-cards .text-content {
-    width: 100%;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    text-align: center;
-}
-
-/* === Unified (single) Best Cards Compare button style === */
+/* Shared base button styling for How it Works + Best Cards primary buttons */
+.how-it-works .take-quiz-btn,
 .best-cards .best-compare-btn {
-    position: static;
-    display: block;
-    /* allow auto margins */
-    margin: 20px auto 0;
-    /* center horizontally under subheader */
-    padding: 10px 20px;
-    font-size: 1.1rem;
-    font-weight: 600;
-    border: 2px solid var(--background);
-    background: transparent;
-    color: var(--background);
-    border-radius: 8px;
-    text-decoration: none;
-    transition: background-color .2s, color .2s;
-}
-
-.best-cards .best-compare-btn:hover {
-    background: var(--background);
-    color: var(--brand-700);
-}
-
-/* Best Cards: add white lock icon to Apply now button (inline with text) */
-.best-cards .best-card .btn.secondary {
     display: inline-flex;
     align-items: center;
     justify-content: center;
-    gap: 8px;
-    padding: 10px 16px;
+    margin: 16px auto 0;
+    padding: 10px 20px;
+    font-size: 1.2rem;
+    font-weight: 600;
+    border-radius: 8px;
+    text-decoration: none;
+    letter-spacing: 0.2px;
+    transition: all 0.2s;
+    position: static;
+    align-self: center;
 }
 
-.best-cards .best-card .btn.secondary::after {
-    content: "";
-    display: inline-block;
-    width: 16px;
-    height: 16px;
-    background-color: #fff;
-    /* white icon */
-    -webkit-mask: url('../icons/lock.svg') no-repeat center / contain;
-    mask: url('../icons/lock.svg') no-repeat center / contain;
+/* How it Works: dark solid button */
+.how-it-works .take-quiz-btn {
+    color: var(--background);
+    background-color: var(--brand-900);
+    border: 2px solid var(--background);
+}
+
+.how-it-works .take-quiz-btn:hover {
+    color: var(--brand-900);
+    background-color: var(--background);
+}
+
+/* Best Cards Compare: outline button on gradient */
+.best-cards .best-compare-btn {
+    color: var(--background);
+    background-color: transparent;
+    border: 2px solid var(--background);
+}
+
+.best-cards .best-compare-btn:hover {
+    background-color: var(--background);
+    color: var(--brand-300);
 }
 
 /* Explore Cards buttons row */
@@ -752,14 +811,14 @@ main {
     border-radius: 8px;
     text-decoration: none;
     letter-spacing: 0.2px;
-    transition: background-color 0.2s ease, color 0.2s ease, transform 0.15s ease;
+    transition: all 0.2s ease;
     line-height: 1.2;
     white-space: nowrap;
 }
 
 .explore-panel .explore-btn:hover {
     background-color: var(--surface);
-    color: var(--brand-900);
+    color: var(--brand-800);
 }
 
 .explore-panel .explore-btn:active {
@@ -782,11 +841,14 @@ main {
     }
 }
 
-/* SECONDARY/SUBTLE TEXT helper */
-.secondary-text,
-.muted,
-small {
-    color: var(--muted);
+/* Ensure section secondary text uses the helper color (override any conflicting rules) */
+.section .secondary-text {
+    color: var(--muted) !important;
+}
+
+/* Remove/override any special-case recolors that conflict with muted helper */
+.best-cards .secondary-text {
+    color: var(--muted) !important;
 }
 
 /* ACTIVE / HIGHLIGHT STATES */
@@ -863,8 +925,8 @@ body.home-page .feature-row::after {
 }
 
 .feature-card {
-    background-color: var(--surface);
-    border: 2px solid var(--border);
+    background-color: #fafcff;
+    border: 1px solid var(--accent-600);
     border-radius: 16px;
     text-align: center;
     padding: 1.5rem 2rem;
@@ -877,7 +939,9 @@ body.home-page .feature-row::after {
 .feature-card:hover {
     transform: translateY(-6px);
     color: var(--ink);
+    background-color: var(--surface);
     box-shadow: var(--shadow-lg);
+    border: 1px solid var(--accent-400);
 }
 
 .feature-card h3 {
@@ -902,38 +966,34 @@ body.home-page .feature-row::after {
     transition: color 0.1s;
 }
 
-/* .icon:hover {
-    color: var(--accent-400)
-} */
-
 /* New: change icon color when the whole feature card is hovered/focused */
 .feature-card:hover .icon,
 .feature-card:focus-visible .icon {
-    color: var(--accent-300);
+    color: var(--accent-400);
 }
 
 .icon-credit {
-    color: var(--ink);
+    color: var(--accent-600);
 }
 
 .icon-database {
-    color: var(--ink);
+    color: var(--accent-600);
 }
 
-.icon-about {
-    color: var(--ink);
+.icon-guides {
+    color: var(--accent-600);
 }
 
 .icon-support {
-    color: var(--ink);
+    color: var(--accent-600);
 }
 
 .icon-subscribe {
-    color: var(--ink);
+    color: var(--accent-600);
 }
 
 .icon-cardstack {
-    color: var(--ink);
+    color: var(--accent-600);
 }
 
 /* ==========================
@@ -1271,26 +1331,6 @@ body.home-page .feature-row::after {
     /* paragraph spans full width below */
 }
 
-.how-it-works .take-quiz-btn {
-    color: var(--background);
-    background-color: var(--brand-900);
-    padding: 10px 16px;
-    font-size: 1.2rem;
-    font-weight: 600;
-    border: 2px solid var(--background);
-    border-radius: 8px;
-    position: relative;
-    top: 5.8rem;
-    margin-right: 3rem;
-    align-self: flex-start;
-    transition: all 0.2s;
-}
-
-.how-it-works .take-quiz-btn:hover {
-    color: var(--brand-900);
-    background-color: var(--background);
-}
-
 /* ==========================
    HOME: BEST CARDS RIGHT NOW (CLEANED)
 ========================== */
@@ -1318,10 +1358,6 @@ body.home-page .feature-row::after {
     transform: translateX(-50%);
 }
 
-.best-cards .secondary-text {
-    color: var(--brand-600);
-}
-
 /* Canonical centered layout (deduplicated) */
 .best-cards .section-inner {
     flex-direction: column;
@@ -1342,7 +1378,7 @@ body.home-page .feature-row::after {
 .best-cards .best-cards-grid {
     flex: 1 1 100%;
     width: 100%;
-    margin-top: 28px;
+    margin-top: 10px;
 }
 
 .best-cards-grid {
@@ -1364,28 +1400,96 @@ body.home-page .feature-row::after {
     }
 }
 
-/* Single definitive centered button */
-.best-cards .best-compare-btn {
-    position: static;
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    margin-top: 20px;
-    /* directly under subheader */
-    padding: 10px 20px;
-    font-size: 1.05rem;
-    font-weight: 600;
-    border: 2px solid var(--background);
-    background: transparent;
-    color: var(--background);
-    border-radius: 8px;
-    text-decoration: none;
-    transition: background-color .2s, color .2s;
+.best-card {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    padding: 72px 20px 20px;
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 14px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
+    overflow: hidden;
 }
 
-.best-cards .best-compare-btn:hover {
-    background: var(--background);
+.best-card .tag {
+    position: absolute;
+    top: -1rem;
+    left: 0;
+    right: 0;
+    height: 34px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: #f6bd00;
+    color: var(--surface);
+    font-size: 1rem;
+    font-weight: 600;
+    letter-spacing: .3px;
+    text-transform: uppercase;
+    border-top-left-radius: 14px;
+    border-top-right-radius: 14px;
+}
+
+.best-card .card-thumb {
+    position: absolute;
+    top: 5rem;
+    left: 2rem;
+    width: 76px;
+    height: auto;
+    border-radius: 10px;
+    background: var(--surface);
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.12);
+    object-fit: contain;
+}
+
+.best-card header {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    min-height: 80px;
+    padding-left: 108px;
+    margin: 0 0 8px 0;
+}
+
+.best-card header h3 {
+    margin: 0;
+    font-size: 1.15rem;
+    font-weight: 600;
+    color: var(--ink);
+}
+
+.best-card ul.card-points {
+    list-style: none;
+    margin: 0 8px 16px 16px;
+    padding: 0;
+    font-family: var(--font-family-card-points);
+    font-size: 0.9rem;
+    line-height: 1.5;
     color: var(--brand-700);
+}
+
+.best-card ul.card-points li {
+    position: relative;
+    padding-left: 20px;
+    margin: 20px 0;
+}
+
+.best-card ul.card-points li::before {
+    content: "\2713";
+    position: absolute;
+    left: 0;
+    top: 0;
+    color: var(--success);
+    font-weight: 700;
+}
+
+.best-card .card-actions {
+    margin-top: auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 6px;
 }
 
 /* Best Cards: add white lock icon to Apply now button (inline with text) */
@@ -1395,6 +1499,15 @@ body.home-page .feature-row::after {
     justify-content: center;
     gap: 8px;
     padding: 10px 16px;
+    font-size: 0.9rem;
+    font-weight: 600;
+    border-radius: var(--radius-sm);
+    background: var(--accent-600);
+    color: var(--surface);
+    border: none;
+    text-decoration: none;
+    box-shadow: var(--shadow-sm);
+    transition: background-color 0.2s;
 }
 
 .best-cards .best-card .btn.secondary::after {
@@ -1403,14 +1516,19 @@ body.home-page .feature-row::after {
     width: 16px;
     height: 16px;
     background-color: #fff;
-    /* white icon */
     -webkit-mask: url('../icons/lock.svg') no-repeat center / contain;
     mask: url('../icons/lock.svg') no-repeat center / contain;
 }
 
+.best-cards .best-card .btn.secondary:hover {
+    background: var(--accent-500);
+}
+
 /* Best Cards: rates & fees link under button */
 .best-card .fees-link {
-    display: block;
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
     font-size: 0.85rem;
     color: var(--accent-400);
     margin-top: 6px;
@@ -1419,6 +1537,14 @@ body.home-page .feature-row::after {
 
 .best-card .fees-link:hover {
     text-decoration: underline;
+}
+
+.best-card .fees-link .fees-icon {
+    width: 14px;
+    height: 14px;
+    background-color: currentColor;
+    -webkit-mask: url('../icons/arrow-top-right.svg') no-repeat center / contain;
+    mask: url('../icons/arrow-top-right.svg') no-repeat center / contain;
 }
 
 @media (max-width: 700px) {
@@ -1439,13 +1565,6 @@ body.home-page .feature-row::after {
         padding-left: 90px;
         min-height: 64px;
     }
-}
-
-/* Best Cards: Take the Quiz button (mirrors How it works button) */
-.best-cards .best-compare-btn {
-    position: static !important;
-    margin-left: 0 !important;
-    margin-right: 0 !important;
 }
 
 /* ==========================
@@ -1471,38 +1590,219 @@ body.home-page .feature-row::after {
 }
 
 /* ==========================
-   HOME: CTA SECTION
+   HOME: CTA SECTION (match Pricing style)
 ========================== */
 .cta-section {
-    background: var(--background);
-    padding-top: 20px;
-    padding-bottom: 40px;
+    background: url('../images/ui/Background-tiers.png') center/cover no-repeat;
+    padding-top: 40px;
+    padding-bottom: 60px;
 }
 
 .cta-inner {
+    max-width: 1200px;
+    margin: 0 auto;
+    display: flex;
     justify-content: center;
+    align-items: center;
 }
 
 .cta-content {
+    max-width: 620px;
+    width: 100%;
+    background: var(--brand-800);
+    border: 1px solid var(--border);
+    border-radius: 16px;
+    padding: 32px 28px 28px;
+    box-shadow: var(--shadow-md);
     text-align: center;
-    max-width: 760px;
-    margin: 0 auto;
 }
 
 .cta-content h2 {
+    margin: 0 0 18px 0;
     font-size: 2.25rem;
     font-family: var(--font-family-heading);
     font-weight: var(--weight-bold);
-    margin-bottom: 35px;
     line-height: var(--line-height-heading);
     letter-spacing: var(--letter-spacing-heading);
+    color: var(--background);
+}
+
+.cta-content .secondary-text {
+    margin: 0 0 20px 0;
+    color: var(--muted);
 }
 
 .cta-content .buttons {
     display: flex;
     justify-content: center;
+    margin-top: 8px;
+}
+
+.cta-content .btn.primary {
+    border-radius: 8px;
+    padding: 10px 20px;
+    font-size: 1rem;
+    letter-spacing: 0.3px;
+}
+
+/* ==========================
+   HOME: TIERS SECTION (Stay update)
+========================== */
+.tiers-section {
+    background: url('../images/ui/Background-tiers.png') center/cover no-repeat;
+}
+
+.tiers-section h2 {
+    color: var(--background);
+}
+
+/* Subtle price note in tier headings */
+.price-note {
+    font-weight: 400;
+    color: var(--muted);
+}
+
+/* ==========================
+   TIERS: Pricing tables
+========================== */
+.tiers-section .section-inner {
+    flex-direction: column;
     align-items: center;
+}
+
+.tiers-section .text-content {
+    /* center heading + subheader */
+    flex: 0 0 auto;
+    align-items: center;
+    text-align: center;
+}
+
+.tiers-section .pricing-grid {
+    /* centered narrow cards - now three columns */
+    display: grid;
+    width: auto;
+    margin: 1px auto 0;
+    grid-template-columns: repeat(3, auto);
+    justify-content: center;
+    align-items: start;
+    gap: 15px;
+}
+
+@media (max-width: 900px) {
+    .tiers-section .pricing-grid {
+        grid-template-columns: 1fr;
+    }
+}
+
+.tiers-section .pricing-card {
+    max-width: 280px;
+    min-height: 480px;
+    /* tall card */
+    padding: 26px 20px 60px;
+    /* a bit more vertical breathing */
+    align-items: flex-start;
+    background: var(--brand-800);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+}
+
+.tiers-section .pricing-card h3 {
+    color: var(--background);
+    font-size: 1rem;
+}
+
+.tiers-section .pricing-price {
+    flex-direction: column;
+    margin-bottom: 1.4rem;
+    gap: 4px;
+}
+
+.tiers-section .pricing-amount {
+    margin: 0;
+    font-size: 3rem;
+    font-weight: var(--weight-medium);
+    color: var(--background);
+    line-height: 1;
+}
+
+.tiers-section .pricing-period {
+    font-size: 1rem;
+    margin-left: 0.5rem;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    line-height: 1.15;
+    padding-top: 0;
+    /* remove previous offset */
+    color: var(--muted);
+}
+
+.tiers-section .pricing-card .btn.primary {
+    border: none;
+    border-radius: 4px;
+    padding: 8px 12px;
+    font-size: 0.8rem;
+    letter-spacing: 0.3px;
+    align-self: stretch;
+    margin: 0 0 16px 0;
+    font-weight: var(--weight-semibold);
     width: 100%;
+    display: block;
+    transition: all 0.3s;
+}
+
+.tiers-section .pricing-card .btn.primary:hover {
+    background-color: var(--accent-400);
+    color: var(--background);
+}
+
+.tiers-section .tier-features {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    width: 100%;
+}
+
+.tiers-section .tier-features li {
+    position: relative;
+    padding: 6px 0 6px 20px;
+    font-size: 0.85rem;
+    line-height: 1.4;
+    color: var(--accent-50);
+}
+
+.tiers-section .tier-features li:last-child {
+    border-bottom: none;
+}
+
+.tiers-section .tier-features li::before {
+    content: '\2713';
+    position: absolute;
+    left: 0;
+    top: 6px;
+    color: var(--success);
+    font-weight: 700;
+    font-size: 0.8rem;
+}
+
+.tiers-section .tier-includes-note {
+    width: 100%;
+    margin: 6px 0 10px 0;
+    padding-bottom: 8px;
+    font-size: 0.85rem;
+    color: var(--accent-50);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.22);
+}
+
+@media (max-width: 600px) {
+    .tiers-section .pricing-card {
+        max-width: 100%;
+        min-height: 420px;
+        padding: 18px 18px 22px;
+    }
+
+    .tiers-section .pricing-amount {
+        font-size: 2.6rem;
+    }
 }
 
 /* ==========================
@@ -1736,432 +2036,44 @@ body.home-page .feature-row::after {
 }
 
 .search-no-results {
-    color: var(--muted);
+    color: var (--muted);
     padding: 8px;
 }
 
 /* ===== End Search Modal ===== */
 
-/* ==========================
-   HOME: TIERS SECTION (Stay update)
-========================== */
-.tiers-section {
-    background: url('../images/ui/Background-tiers.png') center/cover no-repeat;
-}
+/* ===== hero section card carousel ===== */
 
-.tiers-section h2 {
-    color: var(--background);
-}
-
-/* Subtle price note in tier headings */
-.price-note {
-    font-weight: 400;
-    color: var(--muted);
-}
-
-/* ==========================
-   TIERS: Pricing tables
-========================== */
-.tiers-section .section-inner {
-    flex-direction: column;
-    align-items: center;
-}
-
-.tiers-section .text-content {
-    /* center heading + subheader */
-    flex: 0 0 auto;
-    align-items: center;
-    text-align: center;
-}
-
-.tiers-section .pricing-grid {
-    /* centered narrow cards - now three columns */
-    display: grid;
-    width: auto;
-    margin: 12px auto 0;
-    grid-template-columns: repeat(3, auto);
-    justify-content: center;
-    align-items: start;
-    gap: 12px;
-}
-
-@media (max-width: 900px) {
-    .tiers-section .pricing-grid {
-        grid-template-columns: 1fr;
-    }
-}
-
-.tiers-section .pricing-card {
-    max-width: 280px;
-    min-height: 480px;
-    /* tall card */
-    padding: 26px 20px 60px;
-    /* a bit more vertical breathing */
-    align-items: flex-start;
-    background: var(--brand-800);
-    border: 1px solid var(--border);
-    border-radius: 8px;
-}
-
-.tiers-section .pricing-card h3 {
-    color: var(--background);
-    font-size: 1rem;
-}
-
-.tiers-section .pricing-price {
-    flex-direction: column;
-    margin-bottom: 1.4rem;
-    gap: 4px;
-}
-
-.tiers-section .pricing-amount {
-    margin: 0;
-    font-size: 3rem;
-    font-weight: var(--weight-medium);
-    color: var(--background);
-    line-height: 1;
-}
-
-.tiers-section .pricing-period {
-    font-size: 1rem;
-    margin-left: 0.5rem;
-    text-transform: uppercase;
-    letter-spacing: 0.5px;
-    line-height: 1.15;
-    padding-top: 0;
-    /* remove previous offset */
-    color: var(--muted);
-}
-
-.tiers-section .pricing-card .btn.primary {
-    border: none;
-    border-radius: 4px;
-    padding: 8px 12px;
-    font-size: 0.8rem;
-    letter-spacing: 0.3px;
-    align-self: stretch;
-    margin: 0 0 16px 0;
-    font-weight: var(--weight-semibold);
-    width: 100%;
-    display: block;
-    transition: all 0.3s;
-}
-
-.tiers-section .pricing-card .btn.primary:hover {
-    background-color: var(--accent-400);
-    color: var(--background);
-}
-
-.tiers-section .tier-features {
-    list-style: none;
-    padding: 0;
-    margin: 0;
-    width: 100%;
-}
-
-.tiers-section .tier-features li {
-    position: relative;
-    padding: 6px 0 6px 20px;
-    font-size: 0.85rem;
-    line-height: 1.4;
-    color: var(--accent-50);
-}
-
-.tiers-section .tier-features li:last-child {
-    border-bottom: none;
-}
-
-.tiers-section .tier-features li::before {
-    content: '\2713';
+.hero-section .hero-bg-carousel {
     position: absolute;
+    top: 75%;
     left: 0;
-    top: 6px;
-    color: var(--success);
-    font-weight: 700;
-    font-size: 0.8rem;
+    width: 200%;
+    transform: translateY(-50%);
+    pointer-events: none;
+    opacity: 0.4;
+    z-index: 1;
 }
 
-.tiers-section .tier-includes-note {
-    width: 100%;
-    margin: 6px 0 10px 0;
-    padding-bottom: 8px;
-    font-size: 0.85rem;
-    color: var(--accent-50);
-    border-bottom: 1px solid rgba(255, 255, 255, 0.22);
-}
-
-@media (max-width: 600px) {
-    .tiers-section .pricing-card {
-        max-width: 100%;
-        min-height: 420px;
-        padding: 18px 18px 22px;
-    }
-
-    .tiers-section .pricing-amount {
-        font-size: 2.6rem;
-    }
-}
-
-/* === Final overrides to ensure centered action buttons === */
-.how-it-works .take-quiz-btn {
-    position: static !important;
-    top: auto !important;
-    margin: 16px auto 0 !important;
-    align-self: center !important;
-    display: inline-block !important;
-}
-
-.best-cards .best-compare-btn {
-    position: static !important;
-    top: auto !important;
-    margin: 16px auto 0 !important;
-    align-self: center !important;
-    display: inline-block !important;
-    margin-right: 0 !important;
-}
-
-/* === Final unify Best Cards compare button centering === */
-.best-cards .section-inner {
-    flex-direction: column !important;
-    align-items: center !important;
-}
-
-.best-cards .text-content {
-    width: 100%;
-    max-width: 780px;
-    display: flex !important;
-    flex-direction: column !important;
-    align-items: center !important;
-    text-align: center !important;
-}
-
-/* Single definitive style for compare button */
-.best-cards .best-compare-btn {
-    position: static !important;
-    display: block !important;
-    /* block so auto margins center */
-    margin: 20px auto 0 !important;
-    /* horizontal centering */
-    left: auto !important;
-    right: auto !important;
-    top: auto !important;
-    padding: 10px 20px !important;
-    font-size: 1.05rem !important;
-    font-weight: 600 !important;
-    border: 2px solid var(--background) !important;
-    background: transparent !important;
-    color: var(--background) !important;
-    border-radius: 8px !important;
-    text-decoration: none !important;
-    transition: background-color .2s, color .2s !important;
-}
-
-.best-cards .best-compare-btn:hover {
-    background: var(--background) !important;
-    color: var(--brand-400) !important;
-}
-
-/* Neutralize any earlier duplicate declarations */
-.best-cards .best-compare-btn:not(:hover) {
-    margin-left: auto !important;
-    margin-right: auto !important;
-}
-
-/* === Simplified & Deduplicated Best Cards Layout === */
-.best-cards .section-inner {
-    flex-direction: column;
-    align-items: center;
-}
-
-.best-cards .text-content {
-    width: 100%;
-    max-width: 780px;
+.carousel-track {
     display: flex;
-    flex-direction: column;
-    align-items: center;
-    text-align: center;
+    gap: 60px;
+    animation: scrollCards 30s linear infinite;
+    will-change: transform;
 }
 
-.best-cards .best-compare-btn {
-    position: static;
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    margin-top: 20px;
-    /* directly beneath subheader */
-    padding: 10px 20px;
-    font-size: 1.05rem;
-    font-weight: 600;
-    border: 2px solid var(--background);
-    background: transparent;
-    color: var(--background);
-    border-radius: 8px;
-    text-decoration: none;
-    transition: background-color .2s, color .2s;
-}
-
-.best-cards .best-compare-btn:hover {
-    background: var(--background);
-    color: var(--brand-700);
-}
-
-/* Removed multiple legacy duplicate .best-cards .best-compare-btn blocks above */
-
-/* === Best Cards card element styling === */
-.best-cards-grid {
-    display: grid;
-    grid-template-columns: repeat(3, minmax(240px, 1fr));
-    gap: 20px;
-    width: 100%;
-}
-
-@media (max-width:1100px) {
-    .best-cards-grid {
-        grid-template-columns: repeat(2, minmax(240px, 1fr));
-    }
-}
-
-@media (max-width:700px) {
-    .best-cards-grid {
-        grid-template-columns: 1fr;
-    }
-}
-
-.best-card {
-    position: relative;
-    display: flex;
-    flex-direction: column;
-    padding: 72px 20px 20px;
-    /* space for banner + thumb */
-    background: var(--surface);
-    border: 1px solid var(--border);
-    border-radius: 14px;
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
-    overflow: hidden;
-}
-
-.best-card .tag {
-    position: absolute;
-    top: -1rem;
-    left: 0;
-    right: 0;
-    height: 34px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    background: #f6bd00;
-    color: var(--surface);
-    font-size: 1rem;
-    font-weight: 600;
-    letter-spacing: .3px;
-    text-transform: uppercase;
-    border-top-left-radius: 14px;
-    border-top-right-radius: 14px;
-}
-
-.best-card .card-thumb {
-    position: absolute;
-    top: 5rem;
-    left: 2rem;
-    width: 76px;
-    height: auto;
-    border-radius: 10px;
-    background: var(--surface);
-    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.12);
+.carousel-track img {
+    height: 120px;
     object-fit: contain;
+    opacity: 0.9;
 }
 
-.best-card header {
-    display: flex;
-    align-items: center;
-    gap: 12px;
-    min-height: 80px;
-    padding-left: 108px;
-    /* thumb space */
-    margin: 0 0 8px 0;
-}
-
-.best-card header h3 {
-    margin: 0;
-    font-size: 1.15rem;
-    font-weight: 600;
-    color: var(--ink);
-}
-
-.best-card ul.card-points {
-    list-style: none;
-    margin: 0 8px 16px 16px;
-    padding: 0;
-    font-family: var(--font-family-card-points);
-    font-size: 0.9rem;
-    line-height: 1.5;
-    color: var(--brand-700);
-}
-
-.best-card ul.card-points li {
-    position: relative;
-    padding-left: 20px;
-    margin: 20px 0;
-}
-
-.best-card ul.card-points li::before {
-    content: "\2713";
-    position: absolute;
-    left: 0;
-    top: 0;
-    color: var(--success);
-    font-weight: 700;
-}
-
-.best-card .card-actions {
-    margin-top: auto;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 6px;
-}
-
-.best-cards .best-card .btn.secondary {
-    font-size: 0.85rem;
-    padding: 10px 18px;
-    background: var(--accent-600);
-    color: var(--surface);
-    border: none;
-    border-radius: 8px;
-    transition: background-color .2s;
-    text-decoration: none;
-}
-
-.best-cards .best-card .btn.secondary:hover {
-    background: var(--accent-500);
-}
-
-.best-card .fees-link {
-    font-size: 0.75rem;
-    color: var(--accent-400);
-    text-decoration: none;
-}
-
-.best-card .fees-link:hover {
-    text-decoration: underline;
-}
-
-@media (max-width:700px) {
-    .best-card {
-        padding-top: 64px;
+@keyframes scrollCards {
+    0% {
+        transform: translateX(0);
     }
 
-    .best-card .tag {
-        height: 40px;
-        font-size: 0.85rem;
-    }
-
-    .best-card .card-thumb {
-        top: 56px;
-    }
-
-    .best-card header {
-        padding-left: 96px;
-        min-height: 64px;
+    100% {
+        transform: translateX(-50%);
     }
 }

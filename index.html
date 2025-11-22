@@ -27,68 +27,83 @@
 </head>
 
 <body class="home-page">
-    <header id="top">
-        <a href="index.html" class="logo-link" aria-label="Home">
-            <img src="static/images/ui/REWRDS_UTAH.png" alt="REWRDS Logo" loading="lazy">
-        </a>
+    <header id="top" class="site-header">
+        <div class="header-left">
+            <a href="index.html" class="logo-link" aria-label="Home">
+                <img src="static/images/ui/REWRDS_UTAH.png" alt="REWRDS Logo" loading="lazy">
+            </a>
+        </div>
 
-        <nav aria-label="Main Navigation">
-            <ul>
-                <li><a href="myprofile.html">My Cards</a></li>
-                <li class="dropdown">
-                    <a href="javascript:void(0)" class="dropbtn">Credit Cards</a>
-                    <ul class="dropdown-content">
-                        <li><a href="allcards.html">All Credit Cards</a></li>
-                        <li><a href="bestcreditcardsof2025.html">Best Credit Cards 2025</a></li>
-                        <li><a href="besttravelcards.html">Best Travel Credit Cards</a></li>
-                        <li><a href="bestlocalcards.html">Best Local Credit Cards</a></li>
-                        <li><a href="localcards.html">Local Credit Cards</a></li>
-                        <li><a href="bestairlinecards.html">Best Airline Credit Cards</a></li>
-                        <li><a href="bestnationalcards.html">Best National Credit Cards</a></li>
-                        <li><a href="besthotelcards.html">Best Hotel Credit Cards</a></li>
-                        <li><a href="nationalcards.html">National Credit Cards</a></li>
-                    </ul>
-                </li>
+        <div class="header-center">
+            <nav class="main-nav" aria-label="Main Navigation">
+                <ul>
+                    <li><a href="myprofile.html">My Cards</a></li>
+                    <li class="dropdown">
+                        <a href="javascript:void(0)" class="dropbtn">Credit Cards</a>
+                        <ul class="dropdown-content">
+                            <li><a href="allcards.html">All Credit Cards</a></li>
+                            <li><a href="bestcreditcardsof2025.html">Best Credit Cards 2025</a></li>
+                            <li><a href="besttravelcards.html">Best Travel Credit Cards</a></li>
+                            <li><a href="bestlocalcards.html">Best Local Credit Cards</a></li>
+                            <li><a href="localcards.html">Local Credit Cards</a></li>
+                            <li><a href="bestairlinecards.html">Best Airline Credit Cards</a></li>
+                            <li><a href="bestnationalcards.html">Best National Credit Cards</a></li>
+                            <li><a href="besthotelcards.html">Best Hotel Credit Cards</a></li>
+                            <li><a href="nationalcards.html">National Credit Cards</a></li>
+                        </ul>
+                    </li>
+                    <li class="dropdown">
+                        <a href="javascript:void(0)" class="dropbtn">Tools</a>
+                        <ul class="dropdown-content">
+                            <li><a href="cardmatch.html">Credit Card Quiz</a></li>
+                            <li><a href="compare.html">Compare Cards</a></li>
+                        </ul>
+                    </li>
+                    <li class="dropdown">
+                        <a href="javascript:void(0)" class="dropbtn">Guides</a>
+                        <ul class="dropdown-content">
+                            <li><a href="howdocreditcardswork.html">How do credit cards work?</a></li>
+                            <li><a href="howmanycreditcardsshouldihave.html">How many cards should I have?</a></li>
+                            <li><a href="pickingtherightcard.html">How do I know which card to get?</a></li>
+                        </ul>
+                    </li>
+                    <button class="nav-search-btn" aria-label="Search"></button>
+                </ul>
+            </nav>
+        </div>
 
-                <li class="dropdown">
-                    <a href="javascript:void(0)" class="dropbtn">Tools</a>
-                    <ul class="dropdown-content">
-                        <li><a href="cardmatch.html">Credit Card Quiz</a></li>
-                        <li><a href="compare.html">Compare Cards</a></li>
-                    </ul>
-                </li>
-
-                <li class="dropdown">
-                    <a href="javascript:void(0)" class="dropbtn">Guides</a>
-                    <ul class="dropdown-content">
-                        <li><a href="howdocreditcardswork.html">How do credit cards work?</a></li>
-                        <li><a href="howmanycreditcardsshouldihave.html">How many cards should I have?</a></li>
-                        <li><a href="pickingtherightcard.html">How do I know which card to get?</a></li>
-                    </ul>
-                </li>
-                <li><a href="about.html">About</a></li>
-                <li><a href="contact.html">Contact</a></li>
-            </ul>
-
-            <button class="nav-search-btn" aria-label="Search"></button>
+        <div class="header-right nav-actions">
             <a href="#" id="loginNavBtn" class="login-btn">Log in</a>
-            <a href="advertiserdisclosure.html" class="nav-disclosure-link">Advertiser Disclosure</a>
-        </nav>
+            <a href="#" id="loginNavBtn" class="signup-btn">Sign up</a>
+        </div>
     </header>
 
     <!-- HERO SECTION -->
     <section class="hero-section" aria-labelledby="hero-title">
+        <div class="hero-bg-carousel">
+            <div class="carousel-track">
+                <img src="static/images/cards/amex_blue_business_cash.webp" />
+                <img src="static/images/cards/amex_blue_business_cash.webp" />
+                <img src="static/images/cards/amex_blue_business_cash.webp" />
+                <img src="static/images/cards/amex_blue_business_cash.webp" />
+                <img src="static/images/cards/amex_blue_business_cash.webp" />
+                <img src="static/images/cards/amex_blue_business_cash.webp" />
+
+                <!-- duplicated for continuous scroll -->
+                <img src="static/images/cards/amex_blue_business_cash.webp" />
+                <img src="static/images/cards/amex_blue_business_cash.webp" />
+                <img src="static/images/cards/amex_blue_business_cash.webp" />
+                <img src="static/images/cards/amex_blue_business_cash.webp" />
+                <img src="static/images/cards/amex_blue_business_cash.webp" />
+                <img src="static/images/cards/amex_blue_business_cash.webp" />
+            </div>
+        </div>
+
         <div class="hero-inner">
-            <img class="hero-image hero-image-left" src="static/images/ui/flight_path.png"
-                alt="Flight path illustration" loading="lazy" decoding="async" />
             <div class="text-content">
                 <h1 id="hero-title">Optimize Your Rewards</h1>
-                <p>The smartest credit-card recommendations in <strong>Utah</strong>. Informed by local and national
-                    data.
-                </p>
+                <p>A smarter way to pick credit cards — based entirely on your profile.</p>
             </div>
-            <img class="hero-image hero-image-right" src="static/images/ui/plane.png" alt="Plane illustration"
-                loading="lazy" decoding="async" />
         </div>
     </section>
 
@@ -260,7 +275,7 @@
                     </ul>
                     <div class="card-actions">
                         <a href="cardmatch.html" class="btn secondary">Apply now</a>
-                        <a href="#" class="fees-link">Rates & Fees</a>
+                        <a href="#" class="fees-link">Rates &amp; Fees <span class="fees-icon"></span></a>
                     </div>
                 </article>
 
@@ -279,7 +294,7 @@
                     </ul>
                     <div class="card-actions">
                         <a href="cardmatch.html" class="btn secondary">Apply now</a>
-                        <a href="#" class="fees-link">Rates & Fees</a>
+                        <a href="#" class="fees-link">Rates &amp; Fees <span class="fees-icon"></span></a>
                     </div>
                 </article>
 
@@ -297,7 +312,7 @@
                     </ul>
                     <div class="card-actions">
                         <a href="cardmatch.html" class="btn secondary">Apply now</a>
-                        <a href="#" class="fees-link">Rates & Fees</a>
+                        <a href="#" class="fees-link">Rates &amp; Fees <span class="fees-icon"></span></a>
                     </div>
                 </article>
             </div>
@@ -359,6 +374,7 @@
             <div class="footer-column">
                 <h4 class="footer-heading">About</h4>
                 <a href="/about.html">Our Mission</a>
+                <a href="/contact.html">Contact</a>
             </div>
 
             <!-- 3. Advertiser Disclosure Section -->

@@ -100,7 +100,8 @@
 
 #compare-search-input {
     width: 100%;
-    padding: 10px 12px;
+    padding: 10px 36px 10px 12px;
+    /* space for icon on the right */
     border: 1px solid var(--border);
     border-radius: var(--radius-md);
     font-size: 1rem;
@@ -112,6 +113,25 @@
 #compare-search-input:focus {
     border-color: var(--accent-500);
     box-shadow: 0 0 0 2px var(--accent-200);
+}
+
+#compare-search-input:hover {
+    border-color: var(--ink);
+}
+
+/* Search icon inside the input */
+.compare-search-wrapper::after {
+    content: "";
+    position: absolute;
+    right: 0px;
+    top: 50%;
+    transform: translateY(-50%) translateX(190%);
+    width: 18px;
+    height: 18px;
+    background-color: var(--muted);
+    -webkit-mask: url('../icons/search.svg') no-repeat center / contain;
+    mask: url('../icons/search.svg') no-repeat center / contain;
+    pointer-events: none;
 }
 
 .compare-search-results {
@@ -254,8 +274,7 @@
 
 .compare-card-title {
     font-size: 0.95rem;
-    color: var(--brand-700);
-    /* allow text to wrap but not push image vertically */
+    color: var(--ink);
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -383,6 +402,37 @@
 .apply-btn:hover {
     background: var(--accent-500);
     color: var(--background);
+}
+
+/* Apply block wrapper for button + rates link */
+.apply-block {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 4px;
+}
+
+/* Rates & fees link under apply button (match Best Cards style) */
+.compare-grid .fees-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+    font-size: 0.85rem;
+    color: var(--accent-400);
+    margin-top: 2px;
+    text-decoration: none;
+}
+
+.compare-grid .fees-link:hover {
+    text-decoration: underline;
+}
+
+.compare-grid .fees-link .fees-icon {
+    width: 14px;
+    height: 14px;
+    background-color: currentColor;
+    -webkit-mask: url('../icons/arrow-top-right.svg') no-repeat center / contain;
+    mask: url('../icons/arrow-top-right.svg') no-repeat center / contain;
 }
 
 /* ============================================

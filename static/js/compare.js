@@ -313,13 +313,18 @@ function renderSlotHeader(slot, card) {
 
     const imgSrc = fixImagePath(card.image);
 
+    // Placeholder details URL; adjust pattern when detail pages exist
+    const detailsUrl = `/cards/${card.id}.html`;
+
     header.innerHTML = `
         <div class="compare-header-content">
-            <img src="${imgSrc}" alt="${card.name}" class="compare-card-image" />
-            <div class="compare-card-title">
-                <strong>${card.name}</strong><br/>
-                <span>${card.issuer}</span>
-            </div>
+            <a href="${detailsUrl}" class="compare-card-link">
+                <img src="${imgSrc}" alt="${card.name}" class="compare-card-image" />
+                <div class="compare-card-title">
+                    <strong>${card.name}</strong><br/>
+                    <span>${card.issuer}</span>
+                </div>
+            </a>
             <button class="remove-card-btn" data-remove-slot="${slot}">✕</button>
         </div>
     `;
@@ -432,5 +437,9 @@ function formatList(arr) {
 function formatApplyLink(card) {
     if (!card.apply_link) return "—";
 
-    return `<a class="apply-btn" href="${card.apply_link}" target="_blank" rel="noopener noreferrer">APPLY NOW</a>`;
+    const applyHtml = `<a class="apply-btn" href="${card.apply_link}" target="_blank" rel="noopener noreferrer">APPLY NOW</a>`;
+
+    const feesHtml = `<a class="fees-link" href="${card.apply_link}" target="_blank" rel="noopener noreferrer">Rates &amp; fees <span class="fees-icon"></span></a>`;
+
+    return `<div class="apply-block">${applyHtml}${feesHtml}</div>`;
 }
