@@ -205,10 +205,11 @@ html body.home-page .hero-section {
 ========================== */
 header.site-header {
     display: flex;
-    align-items: center;
+    align-items: stretch;
+    /* Changed from center to stretch so children can fill height */
     justify-content: space-between;
-    padding: 18px 0;
-    /* remove side padding so left/right can be flush with page container */
+    padding: 0;
+    /* Remove padding since links will handle spacing */
     background-color: var(--background);
     border-bottom: solid 1px var(--border);
 }
@@ -228,27 +229,47 @@ body.home-page header.site-header {
     flex: 1 1 auto;
     display: flex;
     justify-content: center;
+    align-items: stretch;
+    /* Allow nav to fill full height */
+}
+
+.header-center .main-nav {
+    display: flex;
+    align-items: stretch;
+    /* Nav fills full height */
 }
 
 .header-center .main-nav ul {
     display: flex;
-    align-items: center;
-    gap: 3rem;
+    align-items: stretch;
+    /* List items fill full height */
+    gap: 0;
+    /* Remove gap since we want links touching */
     margin: 0;
     list-style: none;
+}
+
+.header-center .main-nav ul li {
+    display: flex;
+    align-items: stretch;
+    /* List items stretch to fill height */
 }
 
 /* Ensure logo and actions do not add extra margins */
 .header-left .logo-link img {
     margin: 0;
+    margin-top: 1.5rem;
     margin-left: 2rem;
     /* remove right margin so logo hugs container */
 }
 
 .header-right {
+    display: flex;
+    align-items: center;
     margin: 0;
-    margin-right: 2rem;
-    /* no extra left/right margin inside actions group */
+    padding: 12px 2rem 12px 0;
+    /* Add vertical padding back */
+    gap: 0.75rem;
 }
 
 /* Remove previous absolute-centering from generic header nav ul */
@@ -270,8 +291,10 @@ header nav {
 /* Center the nav links absolutely within the header */
 header nav ul {
     display: flex;
-    align-items: center;
-    gap: 3rem;
+    align-items: stretch;
+    /* Changed from center to stretch */
+    gap: 0;
+    /* Remove gap */
     margin: 0;
     list-style: none;
 }
@@ -285,6 +308,7 @@ header .nav-actions {
 }
 
 .nav-actions .nav-search-btn {
+    margin-top: 1.5rem;
     margin-left: 0;
     margin-right: 0;
 }
@@ -299,7 +323,8 @@ header .nav-actions {
 }
 
 header .logo-link img {
-    width: 160px !important;
+    width: 140px !important;
+    /* Reduced from 160px */
     height: auto;
     display: block;
     transition: box-shadow 0.1s;
@@ -320,30 +345,42 @@ nav {
 nav ul {
     list-style: none;
     display: flex;
-    gap: 3rem;
+    align-items: stretch;
     margin: 0;
     justify-content: center;
     font-family: Inter, ui-sans-serif, system-ui, sans-serif;
     font-style: normal;
     letter-spacing: 0.1px;
-    font-size: 15px;
+    font-size: 16px;
+}
+
+nav ul li {
+    display: flex;
+    align-items: stretch;
 }
 
 nav ul li a {
-    display: inline-block;
-    padding: 16px 16px;
-    border-radius: 4px;
+    display: flex;
+    /* Changed from inline-block to flex */
+    align-items: center;
+    /* Vertically center the text */
+    padding: 0px 16px;
+    /* Only horizontal padding */
+    border-radius: 0;
+    /* Remove border radius for full-height effect */
     text-decoration: none;
     font-weight: 600;
     letter-spacing: 1px;
     color: var(--ink);
-    transition: ease all 0.2s;
+    transition: ease all 0.1s;
+    border-bottom: 2px solid transparent;
 }
 
-nav ul li a:hover {
+nav ul li a:hover,
+nav ul li a:focus {
     background-color: var(--background-alt);
     color: var(--ink);
-    border-bottom: none;
+    border-bottom: 2px solid var(--brand-800);
 }
 
 nav ul li.dropdown>a.dropbtn {
@@ -375,6 +412,7 @@ nav ul li.dropdown .dropbtn.is-open::after {
 
 header .login-btn {
     padding: 0.6rem 1.2rem;
+    /* Reduced from 0.6rem 1.2rem */
     border: solid 1px var(--brand-900);
     border-radius: 4px;
     background-color: var(--background);
@@ -382,8 +420,9 @@ header .login-btn {
     text-decoration: none;
     letter-spacing: 0.2px;
     font-weight: 600;
-    font-size: 1rem;
-    transition: all 0.2s;
+    font-size: 0.95rem;
+    /* Slightly smaller */
+    transition: all 0.1s;
 }
 
 header .login-btn:hover {
@@ -393,6 +432,7 @@ header .login-btn:hover {
 
 header .signup-btn {
     padding: 0.6rem 1.2rem;
+    /* Reduced from 0.6rem 1.2rem */
     border: solid 1px var(--brand-900);
     border-radius: 4px;
     background-color: var(--brand-800);
@@ -400,8 +440,9 @@ header .signup-btn {
     text-decoration: none;
     letter-spacing: 0.2px;
     font-weight: 600;
-    font-size: 1rem;
-    transition: all 0.2s;
+    font-size: 0.95rem;
+    /* Slightly smaller */
+    transition: all 0.1s;
 }
 
 header .signup-btn:hover {
@@ -422,9 +463,10 @@ header .signup-btn:hover {
     display: inline-flex;
     align-items: center;
     justify-content: center;
+    margin-top: 0.65rem;
     margin-left: 0.5rem;
     margin-right: 0.5rem;
-    transition: all 0.2s;
+    transition: all 0.1s;
 }
 
 .nav-search-btn::before {
@@ -453,9 +495,11 @@ nav ul li.dropdown {
 .dropdown-content {
     /* full-width panel */
     position: fixed;
+    /* Changed back to fixed for proper full-width centering */
     left: 0;
     right: 0;
-    top: 69px;
+    top: 67px;
+    /* Fixed pixel value matching the shorter navbar height */
     width: 100vw;
     background-color: var(--surface);
     box-shadow: 0 8px 20px rgba(0, 0, 0, 0.08);
@@ -497,9 +541,9 @@ nav ul li.dropdown:focus-within>.dropdown-content {
 
 .dropdown-content li a {
     display: block;
-    padding: 1rem 0 1rem 20px;
+    padding: 0.5rem 0 0.5rem 20px;
+    /* Reduced from 1rem 0 1rem 20px */
     padding-right: 20px;
-    border-left: 2px solid transparent;
     font-size: 1rem;
     color: var(--ink);
     background-color: var(--background);
@@ -512,7 +556,6 @@ nav ul li.dropdown:focus-within>.dropdown-content {
     color: var(--accent-600);
     background-color: var(--background);
     text-decoration: underline;
-    border-left-color: transparent;
 }
 
 nav ul li.dropdown.dropdown-open>.dropdown-content {
@@ -623,7 +666,7 @@ main {
 .hero-inner .text-content h1 {
     font-size: var(--font-size-hero-h1);
     font-weight: var(--weight-bold);
-    margin-bottom: 1rem;
+    margin-bottom: 0.1rem;
     margin-top: 1rem;
     /* was 3rem: reduce extra top offset above the heading */
     font-family: var(--font-family-heading);
@@ -640,6 +683,33 @@ main {
     color: var(--muted);
 }
 
+.hero-inner .text-content .spending-profile-link {
+    color: var(--accent-500);
+    text-decoration: none;
+    text-underline-offset: 2px;
+    transition: all 0.1s ease;
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+}
+
+.hero-inner .text-content .spending-profile-link::after {
+    content: "";
+    display: inline-block;
+    width: 15px;
+    height: 15px;
+    background-color: currentColor;
+    -webkit-mask: url('../icons/arrow.svg') no-repeat center / contain;
+    mask: url('../icons/arrow.svg') no-repeat center / contain;
+    transform: rotate(-45deg);
+    /* Rotate to point northeast */
+}
+
+.hero-inner .text-content .spending-profile-link:hover {
+    color: var(--accent-500);
+    text-decoration: underline;
+}
+
 /* Responsive: stack text and hide flank images on small screens */
 @media (max-width: 900px) {
     .hero-inner {
@@ -647,6 +717,144 @@ main {
         gap: 12px;
         max-width: 800px;
     }
+}
+
+/* HERO: horizontal card navigator */
+.hero-card-nav {
+    position: absolute;
+    top: 82%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    z-index: 10;
+}
+
+.hero-card-nav-viewport {
+    width: 1000px;
+    max-width: 90vw;
+    overflow: hidden;
+    border-radius: 16px;
+    background: rgba(255, 255, 255, 0.88);
+    z-index: 10;
+    position: relative;
+}
+
+/* Gradient fade masks on left and right edges */
+.hero-card-nav-viewport::before,
+.hero-card-nav-viewport::after {
+    content: "";
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    width: 50px;
+    z-index: 2;
+    pointer-events: none;
+}
+
+.hero-card-nav-viewport::before {
+    left: 0;
+    background: linear-gradient(to right,
+            rgba(255, 255, 255, 1) 0%,
+            rgba(255, 255, 255, 1) 5%,
+            rgba(255, 255, 255, 0) 100%);
+}
+
+.hero-card-nav-viewport::after {
+    right: 0;
+    background: linear-gradient(to left,
+            rgba(255, 255, 255, 1) 0%,
+            rgba(255, 255, 255, 1) 5%,
+            rgba(255, 255, 255, 0) 100%);
+}
+
+.hero-card-nav-track {
+    display: flex;
+    transition: transform 0.4s ease;
+}
+
+.hero-card-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 10px 16px;
+}
+
+.hero-card-item img {
+    width: 180px;
+    height: 90px;
+    object-fit: contain;
+}
+
+.hero-card-name {
+    display: block;
+    margin-top: 8px;
+    font-size: 0.85rem;
+    font-weight: 500;
+    color: var(--brand-700);
+    text-align: center;
+    white-space: nowrap;
+}
+
+.hero-card-nav-btn {
+    width: 60px;
+    height: 60px;
+    border-radius: 999px;
+    border: 0px;
+    background: var(--surface);
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: all 0.1s ease;
+    z-index: 10;
+    position: relative;
+    /* Ensure z-index applies */
+}
+
+.hero-card-nav-btn::before {
+    content: "";
+    width: 35px;
+    height: 35px;
+    background-color: var(--ink);
+    -webkit-mask: url('../icons/chevron-down.svg') no-repeat center / contain;
+    mask: url('../icons/chevron-down.svg') no-repeat center / contain;
+    pointer-events: none;
+    /* Let clicks pass through to the button */
+}
+
+.hero-card-nav-btn--prev::before {
+    transform: rotate(90deg);
+    /* Point left */
+}
+
+.hero-card-nav-btn--next::before {
+    transform: rotate(-90deg);
+    /* Point right */
+}
+
+.hero-card-nav-btn:hover {
+    background: var(--background-alt);
+}
+
+.hero-card-nav-btn:disabled,
+.hero-card-nav-btn.is-disabled {
+    opacity: 0.4;
+    cursor: default;
+}
+
+.hero-card-nav-btn:disabled:hover,
+.hero-card-nav-btn.is-disabled:hover {
+    background: var(--surface);
+    transform: none;
+}
+
+/* Ensure hero text stays below nav */
+.hero-section .hero-inner {
+    position: relative;
+    z-index: 2;
+    /* Lower than card nav */
 }
 
 /* ==========================
@@ -731,7 +939,7 @@ main {
 
 .btn.primary:hover {
     background-color: var(--background-alt);
-    color: var(--accent-600);
+    color: var(--brand-900);
     border: 2px solid var(--accent-600);
 }
 
@@ -818,7 +1026,7 @@ main {
 
 .explore-panel .explore-btn:hover {
     background-color: var(--surface);
-    color: var(--brand-800);
+    color: var (--brand-900);
 }
 
 .explore-panel .explore-btn:active {
@@ -864,7 +1072,7 @@ main {
     gap: 1.5rem;
     max-width: 1200px;
     width: 100%;
-    margin: 0rem auto 3rem;
+    margin: 5rem auto 3rem;
     /* was 0.5rem auto 3rem */
     padding: 0 2rem;
 }
@@ -926,13 +1134,13 @@ body.home-page .feature-row::after {
 
 .feature-card {
     background-color: #fafcff;
-    border: 1px solid var(--accent-600);
+    border: 2px solid var(--border);
     border-radius: 16px;
     text-align: center;
     padding: 1.5rem 2rem;
     text-decoration: none;
     color: var(--ink);
-    transition: all 0.2s ease;
+    transition: all 0.1s ease;
     box-shadow: 0 2px 6px rgba(0, 0, 0, 0.04);
 }
 
@@ -941,7 +1149,7 @@ body.home-page .feature-row::after {
     color: var(--ink);
     background-color: var(--surface);
     box-shadow: var(--shadow-lg);
-    border: 1px solid var(--accent-400);
+    border: 2px solid var(--border);
 }
 
 .feature-card h3 {
@@ -1030,11 +1238,8 @@ body.home-page .feature-row::after {
 
 .site-footer .footer-top {
     display: grid;
-    /* switch from flex to grid so column widths apply */
     grid-template-columns: minmax(320px, 420px) 1fr 1fr 1.5fr;
-    /* wider logo column pushes others right */
     gap: 64px;
-    /* extra space between logo and columns */
     align-items: start;
 }
 
@@ -1336,7 +1541,7 @@ body.home-page .feature-row::after {
 ========================== */
 .best-cards {
     background: var(--gradient-room-2);
-    color: var(--background);
+    color: var (--background);
     position: relative;
     z-index: 0;
     padding-left: 0 !important;
@@ -2041,39 +2246,3 @@ body.home-page .feature-row::after {
 }
 
 /* ===== End Search Modal ===== */
-
-/* ===== hero section card carousel ===== */
-
-.hero-section .hero-bg-carousel {
-    position: absolute;
-    top: 75%;
-    left: 0;
-    width: 200%;
-    transform: translateY(-50%);
-    pointer-events: none;
-    opacity: 0.4;
-    z-index: 1;
-}
-
-.carousel-track {
-    display: flex;
-    gap: 60px;
-    animation: scrollCards 30s linear infinite;
-    will-change: transform;
-}
-
-.carousel-track img {
-    height: 120px;
-    object-fit: contain;
-    opacity: 0.9;
-}
-
-@keyframes scrollCards {
-    0% {
-        transform: translateX(0);
-    }
-
-    100% {
-        transform: translateX(-50%);
-    }
-}

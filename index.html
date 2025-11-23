@@ -80,29 +80,39 @@
 
     <!-- HERO SECTION -->
     <section class="hero-section" aria-labelledby="hero-title">
-        <div class="hero-bg-carousel">
-            <div class="carousel-track">
-                <img src="static/images/cards/amex_blue_business_cash.webp" />
-                <img src="static/images/cards/amex_blue_business_cash.webp" />
-                <img src="static/images/cards/amex_blue_business_cash.webp" />
-                <img src="static/images/cards/amex_blue_business_cash.webp" />
-                <img src="static/images/cards/amex_blue_business_cash.webp" />
-                <img src="static/images/cards/amex_blue_business_cash.webp" />
-
-                <!-- duplicated for continuous scroll -->
-                <img src="static/images/cards/amex_blue_business_cash.webp" />
-                <img src="static/images/cards/amex_blue_business_cash.webp" />
-                <img src="static/images/cards/amex_blue_business_cash.webp" />
-                <img src="static/images/cards/amex_blue_business_cash.webp" />
-                <img src="static/images/cards/amex_blue_business_cash.webp" />
-                <img src="static/images/cards/amex_blue_business_cash.webp" />
+        <div class="hero-card-nav" aria-label="Featured cards">
+            <button class="hero-card-nav-btn hero-card-nav-btn--prev" aria-label="Previous cards"></button>
+            <div class="hero-card-nav-viewport">
+                <div class="hero-card-nav-track">
+                    <div class="hero-card-item">
+                        <img src="static/images/cards/amex_blue_business_cash.webp" alt="Amex Blue Business Cash" />
+                        <span class="hero-card-name">Amex Blue Business Cash</span>
+                    </div>
+                    <div class="hero-card-item">
+                        <img src="static/images/cards/amex_gold.webp" alt="Amex Gold" />
+                        <span class="hero-card-name">Amex Gold</span>
+                    </div>
+                    <div class="hero-card-item">
+                        <img src="static/images/cards/amex_platinum.webp" alt="Amex Platinum" />
+                        <span class="hero-card-name">Amex Platinum</span>
+                    </div>
+                    <div class="hero-card-item">
+                        <img src="static/images/cards/capital_one_savor_one.webp" alt="Capital One SavorOne" />
+                        <span class="hero-card-name">Capital One SavorOne</span>
+                    </div>
+                    <div class="hero-card-item">
+                        <img src="static/images/cards/capital_one_quicksilver.webp" alt="Capital One Quicksilver" />
+                        <span class="hero-card-name">Capital One Quicksilver</span>
+                    </div>
+                </div>
             </div>
+            <button class="hero-card-nav-btn hero-card-nav-btn--next" aria-label="Next cards"></button>
         </div>
-
         <div class="hero-inner">
             <div class="text-content">
                 <h1 id="hero-title">Optimize Your Rewards</h1>
-                <p>A smarter way to pick credit cards — based entirely on your profile.</p>
+                <p><em>Card picks based entirely on your <a href="#" class="spending-profile-link">spending
+                            profile</a></em></p>
             </div>
         </div>
     </section>

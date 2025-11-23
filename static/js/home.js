@@ -47,6 +47,88 @@
         });
     }
 
+    function initHeroCardNav() {
+        const nav = document.querySelector('.hero-card-nav');
+        if (!nav) {
+            console.log('Hero card nav not found');
+            return;
+        }
+
+        const track = nav.querySelector('.hero-card-nav-track');
+        const viewport = nav.querySelector('.hero-card-nav-viewport');
+        const prevBtn = nav.querySelector('.hero-card-nav-btn--prev');
+        const nextBtn = nav.querySelector('.hero-card-nav-btn--next');
+        const cardItems = Array.from(track ? track.querySelectorAll('.hero-card-item') : []);
+
+        if (!track || !viewport || !prevBtn || !nextBtn || cardItems.length === 0) {
+            console.log('Hero card nav missing elements', { track, viewport, prevBtn, nextBtn, cardsCount: cardItems.length });
+            return;
+        }
+
+        console.log('Hero card nav initialized with', cardItems.length, 'cards');
+
+        let currentIndex = 0;
+
+        function getStep() {
+            const first = cardItems[0];
+            return first ? first.offsetWidth : 0;
+        }
+
+        function maxIndex() {
+            return Math.max(cardItems.length - 1, 0);
+        }
+
+        function clampIndex() {
+            const max = maxIndex();
+            if (currentIndex < 0) currentIndex = 0;
+            if (currentIndex > max) currentIndex = max;
+        }
+
+        function updatePosition() {
+            clampIndex();
+            const step = getStep();
+            const offset = -currentIndex * step;
+            console.log('Updating position:', { currentIndex, step, offset });
+            track.style.transform = `translateX(${offset}px)`;
+        }
+
+        function updateButtons() {
+            const max = maxIndex();
+            prevBtn.disabled = currentIndex <= 0;
+            nextBtn.disabled = currentIndex >= max;
+            prevBtn.classList.toggle('is-disabled', prevBtn.disabled);
+            nextBtn.classList.toggle('is-disabled', nextBtn.disabled);
+        }
+
+        function go(delta) {
+            console.log('Go called with delta:', delta);
+            currentIndex += delta;
+            updatePosition();
+            updateButtons();
+        }
+
+        prevBtn.addEventListener('click', (e) => {
+            e.preventDefault();
+            console.log('Prev button clicked');
+            go(-1);
+        });
+
+        nextBtn.addEventListener('click', (e) => {
+            e.preventDefault();
+            console.log('Next button clicked');
+            go(1);
+        });
+
+        window.addEventListener('resize', () => {
+            updatePosition();
+            updateButtons();
+        });
+
+        // initial
+        updatePosition();
+        updateButtons();
+    }
+
     function ready(fn) {
         if (document.readyState === 'loading') {
             document.addEventListener('DOMContentLoaded', fn);
@@ -58,5 +140,6 @@
     ready(() => {
         initBestCards();
         initTierButtons();
+        initHeroCardNav();
     });
 })();
