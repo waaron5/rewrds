@@ -12,19 +12,27 @@ let fuse; // Fuse.js instance
 let activeIndex = -1; // keyboard selection index
 
 function fixImagePath(path) {
-    if (!path) return "/static/images/cards/card-placeholder.png";
+    const placeholder = "/static/images/cards/card-placeholder.webp";
+    if (!path) return placeholder;
 
-    // If backend provides "/images/cards/amex_gold.png"
-    if (path.startsWith("/images/cards/")) {
-        return "/static" + path;
+    // Allow full URLs to pass through untouched
+    if (/^https?:\/\//i.test(path)) return path;
+
+    let normalized = path;
+
+    // Normalize common backend patterns to the static folder used by the site
+    if (normalized.startsWith("/images/cards/")) {
+        normalized = "/static" + normalized;
+    } else if (normalized.startsWith("images/cards/")) {
+        normalized = "/static/" + normalized;
+    } else if (!normalized.startsWith("/static/")) {
+        normalized = "/static/images/cards/" + normalized.replace(/^\//, "");
     }
 
-    // If backend provides only "amex_gold.png" (fallback case)
-    if (!path.includes("/")) {
-        return "/static/images/cards/" + path;
-    }
+    // API still returns .png filenames while assets are .webp – swap extensions
+    normalized = normalized.replace(/\.png(\?.*)?$/i, ".webp$1");
 
-    return path;
+    return normalized || placeholder;
 }
 
 // DOM references
@@ -319,7 +327,8 @@ function renderSlotHeader(slot, card) {
     header.innerHTML = `
         <div class="compare-header-content">
             <a href="${detailsUrl}" class="compare-card-link">
-                <img src="${imgSrc}" alt="${card.name}" class="compare-card-image" />
+                <img src="${imgSrc}" alt="${card.name}" class="compare-card-image"
+                    onerror="this.onerror=null;this.src='/static/images/cards/card-placeholder.webp';" />
                 <div class="compare-card-title">
                     <strong>${card.name}</strong><br/>
                     <span>${card.issuer}</span>
@@ -338,6 +347,7 @@ function renderSlotHeader(slot, card) {
 // RENDER ALL FIELDS FOR ONE CARD
 // ================================
 function renderAllFields(slot, card) {
+    renderField("apply_link", slot, formatApplyLink(card));
     renderField("annual_fee", slot, formatAnnualFee(card));
     renderField("welcome_offer", slot, formatWelcomeOffer(card));
     renderField("rewards", slot, formatRewards(card));
@@ -352,7 +362,6 @@ function renderAllFields(slot, card) {
     renderField("eligibility", slot, fallback(card.eligibility));
     renderField("transfer_partners", slot, formatList(card.transfer_partners));
     renderField("pairing_synergy", slot, formatList(card.pairing_synergy));
-    renderField("apply_link", slot, formatApplyLink(card));
 }
 
 // ================================
