@@ -3,6 +3,7 @@
 // 3) Static pages list
 const pages = [
     { title: "Home", url: "/" },
+    { title: "Login / Sign up", url: "/login.html" },
     { title: "Credit Card Quiz", url: "/cardmatch.html" },
     { title: "Best Cards 2025", url: "/bestcardsof2025.html" },
     { title: "Results", url: "/results.html" },

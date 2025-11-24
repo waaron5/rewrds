@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- favicon logo and title (site tab) -->
+    <link rel="icon" type="image/png" href="static/images/ui/favicon.png">
+    <title>REWRDS | Log in or Sign up</title>
+
+    <!-- Modern Google Fonts -->
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&family=Kanit:wght@400;500;600;700&display=swap"
+        rel="stylesheet">
+
+    <!-- Nav Font -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700&display=swap" rel="stylesheet">
+
+    <!-- Fun Font -->
+    <link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@600;700&display=swap" rel="stylesheet" />
+
+    <!-- Font Awesome for icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+
+    <link rel="stylesheet" href="/static/css/styles.css">
+</head>
+
+<body class="auth-page">
+    <main class="auth-main auth-simple">
+        <div class="auth-stack">
+            <div class="auth-card auth-card--simple" id="signin">
+                <header class="auth-card__header">
+                    <p class="eyebrow">Welcome back</p>
+                    <h1>Log in to REWRDS</h1>
+                    <p class="muted">Access your saved profile and card matches.</p>
+                </header>
+                <form class="auth-form" action="#" method="post" novalidate>
+                    <div class="form-row">
+                        <label for="login-email">Email</label>
+                        <input id="login-email" name="email" type="email" required>
+                    </div>
+                    <div class="form-row">
+                        <label for="login-password">Password</label>
+                        <div class="password-field">
+                            <input id="login-password" name="password" type="password" required>
+                            <button type="button" class="toggle-password" data-target="login-password">Show</button>
+                        </div>
+                    </div>
+                    <div class="form-row inline between">
+                        <label class="checkbox-label">
+                            <input type="checkbox" name="remember" checked>
+                            Remember me
+                        </label>
+                        <a class="link-muted" href="#">Forgot password?</a>
+                    </div>
+                    <button type="submit" class="btn primary auth-submit">Log in</button>
+                    <p class="form-note">By signing in you agree to our <a href="/terms.html">Terms</a> and <a
+                            href="/privacy.html">Privacy Policy</a>.</p>
+                </form>
+                <div class="auth-divider"><span>or</span></div>
+                <button type="button" class="auth-alt-btn">
+                    <i class="fa-brands fa-google"></i>
+                    Continue with Google
+                </button>
+                <button type="button" class="auth-alt-btn">
+                    <i class="fa-brands fa-apple"></i>
+                    Continue with Apple
+                </button>
+                <div class="auth-footer-cta">
+                    <span>New to REWRDS?</span>
+                    <a href="#signup">Create an account</a>
+                </div>
+            </div>
+
+            <div class="auth-card auth-card--simple" id="signup">
+                <header class="auth-card__header">
+                    <p class="eyebrow">Free account</p>
+                    <h2>Create your account</h2>
+                    <p class="muted">Save your spending profile and track card matches.</p>
+                </header>
+                <form class="auth-form" action="#" method="post" novalidate>
+                    <div class="form-row">
+                        <label for="signup-email">Email</label>
+                        <input id="signup-email" name="email" type="email" required>
+                    </div>
+                    <div class="form-row">
+                        <label for="signup-password">Password</label>
+                        <div class="password-field">
+                            <input id="signup-password" name="password" type="password" required>
+                            <button type="button" class="toggle-password" data-target="signup-password">Show</button>
+                        </div>
+                    </div>
+                    <div class="form-row inline">
+                        <label class="checkbox-label">
+                            <input type="checkbox" name="news" checked>
+                            Email me when bonuses change
+                        </label>
+                    </div>
+                    <button type="submit" class="btn primary auth-submit">Create free account</button>
+                    <p class="form-note">By creating an account you agree to our <a href="/terms.html">Terms</a> and <a
+                            href="/privacy.html">Privacy Policy</a>.</p>
+                </form>
+                <div class="auth-divider"><span>or</span></div>
+                <button type="button" class="auth-alt-btn">
+                    <i class="fa-brands fa-google"></i>
+                    Continue with Google
+                </button>
+                <button type="button" class="auth-alt-btn">
+                    <i class="fa-brands fa-apple"></i>
+                    Continue with Apple
+                </button>
+                <div class="auth-footer-cta">
+                    <span>Already have an account?</span>
+                    <a href="#signin">Log in</a>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <script src="https://cdn.jsdelivr.net/npm/fuse.js@6.6.2"></script>
+    <script src="static/js/search.js"></script>
+    <script src="static/js/main.js"></script>
+    <script src="static/js/nav.js"></script>
+    <script>
+        (function () {
+            const toggles = document.querySelectorAll('.toggle-password');
+            toggles.forEach(btn => {
+                btn.addEventListener('click', () => {
+                    const id = btn.dataset.target;
+                    const input = document.getElementById(id);
+                    if (!input) return;
+                    const isHidden = input.type === 'password';
+                    input.type = isHidden ? 'text' : 'password';
+                    btn.textContent = isHidden ? 'Hide' : 'Show';
+                });
+            });
+        })();
+    </script>
+</body>
+
+</html>
