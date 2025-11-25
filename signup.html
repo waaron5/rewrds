@@ -7,7 +7,7 @@
 
     <!-- favicon logo and title (site tab) -->
     <link rel="icon" type="image/png" href="static/images/ui/favicon.png">
-    <title>REWRDS | Log in</title>
+    <title>REWRDS | Create an account</title>
 
     <!-- Modern Google Fonts -->
     <link
@@ -29,35 +29,34 @@
 <body class="auth-page">
     <main class="auth-main auth-simple">
         <div class="auth-stack">
-            <div class="auth-card auth-card--simple" id="signin">
+            <div class="auth-card auth-card--simple" id="signup">
                 <header class="auth-card__header">
-                    <p class="eyebrow">Welcome back</p>
-                    <h1>Log in to REWRDS</h1>
+                    <p class="eyebrow">Free account</p>
+                    <h2>Create your account</h2>
                 </header>
                 <form class="auth-form" action="#" method="post" novalidate>
                     <div class="form-row">
-                        <label for="login-email">Email</label>
-                        <input id="login-email" name="email" type="email" required>
+                        <label for="signup-email">Email</label>
+                        <input id="signup-email" name="email" type="email" required>
                     </div>
                     <div class="form-row">
-                        <label for="login-password">Password</label>
+                        <label for="signup-password">Password</label>
                         <div class="password-field">
-                            <input id="login-password" name="password" type="password" required>
-                            <button type="button" class="toggle-password" data-target="login-password"
+                            <input id="signup-password" name="password" type="password" required>
+                            <button type="button" class="toggle-password" data-target="signup-password"
                                 aria-label="Show password" aria-pressed="false">
                                 <i class="fa-solid fa-eye" aria-hidden="true"></i>
                             </button>
                         </div>
                     </div>
-                    <div class="form-row inline between">
+                    <div class="form-row inline">
                         <label class="checkbox-label">
-                            <input type="checkbox" name="remember">
+                            <input type="checkbox" name="news">
                             Remember me
                         </label>
-                        <a class="link-muted" href="#">Forgot password?</a>
                     </div>
-                    <button type="submit" class="btn primary auth-submit">Log in</button>
-                    <p class="form-note">By signing in you agree to our <a href="/terms.html">Terms</a> and <a
+                    <button type="submit" class="btn primary auth-submit">Create free account</button>
+                    <p class="form-note">By creating an account you agree to our <a href="/terms.html">Terms</a> and <a
                             href="/privacy.html">Privacy Policy</a>.</p>
                 </form>
                 <div class="auth-divider"><span>or</span></div>
@@ -70,8 +69,8 @@
                     Continue with Apple
                 </button>
                 <div class="auth-footer-cta">
-                    <span>New to REWRDS?</span>
-                    <a href="/signup.html">Create an account</a>
+                    <span>Already have an account?</span>
+                    <a href="/login.html">Log in</a>
                 </div>
             </div>
         </div>

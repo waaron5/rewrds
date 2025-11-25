@@ -149,7 +149,7 @@ html body.home-page .hero-section {
     --gradient-footer: linear-gradient(to top left, #5d6d83 0%, #afbdd0 100%);
     --gradient-accent: linear-gradient(90deg, #2563eb 0%, #3b82f6 100%);
     --gradient-room: linear-gradient(to top left, #cbd5e1 0%, #ffffff 100%);
-    --gradient-room-2: linear-gradient(to right, #768da8 0%, #d0dae2 100%);
+    --gradient-room-2: #768da8;
 
     /* ===================================
        Typography System
@@ -378,7 +378,7 @@ nav ul li a {
 nav ul li a:hover,
 nav ul li a:focus {
     background-color: var(--background-alt);
-    color: var(--ink);
+    color: var(--accent-600);
 }
 
 nav ul li.dropdown>a.dropbtn {
@@ -697,10 +697,8 @@ main {
     width: 15px;
     height: 15px;
     background-color: currentColor;
-    -webkit-mask: url('../icons/arrow.svg') no-repeat center / contain;
-    mask: url('../icons/arrow.svg') no-repeat center / contain;
-    transform: rotate(-45deg);
-    /* Rotate to point northeast */
+    -webkit-mask: url('../icons/arrow-up-right.svg') no-repeat center / contain;
+    mask: url('../icons/arrow-up-right.svg') no-repeat center / contain;
 }
 
 .hero-inner .text-content .spending-profile-link:hover {
@@ -993,7 +991,7 @@ main {
 
 .best-cards .best-compare-btn:hover {
     background-color: var(--background);
-    color: var(--brand-300);
+    color: var(--brand-400);
 }
 
 /* Explore Cards buttons row */
@@ -1067,7 +1065,7 @@ main {
 
 /* Remove/override any special-case recolors that conflict with muted helper */
 .best-cards .secondary-text {
-    color: var(--muted) !important;
+    color: var(--brand-200) !important;
 }
 
 /* ACTIVE / HIGHLIGHT STATES */
@@ -1156,7 +1154,7 @@ body.home-page .feature-row::after {
 }
 
 .feature-card:hover {
-    transform: translateY(-6px);
+    transform: translateY(-1px);
     color: var(--ink);
     background-color: var(--surface);
     box-shadow: var(--shadow-lg);
@@ -1189,23 +1187,11 @@ body.home-page .feature-row::after {
 .feature-card:focus-visible .feature-icon {
     transform: translateY(-2px);
     /* Recolor PNG toward accent blue */
-    filter: brightness(0) saturate(100%) invert(38%) sepia(78%) saturate(1018%) hue-rotate(179deg) brightness(101%) contrast(97%);
+    filter: brightness(0) saturate(100%) invert(43%) sepia(80%) saturate(1204%) hue-rotate(203deg) brightness(79%) contrast(147%);
 }
 
 .feature-card:hover h3,
 .feature-card:focus-visible h3 {
-    color: var(--accent-400);
-}
-
-.icon-support {
-    color: var(--accent-600);
-}
-
-.icon-subscribe {
-    color: var(--accent-600);
-}
-
-.icon-cardstack {
     color: var(--accent-600);
 }
 
@@ -1807,14 +1793,20 @@ body.home-page .feature-row::after {
     background: url('../images/ui/Background-tiers.png') center/cover no-repeat;
     padding-top: 40px;
     padding-bottom: 60px;
+    justify-content: center;
+}
+
+.cta-section .section-inner {
+    justify-content: center;
+    gap: 0;
 }
 
 .cta-inner {
     max-width: 1200px;
     margin: 0 auto;
     display: flex;
-    justify-content: center;
     align-items: center;
+    width: 100%;
 }
 
 .cta-content {
@@ -1850,10 +1842,24 @@ body.home-page .feature-row::after {
 }
 
 .cta-content .btn.primary {
-    border-radius: 8px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
     padding: 10px 20px;
-    font-size: 1rem;
-    letter-spacing: 0.3px;
+    font-size: 1.2rem;
+    font-weight: 600;
+    border-radius: 8px;
+    letter-spacing: 0.2px;
+    text-transform: none;
+    background-color: var(--brand-800);
+    color: var(--background);
+    border: 2px solid var(--background);
+    transition: all 0.2s;
+}
+
+.cta-content .btn.primary:hover {
+    color: var(--brand-900);
+    background-color: var(--background);
 }
 
 /* ==========================
@@ -2259,12 +2265,19 @@ body.home-page .feature-row::after {
 ========================== */
 body.auth-page {
     background: var(--background);
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
 }
 
 .auth-main {
     max-width: 1180px;
     margin: 0 auto;
     padding: 48px 20px 80px;
+    flex: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
 .auth-main.auth-simple {
@@ -2346,16 +2359,16 @@ body.auth-page {
 
 .auth-card {
     background: var(--surface);
-    border: 1px solid var(--border);
+    border: none;
     border-radius: var(--radius-sm);
     padding: 24px;
-    box-shadow: 0 8px 30px rgba(15, 23, 42, 0.06);
+    box-shadow: none;
 }
 
 .auth-card--simple {
     max-width: 1200px;
     margin: 0 auto;
-    box-shadow: var(--shadow-md);
+    box-shadow: none;
 }
 
 .auth-card--highlight {
@@ -2452,44 +2465,86 @@ body.auth-page {
 }
 
 .password-field {
+    position: relative;
     display: flex;
-    align-items: stretch;
-    gap: 8px;
+    align-items: center;
 }
 
 .password-field input {
     flex: 1 1 auto;
+    width: 100%;
+    padding-right: 52px;
 }
 
 .toggle-password {
-    border: 1px solid var(--border);
-    border-radius: 4px;
-    background: var(--background);
-    padding: 10px 12px;
-    font-weight: var(--weight-semibold);
-    color: var(--brand-900);
+    position: absolute;
+    right: 12px;
+    top: 50%;
+    transform: translateY(-50%);
+    border: none;
+    background: transparent;
+    padding: 8px;
+    color: var(--muted);
     cursor: pointer;
-    transition: background 0.1s, border-color 0.1s, color 0.1s;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    transition: color 0.1s ease;
 }
 
 .toggle-password:hover {
-    background: var(--background-alt);
-    border-color: var(--accent-200);
     color: var(--accent-600);
+}
+
+.toggle-password:focus-visible {
+    outline: 2px solid var(--accent-400);
+    outline-offset: 2px;
 }
 
 .checkbox-label {
     display: inline-flex;
     align-items: center;
     gap: 10px;
-    font-size: 0.9rem;
+    font-family: var(--font-family-base);
+    font-size: 0.95rem;
     font-weight: 400;
     color: var(--brand-900);
 }
 
 .checkbox-label input {
-    width: 15px;
-    height: 15px;
+    appearance: none;
+    width: 14px;
+    height: 14px;
+    padding: 0;
+    margin: 0;
+    border: 2px solid var(--brand-300);
+    border-radius: 4px;
+    background: var(--surface);
+    display: inline-grid;
+    place-items: center;
+    box-sizing: border-box;
+    flex-shrink: 0;
+    transition: border-color 0.15s ease, background-color 0.15s ease, box-shadow 0.15s ease;
+}
+
+.checkbox-label input:checked {
+    background: var(--accent-600);
+    border-color: var(--accent-600);
+    box-shadow: 0 0 0 3px var(--accent-100);
+}
+
+.checkbox-label input:checked::after {
+    content: "";
+    width: 6px;
+    height: 9px;
+    border: solid var(--surface);
+    border-width: 0 2px 2px 0;
+    transform: rotate(45deg);
+}
+
+.checkbox-label input:focus-visible {
+    outline: 2px solid var(--accent-400);
+    outline-offset: 2px;
 }
 
 .auth-submit {
@@ -2505,6 +2560,7 @@ body.auth-page {
 .form-note {
     margin: 4px 0 0 0;
     color: var(--muted);
+    font-family: var(--font-family-base);
     font-size: 0.95rem;
 }
 
@@ -2518,8 +2574,9 @@ body.auth-page {
 }
 
 .link-muted {
-    font-size: 0.8rem;
-    color: var(--accent-500);
+    font-family: var(--font-family-base);
+    font-size: 0.95rem;
+    color: var(--accent-600);
     font-weight: 400;
 }
 
@@ -2564,13 +2621,35 @@ body.auth-page {
     transition: background 0.12s, border-color 0.12s;
 }
 
-.auth-alt-btn + .auth-alt-btn {
+.auth-alt-btn+.auth-alt-btn {
     margin-top: 10px;
 }
 
 .auth-alt-btn:hover {
     background: var(--background-alt);
     border-color: var(--accent-200);
+}
+
+.auth-alt-btn--google {
+    background: #4285f4;
+    border-color: #4285f4;
+    color: #ffffff;
+}
+
+.auth-alt-btn--google:hover {
+    background: #3367d6;
+    border-color: #2a56c6;
+}
+
+.auth-alt-btn--apple {
+    background: #0f0f10;
+    border-color: #0f0f10;
+    color: #ffffff;
+}
+
+.auth-alt-btn--apple:hover {
+    background: #242428;
+    border-color: #232325;
 }
 
 .auth-benefits {
@@ -2589,6 +2668,8 @@ body.auth-page {
     gap: 4px;
     font-weight: 600;
     color: var(--muted);
+    font-family: var(--font-family-base);
+    font-size: 0.95rem;
 }
 
 .auth-footer-cta::before {
@@ -2604,6 +2685,8 @@ body.auth-page {
     color: var(--accent-600);
     font-weight: 700;
     text-decoration: none;
+    font-size: 0.95rem;
+    font-family: var(--font-family-base);
 }
 
 .auth-footer-cta a:hover {
