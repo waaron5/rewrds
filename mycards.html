@@ -1,0 +1,338 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- favicon logo and title (site tab) -->
+    <link rel="icon" type="image/png" href="static/images/ui/favicon.png">
+    <title>REWRDS | My Cards</title>
+
+    <!-- Modern Google Fonts -->
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&family=Kanit:wght@400;500;600;700&display=swap"
+        rel="stylesheet">
+
+    <!-- Nav Font -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700&display=swap" rel="stylesheet">
+
+    <!-- Fun Font -->
+    <link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@600;700&display=swap" rel="stylesheet" />
+
+    <!-- Font Awesome for icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+
+    <link rel="stylesheet" href="/static/css/styles.css">
+</head>
+
+<body class="mycards-page">
+    <header id="top" class="site-header">
+        <div class="header-left">
+            <a href="index.html" class="logo-link" aria-label="Home">
+                <img src="static/images/ui/REWRDS_UTAH.png" alt="REWRDS Logo" loading="lazy">
+            </a>
+        </div>
+
+        <div class="header-center">
+            <nav class="main-nav" aria-label="Main Navigation">
+                <ul>
+                    <li><a href="mycards.html">My Cards</a></li>
+                    <li class="dropdown">
+                        <a href="javascript:void(0)" class="dropbtn">Credit Cards</a>
+                        <ul class="dropdown-content">
+                            <li><a href="allcards.html">All Credit Cards</a></li>
+                            <li><a href="bestcreditcardsof2025.html">Best Credit Cards 2025</a></li>
+                            <li><a href="cardmatch.html">Credit Card Quiz</a></li>
+                            <li><a href="compare.html">Compare Cards</a></li>
+                        </ul>
+                    </li>
+                    <li class="dropdown">
+                        <a href="javascript:void(0)" class="dropbtn">Tools</a>
+                        <ul class="dropdown-content">
+                            <li><a href="cardmatch.html">Credit Card Quiz</a></li>
+                            <li><a href="compare.html">Compare Cards</a></li>
+                        </ul>
+                    </li>
+                    <li class="dropdown">
+                        <a href="javascript:void(0)" class="dropbtn">Guides</a>
+                        <ul class="dropdown-content">
+                            <li><a href="howdocreditcardswork.html">How do credit cards work?</a></li>
+                            <li><a href="howmanycreditcardsshouldihave.html">How many cards should I have?</a></li>
+                            <li><a href="pickingtherightcard.html">How do I know which card to get?</a></li>
+                        </ul>
+                    </li>
+                    <button class="nav-search-btn" aria-label="Search"></button>
+                </ul>
+            </nav>
+        </div>
+
+        <div class="header-right nav-actions">
+            <a href="login.html#signin" class="login-btn">Log in</a>
+            <a href="signup.html" class="signup-btn">Sign up</a>
+        </div>
+    </header>
+
+    <main class="mycards-main">
+        <header class="mycards-hero">
+            <div class="mycards-hero-left">
+                <div class="mycards-icon">
+                    <i class="fa-solid fa-credit-card"></i>
+                </div>
+                <div>
+                    <h1>Card Dashboard</h1>
+                    <p>Manage your credit card portfolio</p>
+                </div>
+            </div>
+            <div class="mycards-score">
+                <i class="fa-solid fa-award" aria-hidden="true"></i>
+                <span>Credit Score: 750</span>
+            </div>
+        </header>
+
+        <section class="mycards-banner">
+            <div class="mycards-banner-shimmer" aria-hidden="true"></div>
+            <div class="mycards-banner-content">
+                <div>
+                    <div class="mycards-banner-pill">
+                        <i class="fa-solid fa-wand-magic-sparkles" aria-hidden="true"></i>
+                        <span>Premium Feature</span>
+                    </div>
+                    <h2>Upgrade to Optimized Portfolio</h2>
+                    <p>Get AI-powered recommendations to maximize your rewards and minimize fees.</p>
+                    <div class="mycards-banner-meta">
+                        <span><i class="fa-solid fa-bolt" aria-hidden="true"></i> Smart optimization</span>
+                        <span><i class="fa-solid fa-sparkles" aria-hidden="true"></i> Save up to $500/year</span>
+                    </div>
+                </div>
+                <button class="mycards-banner-cta">
+                    Upgrade Now
+                    <i class="fa-solid fa-arrow-right" aria-hidden="true"></i>
+                </button>
+            </div>
+        </section>
+
+        <section class="mycards-section">
+            <div class="mycards-section-header">
+                <div class="mycards-section-title">
+                    <i class="fa-solid fa-credit-card" aria-hidden="true"></i>
+                    <h2>My Cards</h2>
+                </div>
+                <span class="mycards-pill">2</span>
+            </div>
+            <div class="mycards-grid">
+                <div class="mycards-card">
+                    <div class="mycards-card-visual card-gradient-blue">
+                        <div class="mycards-card-top">
+                            <div>
+                                <p class="mycards-card-issuer">Chase</p>
+                                <h3>Chase Sapphire Preferred</h3>
+                            </div>
+                            <button class="mycards-icon-btn" aria-label="Card actions">
+                                <i class="fa-solid fa-ellipsis-vertical"></i>
+                            </button>
+                        </div>
+                        <div class="mycards-card-bottom">
+                            <div>
+                                <p class="mycards-card-label">Card Number</p>
+                                <p class="mycards-card-number">•••• •••• •••• 4532</p>
+                            </div>
+                            <i class="fa-solid fa-credit-card" aria-hidden="true"></i>
+                        </div>
+                    </div>
+                    <div class="mycards-card-details">
+                        <div>
+                            <span class="detail-label">Rewards</span>
+                            <span class="detail-value">2x on travel & dining</span>
+                        </div>
+                        <div>
+                            <span class="detail-label">Annual Fee</span>
+                            <span class="detail-value">$95</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="mycards-card">
+                    <div class="mycards-card-visual card-gradient-gold">
+                        <div class="mycards-card-top">
+                            <div>
+                                <p class="mycards-card-issuer">Amex</p>
+                                <h3>American Express Gold</h3>
+                            </div>
+                            <button class="mycards-icon-btn" aria-label="Card actions">
+                                <i class="fa-solid fa-ellipsis-vertical"></i>
+                            </button>
+                        </div>
+                        <div class="mycards-card-bottom">
+                            <div>
+                                <p class="mycards-card-label">Card Number</p>
+                                <p class="mycards-card-number">•••• •••• •••• 1003</p>
+                            </div>
+                            <i class="fa-solid fa-credit-card" aria-hidden="true"></i>
+                        </div>
+                    </div>
+                    <div class="mycards-card-details">
+                        <div>
+                            <span class="detail-label">Rewards</span>
+                            <span class="detail-value">4x on dining & groceries</span>
+                        </div>
+                        <div>
+                            <span class="detail-label">Annual Fee</span>
+                            <span class="detail-value">$250</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="mycards-section">
+            <div class="mycards-section-header">
+                <div class="mycards-section-title">
+                    <i class="fa-solid fa-arrow-trend-up" aria-hidden="true"></i>
+                    <h2>Recommended For You</h2>
+                </div>
+                <i class="fa-solid fa-star mycards-star" aria-hidden="true"></i>
+            </div>
+            <div class="mycards-grid recommendations">
+                <div class="mycards-rec-card">
+                    <div class="mycards-rec-header">
+                        <span class="mycards-match">
+                            <i class="fa-solid fa-arrow-trend-up" aria-hidden="true"></i>
+                            95% Match
+                        </span>
+                        <span class="mycards-rec-issuer">Chase</span>
+                    </div>
+                    <h3>Chase Sapphire Reserve</h3>
+                    <p class="mycards-rec-reason">Upgrade from your Sapphire Preferred for better rewards.</p>
+                    <div class="mycards-rec-details">
+                        <div>
+                            <p class="detail-label">Sign-up Bonus</p>
+                            <p class="detail-value">60,000 points</p>
+                        </div>
+                        <div>
+                            <p class="detail-label">Rewards</p>
+                            <p class="detail-value">3x on travel & dining</p>
+                        </div>
+                        <div>
+                            <p class="detail-label">Annual Fee</p>
+                            <p class="detail-value">$550</p>
+                        </div>
+                    </div>
+                    <button class="mycards-rec-btn">
+                        Learn More
+                        <i class="fa-solid fa-arrow-right" aria-hidden="true"></i>
+                    </button>
+                </div>
+
+                <div class="mycards-rec-card">
+                    <div class="mycards-rec-header">
+                        <span class="mycards-match">
+                            <i class="fa-solid fa-arrow-trend-up" aria-hidden="true"></i>
+                            88% Match
+                        </span>
+                        <span class="mycards-rec-issuer">Capital One</span>
+                    </div>
+                    <h3>Capital One Venture X</h3>
+                    <p class="mycards-rec-reason">Great for your travel spending patterns.</p>
+                    <div class="mycards-rec-details">
+                        <div>
+                            <p class="detail-label">Sign-up Bonus</p>
+                            <p class="detail-value">75,000 miles</p>
+                        </div>
+                        <div>
+                            <p class="detail-label">Rewards</p>
+                            <p class="detail-value">2x on everything, 5x on flights</p>
+                        </div>
+                        <div>
+                            <p class="detail-label">Annual Fee</p>
+                            <p class="detail-value">$395</p>
+                        </div>
+                    </div>
+                    <button class="mycards-rec-btn">
+                        Learn More
+                        <i class="fa-solid fa-arrow-right" aria-hidden="true"></i>
+                    </button>
+                </div>
+
+                <div class="mycards-rec-card">
+                    <div class="mycards-rec-header">
+                        <span class="mycards-match">
+                            <i class="fa-solid fa-arrow-trend-up" aria-hidden="true"></i>
+                            82% Match
+                        </span>
+                        <span class="mycards-rec-issuer">Citi</span>
+                    </div>
+                    <h3>Citi Premier Card</h3>
+                    <p class="mycards-rec-reason">Excellent value for your spending categories.</p>
+                    <div class="mycards-rec-details">
+                        <div>
+                            <p class="detail-label">Sign-up Bonus</p>
+                            <p class="detail-value">80,000 points</p>
+                        </div>
+                        <div>
+                            <p class="detail-label">Rewards</p>
+                            <p class="detail-value">3x on dining, gas & travel</p>
+                        </div>
+                        <div>
+                            <p class="detail-label">Annual Fee</p>
+                            <p class="detail-value">$95</p>
+                        </div>
+                    </div>
+                    <button class="mycards-rec-btn">
+                        Learn More
+                        <i class="fa-solid fa-arrow-right" aria-hidden="true"></i>
+                    </button>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="site-footer">
+        <div class="footer-container">
+            <div class="footer-top">
+                <div class="footer-brand">
+                    <a href="/index.html#top" class="footer-logo-link" aria-label="Back to top (Home)"
+                        title="Back to top">
+                        <img src="/static/images/REWRDS_transparent.png" alt="REWRDS Logo" class="footer-logo" />
+                    </a>
+                    <p class="footer-description">Independent, transparent tools to find the best credit cards for your
+                        life.</p>
+                </div>
+
+                <div class="footer-links">
+                    <div>
+                        <h4>Tools</h4>
+                        <a href="/cardmatch.html">Credit Card Quiz</a>
+                        <a href="/compare.html">Compare Cards</a>
+                    </div>
+                    <div>
+                        <h4>Explore Cards</h4>
+                        <a href="/allcards.html">All Cards</a>
+                        <a href="/bestcreditcardsof2025.html">Best Cards 2025</a>
+                        <a href="/besttravelcards.html">Best Travel Cards</a>
+                    </div>
+                    <div>
+                        <h4>Guides</h4>
+                        <a href="/guides.html">Guides Hub</a>
+                        <a href="/howdocreditcardswork.html">How do credit cards work?</a>
+                        <a href="/pickingtherightcard.html">Picking the right card</a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="footer-bottom">
+                <p>&copy; <span id="copyright-year"></span> REWRDS. All rights reserved.</p>
+                <div class="footer-legal">
+                    <a href="/privacy.html">Privacy</a>
+                    <a href="/terms.html">Terms</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script src="static/js/main.js"></script>
+    <script src="static/js/nav.js"></script>
+    <script src="static/js/search.js"></script>
+</body>
+
+</html>
